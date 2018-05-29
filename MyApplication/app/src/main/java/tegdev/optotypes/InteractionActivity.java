@@ -440,7 +440,7 @@ public class InteractionActivity extends AppCompatActivity {
         fillProgressBar();
         //// Agregar sonido con nombre de la figura
         ////Agregar sonido de Muy bien
-        //interactionSound(true);
+        interactionSound(true);
 
     }
 
@@ -453,7 +453,7 @@ public class InteractionActivity extends AppCompatActivity {
         option.setBackgroundColor(Color.rgb(255, 255, 255));
         imageAnimation.setImageResource(R.drawable.triste);
         //// Agregar sonido de oh! no
-        //interactionSound(false);
+        interactionSound(false);
     }
 
     /**
@@ -488,5 +488,47 @@ public class InteractionActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    /**
+     * This method allow sound interaction
+     * @param value
+     */
+    public void interactionSound(boolean value){
+
+        MediaPlayer interactionSound = null;
+        int sound = (int) (Math.random() * 3) + 1;
+
+        //Log.d("sonido: ", Integer.toString(sound));
+        if (value){
+            switch (sound){
+                case 1:
+                    interactionSound = MediaPlayer.create(this, R.raw.yes);
+                    break;
+                case 2:
+                    interactionSound = MediaPlayer.create(this, R.raw.woohoo);
+                    break;
+                case 3:
+                    interactionSound = MediaPlayer.create(this, R.raw.bienhecho);
+                    break;
+            }
+        }else{
+
+            switch (sound){
+                case 1:
+                    interactionSound = MediaPlayer.create(this, R.raw.incorrect);
+                    break;
+                case 2:
+                    interactionSound = MediaPlayer.create(this, R.raw.heno);
+                    break;
+                case 3:
+                    interactionSound = MediaPlayer.create(this, R.raw.ooh);
+                    break;
+            }
+        }
+
+        interactionSound.start();
+
+    }
+
 
 }
