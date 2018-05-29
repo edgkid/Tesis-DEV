@@ -312,7 +312,7 @@ public class InteractionActivity extends AppCompatActivity {
      */
     public void actionDrag (int dragEvent, View view, int option){
 
-        //MediaPlayer soundDrag = null;
+        MediaPlayer soundDrag = null;
 
         switch (dragEvent){
             //Accion para mover elemento
@@ -321,32 +321,32 @@ public class InteractionActivity extends AppCompatActivity {
                 if (option == 1 ) {
                     if (imageOptotypeA.getTag().equals(imageOptotype.getTag())) {
                         imageOptotypeA.setBackgroundColor(Color.rgb(0, 255, 102));
-                        /*soundDrag = MediaPlayer.create(this, R.raw.ding);
-                        soundDrag.start();*/
+                        soundDrag = MediaPlayer.create(this, R.raw.ding);
+                        soundDrag.start();
                     }else{
                         imageOptotypeA.setBackgroundColor(Color.rgb(183,28,28));
-                        /*soundDrag = MediaPlayer.create(this, R.raw.wrong);
-                        soundDrag.start();*/
+                        soundDrag = MediaPlayer.create(this, R.raw.wrong);
+                        soundDrag.start();
                     }
                 }else if(option == 2){
                     if (imageOptotypeB.getTag().equals(imageOptotype.getTag())){
                         imageOptotypeB.setBackgroundColor(Color.rgb(0, 255, 102));
-                        /*soundDrag = MediaPlayer.create(this, R.raw.ding);
-                        soundDrag.start();*/
+                        soundDrag = MediaPlayer.create(this, R.raw.ding);
+                        soundDrag.start();
                     }else{
                         imageOptotypeB.setBackgroundColor(Color.rgb(183,28,28));
-                        /*soundDrag = MediaPlayer.create(this, R.raw.wrong);
-                        soundDrag.start();*/
+                        soundDrag = MediaPlayer.create(this, R.raw.wrong);
+                        soundDrag.start();
                     }
                 }else if (option == 3){
                     if (imageOptotypeC.getTag().equals(imageOptotype.getTag())){
                         imageOptotypeC.setBackgroundColor(Color.rgb(0, 255, 102));
-                        /*soundDrag = MediaPlayer.create(this, R.raw.ding);
-                        soundDrag.start();*/
+                        soundDrag = MediaPlayer.create(this, R.raw.ding);
+                        soundDrag.start();
                     }else{
                         imageOptotypeC.setBackgroundColor(Color.rgb(183,28,28));
-                        /*soundDrag = MediaPlayer.create(this, R.raw.wrong);
-                        soundDrag.start();*/
+                        soundDrag = MediaPlayer.create(this, R.raw.wrong);
+                        soundDrag.start();
                     }
 
                 }
