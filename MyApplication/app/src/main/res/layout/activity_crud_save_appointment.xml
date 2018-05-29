@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tegdev.optotypes.CrudSaveAppointmentActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageViewLoginUser"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/boy"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/buttonLogout"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/icon_on"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="600dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/idCrudShareSaveC"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp" />
+
+                <ImageButton
+                    android:id="@+id/idCrudButtonShareC"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/search_icon"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="0dp">
+
+                <ListView
+                    android:id="@+id/listPatienCrudC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp">
+
+                </ListView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="680dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/idCrudImagePerfilC"
+                        android:layout_width="100dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/usuario_icon" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="275dp"
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/idCrudTextNamesC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Edgar Rafel"
+                        android:textSize="25dp"/>
+
+                    <TextView
+                        android:id="@+id/idCrudTextLastNamesC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Landaeta Malave"
+                        android:textSize="25dp"/>
+
+                    <TextView
+                        android:id="@+id/idCrudTextYearsC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Edad"
+                        android:textSize="25dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="275dp"
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/idCrudNewAppointmentC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nueva Fecha de Consulta: DD/MM/YYYY"
+                        android:textSize="25dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/separatorC"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black"/>
+
+                <DatePicker
+                    android:id="@+id/idCrudDatePieckerC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </DatePicker>
+
+                <Button
+                    android:id="@+id/idCrudButtonAceptedC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aceptar"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

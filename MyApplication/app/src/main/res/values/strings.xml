@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TEG-Optotipos-UCAB</string>
+    <string name="user_name_default">User Name or Email</string>
+    <string name="password_default">Password</string>
+    <string name="button_login">Aceptar</string>
+    <string name="title_activity_dash_board">DashBoardActivity</string>
+
+    <!--initias values for interaction Activity-->
+    <string name="option">barco_1</string>
+    <string name="optionA">barco_1</string>
+    <string name="optionB">estrella_1</string>
+    <string name="optionC">cuadrado_1</string>
+
+</resources>

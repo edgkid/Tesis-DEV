@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tegdev.optotypes.LoginActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageViewIconEye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ojo_icon"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="600dp"/>
+
+        <EditText
+            android:id="@+id/editTextUserNameLogin"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Nombre de Usuario"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="400dp"/>
+
+        <EditText
+            android:id="@+id/editTextViewPassWord"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Clave de Usuario"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="400dp"/>
+
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:text="Aceptar"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="400dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Conexión con Equipo Medico"
+            android:textSize="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="400dp" />
+
+        <Button
+            android:id="@+id/buttonConectionConfg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/confg_icono"/>
+
+    </LinearLayout>
+
+</LinearLayout>
