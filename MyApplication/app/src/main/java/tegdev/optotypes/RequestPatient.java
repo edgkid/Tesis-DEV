@@ -61,6 +61,9 @@ public class RequestPatient {
             case 2:
                 httpRequestPatient.connectToResource((CrudDeleteAppointmentActivity) context, list, patient, action);
                 break;
+            case 3:
+                httpRequestPatient.connectToResource((CrudReadAppointmentActivity) context, list, patient, action);
+                break;
         }
     }
 

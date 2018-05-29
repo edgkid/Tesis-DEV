@@ -530,5 +530,4 @@ public class InteractionActivity extends AppCompatActivity {
 
     }
 
-
 }

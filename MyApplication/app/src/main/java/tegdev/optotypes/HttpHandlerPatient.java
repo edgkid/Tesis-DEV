@@ -162,6 +162,39 @@ public class HttpHandlerPatient {
      * @param patient
      * @param action
      */
+    public void connectToResource (final CrudReadAppointmentActivity ctx, final ListView list, final Patient patient, final int action){
+
+        Log.d("message: ", "Entra en la solicitu de conexion");
+        Thread tr = new Thread(){
+            @Override
+            public void run() {
+
+                final String result= sendRequestGet();
+                ctx.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (verifyRespondeServer(result)){
+                            Toast.makeText(ctx.getApplicationContext(),"Conexion con patients", Toast.LENGTH_SHORT).show();
+                            fillList(list, result);
+                        } else
+                            Toast.makeText(ctx.getApplicationContext(),"Conexion No patients", Toast.LENGTH_SHORT).show();
+                        interrupt();
+                    }
+                });
+
+            }
+        };
+        tr.start();
+    }
+
+    /**
+     * This method initialize connection with webservice, this method belongs to SaveAppointment
+     * @param ctx
+     * @param list
+     * @param patient
+     * @param action
+     */
     public void connectToResource (final CrudSaveAppointmentActivity ctx, final ListView list, final Patient patient, final int action){
 
         Thread tr = new Thread(){
@@ -185,8 +218,6 @@ public class HttpHandlerPatient {
             }
         };
         tr.start();
-
-
     }
 
     /**

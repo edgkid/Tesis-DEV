@@ -129,11 +129,17 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
     public void showData(PatientsToday patientsToday){
 
         String[] patient = patientsToday.getName().split(" ");
+        String[] years = patientsToday.getYearsOld().split(" ");
 
         if (patientsToday.getPhoto() != null)
             perfil.setImageBitmap(patientsToday.getPhoto());
         else
             perfil.setImageResource(R.drawable.usuario_icon);
+
+
+        names.setText(patient[0] + " " + patient[1]);
+        lastNames.setText(patient[2] + " " + patient[3]);
+        yearsOld.setText("Edad: " + years[1] + " años");
 
         perfil.setVisibility(View.VISIBLE);
         names.setVisibility(View.VISIBLE);
