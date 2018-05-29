@@ -149,7 +149,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                         newActivity = new Intent(contextActivity, CrudReadAppointmentActivity.class);
                         break;
                     case 4:
-                        //newActivity = new Intent(contextActivity, CrudRequestTestActivity.class);
+                        newActivity = new Intent(contextActivity, CrudRequestTestActivity.class);
                         break;
                 }
 

@@ -64,6 +64,9 @@ public class RequestPatient {
             case 3:
                 httpRequestPatient.connectToResource((CrudReadAppointmentActivity) context, list, patient, action);
                 break;
+            case 4:
+                httpRequestPatient.connectToResource((CrudRequestTestActivity) context, list, patient, action);
+                break;
         }
     }
 
