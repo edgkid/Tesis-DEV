@@ -28,7 +28,8 @@
         <activity android:name=".InteractionActivity" />
         <activity android:name=".ResultInteractionActivity" />
         <activity android:name=".CrudReadAppointmentActivity" />
-        <activity android:name=".CrudRequestTestActivity"></activity>
+        <activity android:name=".CrudRequestTestActivity" />
+        <activity android:name=".TestFormActivity"></activity>
     </application>
 
 </manifest>

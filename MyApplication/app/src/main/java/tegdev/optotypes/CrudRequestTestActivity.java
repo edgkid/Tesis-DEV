@@ -3,6 +3,7 @@ package tegdev.optotypes;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,14 +44,14 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         buttonUpdate.setOnClickListener(this);
         buttonLogOut.setOnClickListener(this);
 
-        /*test.setOnClickListener(new View.OnClickListener(){
+        test.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
 
                 nextActivity();
             }
-        });*/
+        });
 
         loadListPatientsToday();
 
@@ -174,6 +175,19 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         }).start();
 
         progressDialog.show();
+    }
+
+    /**
+     * This method create the test form activity
+     */
+    public void nextActivity (){
+
+        Intent testFormActivity = new Intent(this, TestFormActivity.class);
+        testFormActivity.putExtra("idPatient", String.valueOf(patient.getIdPatient()));
+        testFormActivity.putStringArrayListExtra("listTest", imagesTest);
+        startActivity(testFormActivity);
+
+
     }
 
 

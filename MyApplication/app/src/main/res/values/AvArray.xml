@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="av">
+
+        <item>0.1</item>
+        <item>0.13</item>
+        <item>0.17</item>
+        <item>0.2</item>
+        <item>0.25</item>
+        <item>0.33</item>
+        <item>0.4</item>
+        <item>0.5</item>
+        <item>0.63</item>
+        <item>0.8</item>
+        <item>1</item>
+
+    </string-array>
+
+</resources>
