@@ -146,7 +146,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         dropDownTypeTest.setAdapter(adapterTest);
         dropDownColaboration.setAdapter(adapterColaboration);
 
-        //this.initializeAntecedentAdapter();
+        this.initializeAntecedentAdapter();
         //this.initializeSignalAdapter();
 
     }
@@ -154,17 +154,22 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     /**
      * This method initialize antecendent
      */
-    /*public void initializeAntecedentAdapter(){
+    public void initializeAntecedentAdapter(){
 
+        Log.d("message", "inicalizando anteceedentes");
         ArrayList<String> arrayAntecedent = new ArrayList<String>();
         arrayAntecedent.add("Antecedentes");
-        RequestAntecedentDefect requestAntecedentDefect = new RequestAntecedentDefect(this);
-        requestAntecedentDefect.getAntecendetDefect(arrayAntecedent);
+        RequestAntecedentDefect requestAntecedentDefect = new RequestAntecedentDefect("antecedent",this);
+
+        if (requestAntecedentDefect.findOrCreateTableAntecedent())
+            requestAntecedentDefect.findAntecendets();
+
+        requestAntecedentDefect.getAntecendet(arrayAntecedent);
 
         ArrayAdapter<CharSequence> adapterAntecedent = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayAntecedent);
         dropDownPreviusMom.setAdapter(adapterAntecedent);
         dropDownPreviusDad.setAdapter(adapterAntecedent);
-    }*/
+    }
 
     /**
      * This method initialize antecendent
