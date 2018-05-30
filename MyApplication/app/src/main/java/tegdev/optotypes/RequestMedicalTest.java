@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -90,6 +91,11 @@ public class RequestMedicalTest {
 
     }
 
+    /**
+     * This method allow get optotype to interaction
+     * @param idPatient
+     * @return
+     */
     public ArrayList<String> getOptotypes (String idPatient){
 
         InteractionDbHelper interaction = new InteractionDbHelper(this.context);
@@ -121,6 +127,12 @@ public class RequestMedicalTest {
 
     }
 
+    /**
+     * This method allow get optotype to interaction
+     * @param size
+     * @param optotypesId
+     * @return
+     */
     public OptotypeForPatient[] getOptotypes( int size, ArrayList<String> optotypesId){
 
         int count = 0;
@@ -185,5 +197,20 @@ public class RequestMedicalTest {
 
     }
 
+    /**
+     * This method send request to generate test
+     * @param patient
+     * @param distance
+     * @param action
+     * @param test
+     * @param imageTest
+     */
+    public void requestTest (PatientsToday patient, int distance, int action, ImageView test, ArrayList imageTest){
+
+        HttpHandlerMedicalTest httpHandlerMedicalTest = new HttpHandlerMedicalTest(this.request, this.context);
+        httpHandlerMedicalTest.connectToResource((CrudRequestTestActivity) context, patient, distance, action, test, imageTest);
+
+
+    }
 
 }
