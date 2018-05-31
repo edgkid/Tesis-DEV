@@ -353,7 +353,7 @@ public class HttpHandlerDiagnostic {
 
                 //list.add(diagnostic);
                 CrudReadAppointmentActivity.listData.add(diagnostic);
-                Log.d("message", "http-" + String.valueOf(CrudReadAppointmentActivity.listData.size()));
+                //Log.d("message", "http-" + String.valueOf(CrudReadAppointmentActivity.listData.size()));
             }
         }catch(JSONException e){
             e.printStackTrace();
