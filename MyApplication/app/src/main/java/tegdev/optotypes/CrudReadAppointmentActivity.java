@@ -3,12 +3,15 @@ package tegdev.optotypes;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class CrudReadAppointmentActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +42,8 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
     Button buttonDiagnostic;
 
     int action = 3;
+    static public ArrayList<Diagnostic> listData = new ArrayList<Diagnostic>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,14 +113,19 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
     }
 
 
+    /**
+     * This metho allows select a patin on list
+     */
     public void actionOnElement (){
 
         listPatients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
+                Log.d("message","acción");
                 PatientsToday patient = (PatientsToday)parent.getAdapter().getItem(position);
+                /*RequestDiagnostic requestDiagnostic = new RequestDiagnostic( contextActivity);
+                requestDiagnostic.requestDataDiagnostic(listData, String.valueOf(patient.getIdPatient()) , action);*/
                 showData(patient);
 
             }
@@ -128,6 +138,8 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
      */
     public void showData(PatientsToday patientsToday){
 
+        String idPatient = String.valueOf(patientsToday.getIdPatient());
+
         String[] patient = patientsToday.getName().split(" ");
 
         if (patientsToday.getPhoto() != null)
@@ -138,6 +150,12 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         names.setText(patient[0] + " " + patient[1]);
         lastNames.setText(patient[2] + " " + patient[3]);
         yearsOld.setText(patientsToday.getYearsOld() + " años");
+
+        action = 1;
+        RequestDiagnostic requestDiagnostic = new RequestDiagnostic( contextActivity);
+        requestDiagnostic.requestDataDiagnostic(listData, idPatient , action);
+
+        Log.d("message", "size: " + String.valueOf(listData.size()));
 
         names.setVisibility(View.VISIBLE);
         lastNames.setVisibility(View.VISIBLE);
@@ -154,6 +172,8 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         perfil.setVisibility(View.VISIBLE);
         separator.setVisibility(View.VISIBLE);
         descriptionTitle.setVisibility(View.VISIBLE);
+
+        listData.removeAll(listData);
 
     }
 }
