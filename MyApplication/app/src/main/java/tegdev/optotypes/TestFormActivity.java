@@ -411,7 +411,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         switch (v.getId()) {
             case R.id.AppointmetProcess:
-                //processTestForm();
+                processTestForm();
                 break;
             case R.id.buttonLogout:
                 //Toast.makeText(this, "salir de la seción", Toast.LENGTH_SHORT).show();
