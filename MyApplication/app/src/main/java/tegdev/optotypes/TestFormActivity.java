@@ -1,9 +1,14 @@
 package tegdev.optotypes;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -147,7 +153,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         dropDownColaboration.setAdapter(adapterColaboration);
 
         this.initializeAntecedentAdapter();
-        //this.initializeSignalAdapter();
+        this.initializeSignalAdapter();
 
     }
 
@@ -174,18 +180,22 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     /**
      * This method initialize antecendent
      */
-    /*public void initializeSignalAdapter(){
+    public void initializeSignalAdapter(){
 
         ArrayList<String> arraySignal = new ArrayList<String>();
         arraySignal.add("Sintomas");
 
-        RequestSignalDefect requestSignalDefect = new RequestSignalDefect(this);
+        RequestSignalDefect requestSignalDefect = new RequestSignalDefect("signalDefect", this);
+        if(requestSignalDefect.findOrCreateTableSignalDefect()){
+            requestSignalDefect.finSignalDefect();
+        }
+
         requestSignalDefect.getSignalDefect(arraySignal);
 
         ArrayAdapter<CharSequence> adapterSignal = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arraySignal);
         dropDownPreviusSignal.setAdapter(adapterSignal);
 
-    }*/
+    }
 
     /**
      * This method initialize av list
@@ -399,5 +409,91 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()) {
+            case R.id.AppointmetProcess:
+                //processTestForm();
+                break;
+            case R.id.buttonLogout:
+                //Toast.makeText(this, "salir de la seción", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.buttonUpdate:
+                //Toast.makeText(this, "Actualizar", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nextImage:
+                positionTestList++;
+                sendTestToClientProjector();
+                break;
+            case R.id.lastImage:
+                positionTestList--;
+                sendTestToClientProjector();
+                break;
+        }
     }
+
+    /**
+     * This method send optotypes to projector
+     */
+    public void sendTestToClientProjector(){
+
+        Bitmap image = null;
+
+        if (positionTestList <= -1 || positionTestList == testList.size()){
+            positionTestList = 0;
+        }else if (positionTestList == testList.size()){
+            Log.d("message: ", testList.get(positionTestList));
+        }
+
+        Log.d("message: ", positionTestList + testList.get(positionTestList));
+
+        byte[] byteCode = Base64.decode(testList.get(positionTestList), Base64.DEFAULT);
+        image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
+
+        if (image != null)
+            imageViewControl.setImageBitmap(image);
+        else
+            imageViewControl.setImageResource(R.drawable.imagenotfoud);
+
+        ClientProjector clientProjector = new ClientProjector();
+        clientProjector.sendMessage(positionTestList + testList.get(positionTestList));
+
+    }
+
+
+    /**
+     * This method procces data by appointment
+     */
+    public void processTestForm (){
+
+        int action = 0;
+        RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
+        requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
+        alertDialog();
+
+    }
+
+    /**
+     * This method display a dialog to say if data saved
+     */
+    public void alertDialog(){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Información");
+        alertDialog.setIcon(R.mipmap.ic_launcher);
+        alertDialog.setMessage("Los Datos recavados en la consulta fueron procesados")
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent newActivity = new Intent(contextActivity, DiagnosticActivity.class);
+                        newActivity.putExtra("idPatient",diagnosticNotes.getIdPatient());
+                        newActivity.putExtra("patientName", diagnosticNotes.getPatient());
+                        newActivity.putExtra("year",diagnosticNotes.getYears());
+                        startActivity(newActivity);
+                    }
+                });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
+
+    }
+
 }

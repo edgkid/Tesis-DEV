@@ -29,7 +29,8 @@
         <activity android:name=".ResultInteractionActivity" />
         <activity android:name=".CrudReadAppointmentActivity" />
         <activity android:name=".CrudRequestTestActivity" />
-        <activity android:name=".TestFormActivity"></activity>
+        <activity android:name=".TestFormActivity" />
+        <activity android:name=".DiagnosticActivity"></activity>
     </application>
 
 </manifest>
