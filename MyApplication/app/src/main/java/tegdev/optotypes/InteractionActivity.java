@@ -50,6 +50,8 @@ public class InteractionActivity extends AppCompatActivity {
     boolean flag = true;
     int action = 0;
 
+    SoundMediaPlayer mediaPlayer = new SoundMediaPlayer();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,14 +166,8 @@ public class InteractionActivity extends AppCompatActivity {
             assignOptotypeOptions(position, sizeElements, image);
         }catch (Exception e){
             Log.d("message: ", "problemas con el llenado de la lista (Vacia)");
-            /*if(this.flag){
-                initializeActivity();
-                this.flag = false;
-                elements.fillInteractionElements(patient.getYearsOld());
-            }*/
         }
 
-        //playSound(this, image.split("_")[0]);
     }
 
     /**
@@ -438,9 +434,12 @@ public class InteractionActivity extends AppCompatActivity {
 
         imageAnimation.setImageResource(R.drawable.emotion_example);
         fillProgressBar();
+        mediaPlayer.setImageOptotype(imageOptotype.getTag().toString().split("_")[0]);
+        mediaPlayer.setContext(this);
+        mediaPlayer.soundAnswer();
         //// Agregar sonido con nombre de la figura
         ////Agregar sonido de Muy bien
-        interactionSound(true);
+        //interactionSound(true);
 
     }
 

@@ -1,5 +1,6 @@
 package tegdev.optotypes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
@@ -25,12 +26,16 @@ public class ResultInteractionActivity extends AppCompatActivity {
     ListView interactionResult;
 
     Bundle patientExtras;
+    Context contextActivity;
+
+    SoundMediaPlayer mediaPlayer = new SoundMediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_interaction);
 
+        contextActivity = this;
         imagePerfil = (ImageView) findViewById(R.id.imageViewResultPatient);
         imageOptotype = (ImageView) findViewById(R.id.imageOptometriCard);
 
@@ -119,6 +124,11 @@ public class ResultInteractionActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 OptotypeForPatient  optotype = (OptotypeForPatient) parent.getAdapter().getItem(position);
+
+                mediaPlayer.setContext(contextActivity);
+                mediaPlayer.setImageOptotype(optotype.getOptotypeCode().toString().split("_")[0]);
+                mediaPlayer.soundAnswer();
+
                 interactionElement(optotype);
             }
         });
