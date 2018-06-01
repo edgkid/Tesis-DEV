@@ -207,12 +207,51 @@ public class HttpHandlerDiagnostic {
                     public void run() {
 
                         if (verifyRespondeServer(result)){
-                            //Toast.makeText(ctx.getApplicationContext(),"Conexion con patients", Toast.LENGTH_SHORT).show();
                             proccessingJson(diagnostics, result);
                             Log.d("message", "el servidor trjo resultados");
-                        } else
+                            fillData(true, 1);
+                        } else{
+                            Log.d("message", "el servidor no trjo resultados");
+                            fillData(false, 1);
+                        }
+
+                        interrupt();
+                    }
+                });
+
+            }
+        };
+        tr.start();
+
+    }
+
+    /**
+     * This method initialize conect with server
+     * @param ctx
+     * @param diagnostics
+     * @param action
+     */
+    public void connectToResource (final DiagnosticActivity ctx, final ArrayList diagnostics, final String idPatient, final int action){
+
+        Log.d("message: ", "Entra en la solicitu de conexion");
+        Thread tr = new Thread(){
+            @Override
+            public void run() {
+
+                final String result= sendRequestPost(idPatient,action);
+                ctx.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (verifyRespondeServer(result)){
+                            proccessingJson(diagnostics, result);
                             Log.d("message", "el servidor trjo resultados");
-                            //Toast.makeText(ctx.getApplicationContext(),"Conexion No patients", Toast.LENGTH_SHORT).show();
+                            fillData(true, 2);
+                        } else{
+                            fillData(false, 2);
+                            Log.d("message", "el servidor no trjo resultados");
+                        }
+
                         interrupt();
                     }
                 });
@@ -328,9 +367,6 @@ public class HttpHandlerDiagnostic {
      */
     public void proccessingJson (ArrayList list, String result){
 
-        Log.d("message", "lpl");
-        Log.d("message:", result.toString());
-
         JSONArray array = null;
 
         try{
@@ -353,11 +389,109 @@ public class HttpHandlerDiagnostic {
 
                 //list.add(diagnostic);
                 CrudReadAppointmentActivity.listData.add(diagnostic);
-                //Log.d("message", "http-" + String.valueOf(CrudReadAppointmentActivity.listData.size()));
+                Log.d("message", "http-" + String.valueOf(CrudReadAppointmentActivity.listData.size()));
             }
         }catch(JSONException e){
             e.printStackTrace();
         }
+
+    }
+
+    /**
+     *
+     */
+    public void fillData (boolean value, int caseView){
+
+        Log.d("messsage", "fillData");
+        if (value){
+            Log.d("message","hay lista");
+            switch (caseView){
+                case 1:
+                    getDataCrudReadActivity();
+                    break;
+                case 2:
+                    getDataDiagnosticActivity();
+                    break;
+            }
+
+        }else{
+            Log.d("message","no hay lista");
+            CrudReadAppointmentActivity.avRight.setText("Av Derecho: " + "N/A");
+            CrudReadAppointmentActivity.avLeft.setText("Av Izquierdo: " +"N/A");
+            CrudReadAppointmentActivity.center.setText("Centra: " + "N/A");
+            CrudReadAppointmentActivity.sustain.setText("Sostiene: " + "N/A");
+            CrudReadAppointmentActivity.maintain.setText("Mantiene: " + "N/A");
+            CrudReadAppointmentActivity.lastAppointment.setText("Ultima Consulta: " + "                 dd/mm/yyyy");
+        }
+
+        CrudReadAppointmentActivity.listData.removeAll(CrudReadAppointmentActivity.listData);
+    }
+
+    /**
+     * This method get data on JSON
+     */
+    private void getDataDiagnosticActivity(){
+
+        if (CrudReadAppointmentActivity.listData.size() == 1){
+
+            if (CrudReadAppointmentActivity.listData.get(0).getTypeTest().equals("Test Personalizado")){
+                DiagnosticActivity.textAVLP.setText("Av Izquierdo: " + CrudReadAppointmentActivity.listData.get(0).getAvLeft());
+                DiagnosticActivity.textAVRP.setText("Av Derecho: " + CrudReadAppointmentActivity.listData.get(0).getAvRigth());
+                DiagnosticActivity.textAVLE.setText("Av Izquierdo: " + "N/A");
+                DiagnosticActivity.textAVRE.setText("Av Derecho: " + "N/A");
+            }
+
+            if (CrudReadAppointmentActivity.listData.get(0).getTypeTest().equals("Test Personalizado")){
+
+                DiagnosticActivity.textAVLE.setText("Av Izquierdo:" + "N/A");
+                DiagnosticActivity.textAVRE.setText("Av Derecho: " + "N/A");
+                DiagnosticActivity.textAVLP.setText("Av Izquierdo:" + CrudReadAppointmentActivity.listData.get(0).getAvLeft());
+                DiagnosticActivity.textAVRP.setText("Av Derecho: " + CrudReadAppointmentActivity.listData.get(0).getAvRigth());
+            }
+        }
+
+        if (CrudReadAppointmentActivity.listData.size() == 2){
+
+            DiagnosticActivity.textAVLE.setText("Av Izquierdo: " + CrudReadAppointmentActivity.listData.get(0).getAvLeft());
+            DiagnosticActivity.textAVRE.setText("Av Derecho: " + CrudReadAppointmentActivity.listData.get(0).getAvLeft());
+
+            DiagnosticActivity.textAVLP.setText("Av Izquierdo: " + CrudReadAppointmentActivity.listData.get(1).getAvLeft());
+            DiagnosticActivity.textAVRP.setText("Av Derecho: " + CrudReadAppointmentActivity.listData.get(1).getAvLeft());
+
+        }
+
+        DiagnosticActivity.textCenter.setText("Centra: " + CrudReadAppointmentActivity.listData.get(0).getCenter());
+        DiagnosticActivity.textSustain.setText("Sostiene: " + CrudReadAppointmentActivity.listData.get(0).getSustain());
+        DiagnosticActivity.textMaintain.setText("Mantiene: " + CrudReadAppointmentActivity.listData.get(0).getMaintain());
+
+        CrudReadAppointmentActivity.listData.removeAll(CrudReadAppointmentActivity.listData);
+
+    }
+
+    /**
+     * This method get data on JSON
+     */
+    private void getDataCrudReadActivity(){
+
+        if (CrudReadAppointmentActivity.listData.size() == 1){
+
+            CrudReadAppointmentActivity.avLeft.setText("Av Izquierdo: " + CrudReadAppointmentActivity.listData.get(0).getAvLeft());
+            CrudReadAppointmentActivity.avRight.setText("Av Derecho: " + CrudReadAppointmentActivity.listData.get(0).getAvRigth());
+
+        }
+
+        if (CrudReadAppointmentActivity.listData.size() == 2){
+
+            CrudReadAppointmentActivity.avLeft.setText("Av Izquierdo: " + CrudReadAppointmentActivity.listData.get(1).getAvLeft());
+            CrudReadAppointmentActivity.avRight.setText("Av Derecho: " + CrudReadAppointmentActivity.listData.get(1).getAvLeft());
+
+        }
+
+        CrudReadAppointmentActivity.center.setText("Centra: " + CrudReadAppointmentActivity.listData.get(0).getCenter());
+        CrudReadAppointmentActivity.sustain.setText("Sostiene: " + CrudReadAppointmentActivity.listData.get(0).getSustain());
+        CrudReadAppointmentActivity.maintain.setText("Mantiene: " + CrudReadAppointmentActivity.listData.get(0).getMaintain());
+
+        CrudReadAppointmentActivity.listData.removeAll(CrudReadAppointmentActivity.listData);
 
     }
 

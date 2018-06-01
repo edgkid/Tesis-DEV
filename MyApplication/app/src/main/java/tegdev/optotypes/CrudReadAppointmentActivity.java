@@ -23,13 +23,13 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
     TextView names;
     TextView lastNames;
     TextView yearsOld;
-    TextView lastAppointment;
+    static TextView lastAppointment;
     //TextView nextAppointment;
-    TextView avRight;
-    TextView avLeft;
-    TextView center;
-    TextView sustain;
-    TextView maintain;
+    static TextView avRight;
+    static TextView avLeft;
+    static TextView center;
+    static TextView sustain;
+    static TextView maintain;
     //TextView descriptionTitle;
     //TextView description;
 
@@ -46,6 +46,7 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
 
     int action = 3;
     String idPatient = "";
+    PatientsToday patientToday = null;
     static public ArrayList<Diagnostic> listData = new ArrayList<Diagnostic>();
 
     @Override
@@ -139,12 +140,12 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Log.d("message","acción");
-                PatientsToday patient = (PatientsToday)parent.getAdapter().getItem(position);
-                idPatient = String.valueOf(patient.getIdPatient());
+                patientToday = (PatientsToday)parent.getAdapter().getItem(position);
+                idPatient = String.valueOf(patientToday.getIdPatient());
                 action = 1;
                 RequestDiagnostic requestDiagnostic = new RequestDiagnostic( contextActivity);
                 requestDiagnostic.requestDataDiagnostic(listData, idPatient , action);
-                showData(patient);
+                showData(patientToday);
 
             }
         });
@@ -152,11 +153,9 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
     }
 
     /**
-     * This method show the patient data before modify it´s appointment
+     * This method show the patient data in crud read appointment
      */
     public void showData(PatientsToday patientsToday){
-
-        //String idPatient = String.valueOf(patientsToday.getIdPatient());
 
         String[] patient = patientsToday.getName().split(" ");
 
@@ -169,29 +168,20 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         lastNames.setText(patient[2] + " " + patient[3]);
         yearsOld.setText(patientsToday.getYearsOld() + " años");
 
-
-        Log.d("message", "size: " + String.valueOf(listData.size()));
-
-        fillData();
-
-
         names.setVisibility(View.VISIBLE);
         lastNames.setVisibility(View.VISIBLE);
         yearsOld.setVisibility(View.VISIBLE);
         lastAppointment.setVisibility(View.VISIBLE);
-        //nextAppointment.setVisibility(View.VISIBLE);
         avRight.setVisibility(View.VISIBLE);
         avLeft.setVisibility(View.VISIBLE);
         center.setVisibility(View.VISIBLE);
         sustain.setVisibility(View.VISIBLE);
         maintain.setVisibility(View.VISIBLE);
-        //description.setVisibility(View.VISIBLE);
         buttonDiagnostic.setVisibility(View.VISIBLE);
         perfil.setVisibility(View.VISIBLE);
         separator.setVisibility(View.VISIBLE);
-        //descriptionTitle.setVisibility(View.VISIBLE);
 
-        listData.removeAll(listData);
+        //listData.removeAll(listData);
 
     }
 
@@ -245,6 +235,11 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
             alertDialog();
         }else{
             Intent newActivity = new Intent(this, DiagnosticActivity.class);
+            newActivity.putExtra("idPatient", idPatient);
+            newActivity.putExtra("yearsOld", patientToday.getYearsOld());
+            newActivity.putExtra("patient", patientToday.getName());
+            newActivity.putExtra("photo", patientToday.getPhoto());
+            newActivity.putExtra("date", lastAppointment.getText().toString());
             startActivity(newActivity);
         }
     }

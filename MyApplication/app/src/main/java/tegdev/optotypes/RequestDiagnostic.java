@@ -43,11 +43,23 @@ public class RequestDiagnostic {
      */
     public void requestDataDiagnostic (ArrayList objects, String idPatient, int action){
 
-        Log.d("message", "consultando datos de crud");
-
         HttpHandlerDiagnostic httpHandlerDiagnostic =  new HttpHandlerDiagnostic("diagnostic", this.context);
         httpHandlerDiagnostic.connectToResource((CrudReadAppointmentActivity) context, objects, idPatient, action);
-        Log.d("message", "red-" + String.valueOf(objects.size()));
+    }
+
+    /**
+     * This method sen reques to find data diagnostic by patient
+     * @param objects
+     * @param idPatient
+     * @param action
+     */
+    public void requestAllDataDiagnostic (ArrayList objects, String idPatient, int action){
+
+        HttpHandlerDiagnostic httpHandlerDiagnostic =  new HttpHandlerDiagnostic("diagnostic", this.context);
+        httpHandlerDiagnostic.connectToResource((DiagnosticActivity) this.context, objects, idPatient, action);
+
+        Log.d("message", "request all");
+
     }
 
 }
