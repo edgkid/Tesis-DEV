@@ -211,8 +211,14 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
      */
     public void nextActivity (){
 
-        Intent testFormActivity = new Intent(this, TestFormActivity.class);
+        /// Llamando primera opción para uso del formulario y presentación de test
+        /*Intent testFormActivity = new Intent(this, TestFormActivity.class);
         testFormActivity.putExtra("idPatient", String.valueOf(patient.getIdPatient()));
+        testFormActivity.putStringArrayListExtra("listTest", imagesTest);
+        startActivity(testFormActivity);*/
+
+        //// llamadoa segunda opción de formulario y presentación de test
+        Intent testFormActivity = new Intent (this, TestControlActivity.class);
         testFormActivity.putStringArrayListExtra("listTest", imagesTest);
         startActivity(testFormActivity);
 
