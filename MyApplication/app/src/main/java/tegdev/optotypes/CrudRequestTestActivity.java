@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,10 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
     PatientsToday patient = null;
     ArrayList<String> imagesTest = new ArrayList<String>();
 
+    TextView ipWbeService;
+    TextView ipClient;
+    TextView port;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,20 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
 
         buttonUpdate.setOnClickListener(this);
         buttonLogOut.setOnClickListener(this);
+
+        ipWbeService = (TextView) findViewById(R.id.ipWebService);
+        ipClient = (TextView) findViewById(R.id.ipProjector);
+        port = (TextView) findViewById(R.id.portProjector);
+
+        try{
+            ipWbeService.setText(ipWbeService.getText().toString() + ConfgConnect.getIpWebService());
+            ipClient.setText(ipClient.getText().toString() + ConfgConnect.getIpShowTest());
+            port.setText(port.getText().toString() + ConfgConnect.getPortConecction());
+        }catch(Exception e){
+            ipWbeService.setText(ipWbeService.getText().toString() + "no hay conección");
+            ipClient.setText(ipClient.getText().toString() + "no hay conexxión");
+            port.setText(port.getText().toString() + "no hay conexión");
+        }
 
         test.setOnClickListener(new View.OnClickListener(){
 

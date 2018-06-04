@@ -82,7 +82,7 @@ public class HttpHandlerPatient {
 
         Log.d("result : ",retunrValue);
 
-        return result.toString();
+        return retunrValue;
     }
 
     /**
