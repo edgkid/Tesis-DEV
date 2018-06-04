@@ -32,6 +32,10 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
     DatePicker calendar;
     ImageView perfil;
 
+    TextView ipWbeService;
+    TextView ipClient;
+    TextView port;
+
     View line;
     int action = 1;
 
@@ -68,6 +72,20 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
         updated.setOnClickListener(this);
         logOut.setOnClickListener(this);
         buttonModify.setOnClickListener(this);
+
+        ipWbeService = (TextView) findViewById(R.id.ipWebService);
+        ipClient = (TextView) findViewById(R.id.ipProjector);
+        port = (TextView) findViewById(R.id.portProjector);
+
+        try{
+            ipWbeService.setText(ipWbeService.getText().toString() + ConfgConnect.getIpWebService());
+            ipClient.setText(ipClient.getText().toString() + ConfgConnect.getIpShowTest());
+            port.setText(port.getText().toString() + ConfgConnect.getPortConecction());
+        }catch(Exception e){
+            ipWbeService.setText(ipWbeService.getText().toString() + "no hay conección");
+            ipClient.setText(ipClient.getText().toString() + "no hay conexxión");
+            port.setText(port.getText().toString() + "no hay conexión");
+        }
 
         loadListPatientsToday();
     }
