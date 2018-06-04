@@ -39,6 +39,10 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
     ImageView perfil;
     View line;
 
+    TextView ipWbeService;
+    TextView ipClient;
+    TextView port;
+
     boolean saveValue = false;
     int action = 0;
     Patient patient = new Patient();
@@ -76,6 +80,22 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
 
         save.setOnClickListener(this);
         shared.setOnClickListener(this);
+
+        ipWbeService = (TextView) findViewById(R.id.ipWebService);
+        ipClient = (TextView) findViewById(R.id.ipProjector);
+        port = (TextView) findViewById(R.id.portProjector);
+
+        try{
+            ipWbeService.setText(ipWbeService.getText().toString() + ConfgConnect.getIpWebService());
+            ipClient.setText(ipClient.getText().toString() + ConfgConnect.getIpShowTest());
+            port.setText(port.getText().toString() + ConfgConnect.getPortConecction());
+        }catch(Exception e){
+            ipWbeService.setText(ipWbeService.getText().toString() + "no hay conección");
+            ipClient.setText(ipClient.getText().toString() + "no hay conexxión");
+            port.setText(port.getText().toString() + "no hay conexión");
+        }
+
+
     }
 
     @Override
