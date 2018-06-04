@@ -52,8 +52,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     Button lastTest;
 
     Diagnostic diagnosticNotes;
-    ArrayList<String> testList = null;
-    int positionTestList = -1;
+    /*ArrayList<String> testList = null;
+    int positionTestList = -1;*/
     Context contextActivity;
 
     TextView ipWbeService;
@@ -102,9 +102,9 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         // se considera una buena practica y debe hacerse
         if (extras != null){
             Patient patient = new Patient();
-            testList = (ArrayList<String>) getIntent().getStringArrayListExtra("listTest");
+            //testList = (ArrayList<String>) getIntent().getStringArrayListExtra("listTest");
             diagnosticNotes.setIdPatient(extras.getString("idPatient"));
-            Log.d("message: ", testList.get(0));
+            //Log.d("message: ", testList.get(0));
             //setPatientData();
         }
 
@@ -139,15 +139,15 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         buttonProcess = (Button) findViewById(R.id.AppointmetProcess);
         buttonProcess.setOnClickListener(this);
 
-        imageViewControl = (ImageView) findViewById(R.id.ImageTestControlTest);
+        //imageViewControl = (ImageView) findViewById(R.id.ImageTestControlTest);
 
         logOut = (Button) findViewById(R.id.buttonLogout);
         logOut.setOnClickListener(this);
 
-        nexttest = (Button) findViewById(R.id.nextImage);
+        /*nexttest = (Button) findViewById(R.id.nextImage);
         nexttest.setOnClickListener(this);
         lastTest = (Button) findViewById(R.id.lastImage);
-        lastTest.setOnClickListener(this);
+        lastTest.setOnClickListener(this);*/
     }
 
     /**
@@ -155,10 +155,10 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
      */
     public void initializeFormDropDowns(){
 
-        ArrayAdapter<CharSequence> adapterAv = ArrayAdapter.createFromResource(this, R.array.av, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence>  adapterSubjective = ArrayAdapter.createFromResource(this, R.array.subjective, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence>  adapterTest = ArrayAdapter.createFromResource(this, R.array.test, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence>  adapterColaboration = ArrayAdapter.createFromResource(this, R.array.efectividad, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterAv = ArrayAdapter.createFromResource(this, R.array.av, R.layout.text_spiner_resource);
+        ArrayAdapter<CharSequence>  adapterSubjective = ArrayAdapter.createFromResource(this, R.array.subjective, R.layout.text_spiner_resource);
+        ArrayAdapter<CharSequence>  adapterTest = ArrayAdapter.createFromResource(this, R.array.test, R.layout.text_spiner_resource);
+        ArrayAdapter<CharSequence>  adapterColaboration = ArrayAdapter.createFromResource(this, R.array.efectividad, R.layout.text_spiner_resource);
 
         dropDownAvRight.setAdapter(adapterAv);
         dropDownLeft.setAdapter(adapterAv);
@@ -188,7 +188,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         requestAntecedentDefect.getAntecendet(arrayAntecedent);
 
-        ArrayAdapter<CharSequence> adapterAntecedent = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayAntecedent);
+        ArrayAdapter<CharSequence> adapterAntecedent = new ArrayAdapter(this, R.layout.text_spiner_resource, arrayAntecedent);
         dropDownPreviusMom.setAdapter(adapterAntecedent);
         dropDownPreviusDad.setAdapter(adapterAntecedent);
     }
@@ -208,7 +208,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         requestSignalDefect.getSignalDefect(arraySignal);
 
-        ArrayAdapter<CharSequence> adapterSignal = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arraySignal);
+        ArrayAdapter<CharSequence> adapterSignal = new ArrayAdapter(this, R.layout.text_spiner_resource, arraySignal);
         dropDownPreviusSignal.setAdapter(adapterSignal);
 
     }
@@ -432,21 +432,21 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             case R.id.buttonLogout:
                 logOutApp();
                 break;
-            case R.id.nextImage:
+            /*case R.id.nextImage:
                 positionTestList++;
                 sendTestToClientProjector();
                 break;
             case R.id.lastImage:
                 positionTestList--;
                 sendTestToClientProjector();
-                break;
+                break;*/
         }
     }
 
     /**
      * This method send optotypes to projector
      */
-    public void sendTestToClientProjector(){
+    /*public void sendTestToClientProjector(){
 
         Bitmap image = null;
 
@@ -469,7 +469,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         ClientProjector clientProjector = new ClientProjector();
         clientProjector.sendMessage(positionTestList + testList.get(positionTestList));
 
-    }
+    }*
 
 
     /**
