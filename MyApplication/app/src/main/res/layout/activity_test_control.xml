@@ -75,13 +75,48 @@
         android:layout_height="500dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/idActualTest"
-            android:layout_width="400dp"
+        <LinearLayout
+            android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:src="@drawable/carta"
-            android:layout_gravity="center"
-            android:layout_marginLeft="400dp"/>
+            android:layout_marginLeft="200dp">
+
+            <Button
+                android:id="@+id/lastImage"
+                android:layout_width="100dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="150dp"
+                android:background="@drawable/icon_last_test" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="650dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/idActualTest"
+                android:layout_width="600dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/carta"
+                android:layout_marginLeft="25dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent">
+
+            <Button
+            android:id="@+id/nextImage"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/icon_next_test" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
@@ -93,7 +128,7 @@
             android:id="@+id/idButtonSendForm"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="400dp"
+            android:layout_marginLeft="425dp"
             android:text="Aceptar"/>
 
     </LinearLayout>
