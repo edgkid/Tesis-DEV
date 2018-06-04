@@ -103,10 +103,6 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         }else if(preferences.getString("roll", "defaultroll").equals("Paciente Infantil")){
             loadListPatientsToday();
         }
-
-        // aqui cargo los datos de ultimos resultados sobre le día
-        //loadLastAvResultByToDay();
-
     }
 
     /**
@@ -124,13 +120,6 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
         ItemMenuDoctorAdapter itemMenuDoctorAdapter = new ItemMenuDoctorAdapter(this, R.layout.listview_item_doctor_row, itemsData);
         listViewMenu.setAdapter(itemMenuDoctorAdapter);
-
-        /// aqui inicializo los sintomas y defectos
-        /*RequestSignalDefect requestSignalDefect = new RequestSignalDefect("signalDefect",contextActivity);
-        requestSignalDefect.findSignalDefect();
-
-        RequestAntecedentDefect requestAntecedentDefect = new RequestAntecedentDefect("antecedent",contextActivity);
-        requestAntecedentDefect.findAntecedentDefect();*/
 
         callActivitiesByDoctor();
 
@@ -236,11 +225,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void applyData(String data) {
 
-        Log.d("message", "clave: " + data);
         SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
 
         if (loginPreferences.getString("password", "defaultroll").equals(data)){
-            Log.d("message", "cierro sesión");
             CloseAndRefresh closeApp = new CloseAndRefresh(contextActivity);
             closeApp.logOutApp(loginPreferences);
         }
