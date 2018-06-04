@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class DashBoardActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +20,10 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
     ListView listViewMenu;
     Context contextActivity;
+
+    TextView ipWbeService;
+    TextView ipClient;
+    TextView port;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,20 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         logOut.setOnClickListener((View.OnClickListener) contextActivity);
         update.setOnClickListener((View.OnClickListener) contextActivity);
         listViewMenu = (ListView) findViewById(R.id.listViewDashBoardMenu);
+
+        ipWbeService = (TextView) findViewById(R.id.ipWebService);
+        ipClient = (TextView) findViewById(R.id.ipProjector);
+        port = (TextView) findViewById(R.id.portProjector);
+
+        try{
+            ipWbeService.setText(ipWbeService.getText().toString() + ConfgConnect.getIpWebService());
+            ipClient.setText(ipClient.getText().toString() + ConfgConnect.getIpShowTest());
+            port.setText(port.getText().toString() + ConfgConnect.getPortConecction());
+        }catch(Exception e){
+            ipWbeService.setText(ipWbeService.getText().toString() + "no hay conección");
+            ipClient.setText(ipClient.getText().toString() + "no hay conexxión");
+            port.setText(port.getText().toString() + "no hay conexión");
+        }
 
         loadMenu();
 
