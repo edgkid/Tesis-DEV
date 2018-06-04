@@ -30,7 +30,8 @@
         <activity android:name=".CrudReadAppointmentActivity" />
         <activity android:name=".CrudRequestTestActivity" />
         <activity android:name=".TestFormActivity" />
-        <activity android:name=".DiagnosticActivity"></activity>
+        <activity android:name=".DiagnosticActivity" />
+        <activity android:name=".TestControlActivity"></activity>
     </application>
 
 </manifest>
