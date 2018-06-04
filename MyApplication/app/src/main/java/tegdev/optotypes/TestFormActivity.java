@@ -3,6 +3,7 @@ package tegdev.optotypes;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AlertDialog;
@@ -47,7 +48,6 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
     Button buttonProcess;
     Button logOut;
-    Button updated;
     Button nexttest;
     Button lastTest;
 
@@ -55,6 +55,10 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     ArrayList<String> testList = null;
     int positionTestList = -1;
     Context contextActivity;
+
+    TextView ipWbeService;
+    TextView ipClient;
+    TextView port;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,20 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+
+        ipWbeService = (TextView) findViewById(R.id.ipWebService);
+        ipClient = (TextView) findViewById(R.id.ipProjector);
+        port = (TextView) findViewById(R.id.portProjector);
+
+        try{
+            ipWbeService.setText(ipWbeService.getText().toString() + ConfgConnect.getIpWebService());
+            ipClient.setText(ipClient.getText().toString() + ConfgConnect.getIpShowTest());
+            port.setText(port.getText().toString() + ConfgConnect.getPortConecction());
+        }catch(Exception e){
+            ipWbeService.setText(ipWbeService.getText().toString() + "no hay conección");
+            ipClient.setText(ipClient.getText().toString() + "no hay conexxión");
+            port.setText(port.getText().toString() + "no hay conexión");
+        }
 
         // se considera una buena practica y debe hacerse
         if (extras != null){
@@ -125,8 +143,6 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         logOut = (Button) findViewById(R.id.buttonLogout);
         logOut.setOnClickListener(this);
-        updated = (Button) findViewById(R.id.buttonUpdate);
-        updated.setOnClickListener(this);
 
         nexttest = (Button) findViewById(R.id.nextImage);
         nexttest.setOnClickListener(this);
@@ -414,10 +430,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
                 processTestForm();
                 break;
             case R.id.buttonLogout:
-                //Toast.makeText(this, "salir de la seción", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.buttonUpdate:
-                //Toast.makeText(this, "Actualizar", Toast.LENGTH_SHORT).show();
+                logOutApp();
                 break;
             case R.id.nextImage:
                 positionTestList++;
@@ -494,6 +507,16 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         AlertDialog alert = alertDialog.create();
         alert.show();
 
+    }
+
+    /**
+     * This metohd send request for close a sesion
+     */
+    public void logOutApp (){
+
+        SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
+        CloseAndRefresh closeApp = new CloseAndRefresh(this);
+        closeApp.logOutApp(loginPreferences);
     }
 
 }

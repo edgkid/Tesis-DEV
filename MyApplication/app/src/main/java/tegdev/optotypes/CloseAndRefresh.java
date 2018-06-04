@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 /**
  * Created by Edgar on 27/05/2018.
@@ -25,6 +26,7 @@ public class CloseAndRefresh extends AppCompatActivity {
 
         Intent loginActivity = new Intent(contextActivity, LoginActivity.class);
         contextActivity.startActivity(loginActivity);
+        Toast.makeText(contextActivity, "Saliendo de la aplicación", Toast.LENGTH_SHORT).show();
     }
 
 

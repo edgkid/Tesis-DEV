@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -78,6 +79,14 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.buttonLogout:
+                break;
+            case  R.id.buttonUpdate:
+                logOutApp();
+                break;
+        }
 
     }
 
@@ -208,6 +217,16 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         startActivity(testFormActivity);
 
 
+    }
+
+    /**
+     * This metohd send request for close a sesion
+     */
+    public void logOutApp (){
+
+        SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
+        CloseAndRefresh closeApp = new CloseAndRefresh(this);
+        closeApp.logOutApp(loginPreferences);
     }
 
 
