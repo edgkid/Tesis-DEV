@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -17,8 +18,18 @@ import android.widget.Toast;
 
 public class MessageDialog extends AppCompatDialogFragment {
 
+    public String titleMessage;
+    public String messageDialog;
     private EditText editText;
     private MessageDialogListener listener;
+
+    public void setTitleMessage(String titleMessage) {
+        this.titleMessage = titleMessage;
+    }
+
+    public void setMessageDialog(String messageDialog) {
+        this.messageDialog = messageDialog;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -26,10 +37,12 @@ public class MessageDialog extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
+
         View view = inflater.inflate(R.layout.dialog, null);
 
         builder.setView(view)
-                .setTitle("Dialogo personalizado")
+                .setTitle(titleMessage)
+                .setMessage(messageDialog)
                 .setIcon(R.mipmap.ic_launcher)
                 .setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
                     @Override
@@ -43,17 +56,19 @@ public class MessageDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        int value = 0;
+                        //int value = 0;
                         String data = editText.getText().toString();
+                        listener.applyData(data);
 
-                        try{
+                        /*try{
                             value = Integer.parseInt(data);
                         }catch(Exception e){
                             value = 0;
                             data = "0";
                         }finally{
                             listener.applyData(data);
-                        }
+                        }*/
+
 
                     }
                 });

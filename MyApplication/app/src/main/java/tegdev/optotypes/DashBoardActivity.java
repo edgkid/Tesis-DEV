@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -12,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class DashBoardActivity extends AppCompatActivity implements View.OnClickListener {
+public class DashBoardActivity extends AppCompatActivity implements View.OnClickListener, MessageDialog.MessageDialogListener {
 
     Button logOut;
     Button update;
@@ -77,8 +78,17 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     public void logOutDashBoard(){
 
         SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
-        CloseAndRefresh closeApp = new CloseAndRefresh(contextActivity);
-        closeApp.logOutApp(loginPreferences);
+
+        if (loginPreferences.getString("roll", "defaultroll").equals("Paciente Infantil")){
+            Log.d("message", "abrir dialogo");
+            MessageDialog messageDialog = new MessageDialog();
+            messageDialog.setTitleMessage("Contraseña");
+            messageDialog.setMessageDialog("Ingrese contraseña para cerrar sesión");
+            messageDialog.show(getSupportFragmentManager(),"Message Dialog");
+        }else{
+            CloseAndRefresh closeApp = new CloseAndRefresh(contextActivity);
+            closeApp.logOutApp(loginPreferences);
+        }
     }
 
     /**
@@ -223,4 +233,17 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+    @Override
+    public void applyData(String data) {
+
+        Log.d("message", "clave: " + data);
+        SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
+
+        if (loginPreferences.getString("password", "defaultroll").equals(data)){
+            Log.d("message", "cierro sesión");
+            CloseAndRefresh closeApp = new CloseAndRefresh(contextActivity);
+            closeApp.logOutApp(loginPreferences);
+        }
+
+    }
 }
