@@ -44,6 +44,10 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
     Button buttonUpdate;
     Button buttonDiagnostic;
 
+    TextView ipWbeService;
+    TextView ipClient;
+    TextView port;
+
     int action = 3;
     String idPatient = "";
     PatientsToday patientToday = null;
@@ -96,6 +100,20 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         perfil.setVisibility(View.INVISIBLE);
         separator.setVisibility(View.INVISIBLE);
         //descriptionTitle.setVisibility(View.INVISIBLE);
+
+        ipWbeService = (TextView) findViewById(R.id.ipWebService);
+        ipClient = (TextView) findViewById(R.id.ipProjector);
+        port = (TextView) findViewById(R.id.portProjector);
+
+        try{
+            ipWbeService.setText(ipWbeService.getText().toString() + ConfgConnect.getIpWebService());
+            ipClient.setText(ipClient.getText().toString() + ConfgConnect.getIpShowTest());
+            port.setText(port.getText().toString() + ConfgConnect.getPortConecction());
+        }catch(Exception e){
+            ipWbeService.setText(ipWbeService.getText().toString() + "no hay conección");
+            ipClient.setText(ipClient.getText().toString() + "no hay conexxión");
+            port.setText(port.getText().toString() + "no hay conexión");
+        }
 
         loadListPatientsToday();
 
