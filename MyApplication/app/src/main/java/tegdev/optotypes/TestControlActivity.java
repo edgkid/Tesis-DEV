@@ -31,6 +31,7 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
     String idPatient;
     int positionTestList = -1;
     Context contextActivity;
+    Bitmap photo = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +69,10 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
 
         if (extras != null){
             Patient patient = new Patient();
+
             testList = (ArrayList<String>) getIntent().getStringArrayListExtra("listTest");
             idPatient = extras.getString("idPatient");
-            Log.d("message: ", testList.get(0));
+            photo = (Bitmap)extras.get("photo");
             sendTestToClientProjector();
         }
 
@@ -119,6 +121,7 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
 
         Intent testForm = new Intent(this, TestFormActivity.class);
         testForm.putExtra("idPatient", String.valueOf(idPatient));
+        testForm.putExtra("photo", photo);
         startActivity(testForm);
 
     }

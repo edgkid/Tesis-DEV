@@ -60,6 +60,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     TextView ipClient;
     TextView port;
 
+    Bitmap photo = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +106,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             Patient patient = new Patient();
             //testList = (ArrayList<String>) getIntent().getStringArrayListExtra("listTest");
             diagnosticNotes.setIdPatient(extras.getString("idPatient"));
+            photo = (Bitmap) extras.get("photo");
+            Log.d("Dato", "form-" + extras.getString("idPatient"));
             //Log.d("message: ", testList.get(0));
             //setPatientData();
         }
@@ -499,9 +503,9 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
                     public void onClick(DialogInterface dialog, int which) {
                         Intent newActivity = new Intent(contextActivity, DiagnosticActivity.class);
                         newActivity.putExtra("idPatient",diagnosticNotes.getIdPatient());
-                        newActivity.putExtra("patientName", diagnosticNotes.getPatient());
-                        newActivity.putExtra("year",diagnosticNotes.getYears());
+                        newActivity.putExtra("photo", photo);
                         startActivity(newActivity);
+
                     }
                 });
         AlertDialog alert = alertDialog.create();

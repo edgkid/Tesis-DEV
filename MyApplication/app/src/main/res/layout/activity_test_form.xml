@@ -8,10 +8,8 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/idHeaderTestForm"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
+        android:layout_height="100dp">
 
         <LinearLayout
             android:layout_width="150dp"
@@ -38,7 +36,6 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/icon_on"/>
-
         </LinearLayout>
 
         <LinearLayout
@@ -69,25 +66,25 @@
                 android:text="equipo medico: "/>
 
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--Lado Izquierdo -->
+        <!--rigth Screen-->
         <LinearLayout
-            android:layout_width="650dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <!-- Datos Personales-->
+            android:layout_width="600dp"
+            android:layout_height="match_parent">
+            <!-- Seccion datos del Paciente -->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_width="500dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
                 android:orientation="vertical">
 
+                <!-- titulo -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -105,7 +102,7 @@
                         android:id="@+id/TextAppointmentDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="250dp"
+                        android:layout_marginLeft="150dp"
                         android:layout_marginTop="10dp"
                         android:text="Fecha:"
                         android:textSize="15dp" />
@@ -117,11 +114,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/black" />
-
+                <!--datos-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/TextPatient"
@@ -129,12 +126,18 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
-                        android:text="Paciente:"
+                        android:text="Nombre:"
                         android:textSize="15dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/TextPatientDate"
-                        android:layout_width="match_parent"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
@@ -143,12 +146,19 @@
 
                     <TextView
                         android:id="@+id/TextPatientYearsOld"
-                        android:layout_width="match_parent"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:text="Edad:"
                         android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/TextPatientSex"
@@ -161,18 +171,88 @@
 
                 </LinearLayout>
 
-            </LinearLayout>
+                <!--titulo test Objetivo-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <!--Test Subjetivo -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Test Objetivo"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+                <View
+                    android:id="@+id/separatorObjectiveTest"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Av (Ojo Derecho)"
+                            android:textSize="15dp" />
+
+                        <Spinner
+                            android:id="@+id/DropDownRight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"></Spinner>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Av (Ojo Izquierodo)"
+                            android:textSize="15dp" />
+
+                        <Spinner
+                            android:id="@+id/DropDownLeft"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"></Spinner>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Tipo de Test"
+                            android:textSize="15dp" />
+
+                        <Spinner
+                            android:id="@+id/DropDownTypeTest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"></Spinner>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -192,12 +272,12 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="220dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
@@ -217,8 +297,8 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="220dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
@@ -238,333 +318,27 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="220dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="15dp"
-                            android:text="Mantiene"
-                            android:textSize="15dp" />
-
-                        <Spinner
-                            android:id="@+id/DropDowMaintain"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"></Spinner>
-
-                    </LinearLayout>
-
-
                 </LinearLayout>
-
-
-            </LinearLayout>
-
-            <!--Test Objetivo -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Test Objetivo"
-                        android:textSize="20dp" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/separatorObjective"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp">
-
-                    <LinearLayout
-                        android:layout_width="330dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="15dp"
-                            android:text="Av Detectada Sobre (Ojo Derecho)"
-                            android:textSize="15dp" />
-
-                        <Spinner
-                            android:id="@+id/DropDownRight"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"></Spinner>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="330dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:text="Av Detectada Sobre (Ojo Izquierodo)"
-                            android:textSize="15dp" />
-
-                        <Spinner
-                            android:id="@+id/DropDownLeft"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"></Spinner>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!--Lado Derecho -->
-        <LinearLayout
-            android:layout_width="630dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <!-- Antecendentes -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Motivo de Consulta"
-                        android:textSize="20dp" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/separatorReazonData"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="110dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="315dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="15dp"
-                            android:text="Antecedente Maternos"
-                            android:textSize="15dp" />
-
-                        <Spinner
-                            android:id="@+id/dropDownPreviusMon"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"></Spinner>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="315dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="15dp"
-                            android:text="Antecedente Paternos"
-                            android:textSize="15dp" />
-
-                        <Spinner
-                            android:id="@+id/dropDownPreviusDad"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"></Spinner>
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-
-            </LinearLayout>
-
-            <!-- Sintomas -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="15dp"
-                        android:text="Sintomas"
+                        android:text="Mantiene"
                         android:textSize="15dp" />
 
                     <Spinner
-                        android:id="@+id/DropDownSignal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></Spinner>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/TextAllSignals"
-                        android:layout_width="200dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:id="@+id/TextParentMon"
-                        android:layout_width="170dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="10dp" />
-
-                    <TextView
-                        android:id="@+id/TextParentDad"
-                        android:layout_width="170dp"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="10dp" />
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- Control -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:text="Control de Consulta"
-                            android:textSize="20dp" />
-                    </LinearLayout>
-
-                    <View
-                        android:id="@+id/separatorTypeTest"
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dp"
-                        android:background="@android:color/black" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:text="Tipo de Prueba"
-                            android:textSize="15dp" />
-
-                        <Spinner
-                            android:id="@+id/DropDownTypeTest"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></Spinner>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="Colaboraciónd del Paciente"
-                            android:textSize="15dp" />
-
-                        <Spinner
-                            android:id="@+id/DropDownCoperation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></Spinner>
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- COntroles del presentador -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:orientation="horizontal">
-                    <Button
-                        android:id="@+id/AppointmetProcess"
+                        android:id="@+id/DropDowMaintain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Procesar" />
+                        android:layout_marginLeft="20dp"></Spinner>
 
 
                 </LinearLayout>
@@ -572,6 +346,172 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"/>
+
+        <!-- left Screen -->
+
+        <LinearLayout
+            android:layout_width="600dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Otros Datos del Test"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/separatorReazonData"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Antecedente Maternos"
+                    android:textSize="15dp" />
+
+                <Spinner
+                    android:id="@+id/dropDownPreviusMon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"></Spinner>
+
+                <TextView
+                    android:id="@+id/TextParentMon"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Antecedente Paternos"
+                    android:textSize="15dp" />
+
+                <Spinner
+                    android:id="@+id/dropDownPreviusDad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"></Spinner>
+
+                <TextView
+                    android:id="@+id/TextParentDad"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Sintomas"
+                    android:textSize="15dp" />
+
+                <Spinner
+                    android:id="@+id/DropDownSignal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20sp"></Spinner>
+
+                <TextView
+                    android:id="@+id/TextAllSignals"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Colaboración del Paciente"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"/>
+
+                <Spinner
+                    android:id="@+id/DropDownCoperation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"></Spinner>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/AppointmetProcess"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Aceptar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
+
 
 </LinearLayout>

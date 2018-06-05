@@ -60,12 +60,9 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
         if (patientExtras != null){
 
             patientsToday.setIdPatient(Integer.parseInt(patientExtras.getString("idPatient")));
-            patientsToday.setName(patientExtras.getString("patient"));
-            patientsToday.setYearsOld(patientExtras.getString("yearsOld"));
-            String date = patientExtras.getString("date");
             Bitmap photo = (Bitmap) patientExtras.get("photo");
 
-            showData(date, photo);
+            showData(photo);
 
         }
 
@@ -91,12 +88,7 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
     /**
      * This method show the patient data in crud read appointment
      */
-    public void showData(String date, Bitmap photo){
-
-
-        textPatient.setText(patientsToday.getName());
-        textDate.setText(date);
-        textYears.setText(patientsToday.getYearsOld());
+    public void showData(Bitmap photo){
 
         if (photo != null){
            imagePhoto.setImageBitmap(photo);
@@ -113,8 +105,6 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
     public void fillData (){
 
         int action = 1;
-
-        Log.d("message", "fill data");
 
         RequestDiagnostic requestDiagnostic = new RequestDiagnostic( this);
         requestDiagnostic.requestAllDataDiagnostic(listData, String.valueOf(patientsToday.getIdPatient()), action);
