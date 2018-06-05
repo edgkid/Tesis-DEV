@@ -58,7 +58,6 @@ public class RequestDiagnostic {
         HttpHandlerDiagnostic httpHandlerDiagnostic =  new HttpHandlerDiagnostic("diagnostic", this.context);
         httpHandlerDiagnostic.connectToResource((DiagnosticActivity) this.context, objects, idPatient, action);
 
-        Log.d("message", "request all");
 
     }
 

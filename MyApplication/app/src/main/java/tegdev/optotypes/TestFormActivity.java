@@ -20,7 +20,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class TestFormActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -61,6 +64,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     TextView port;
 
     Bitmap photo = null;
+    Patient patient = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,14 +107,30 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         // se considera una buena practica y debe hacerse
         if (extras != null){
-            Patient patient = new Patient();
-            //testList = (ArrayList<String>) getIntent().getStringArrayListExtra("listTest");
+            patient = new Patient();
             diagnosticNotes.setIdPatient(extras.getString("idPatient"));
+            patient.setIdPatient(extras.getString("idPatient"));
+            patient.setName(extras.getString("patient"));
+            patient.setYearsOld(extras.getString("yearsOld"));
             photo = (Bitmap) extras.get("photo");
-            Log.d("Dato", "form-" + extras.getString("idPatient"));
-            //Log.d("message: ", testList.get(0));
-            //setPatientData();
+
+            showData();
         }
+
+    }
+
+    /**
+     * This method display data in this activity
+     */
+    public void showData(){
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Date date = new Date();
+        String appointment = dateFormat.format(date);
+        textPatientName.setText("Paciente: " + patient.getName());
+        textAppointmentDate.setText("Fecha: " + appointment);
+        textPatientYearsOld.setText(patient.getYearsOld());
+        //textPatientSex;
 
     }
 
@@ -143,15 +163,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         buttonProcess = (Button) findViewById(R.id.AppointmetProcess);
         buttonProcess.setOnClickListener(this);
 
-        //imageViewControl = (ImageView) findViewById(R.id.ImageTestControlTest);
-
         logOut = (Button) findViewById(R.id.buttonLogout);
         logOut.setOnClickListener(this);
-
-        /*nexttest = (Button) findViewById(R.id.nextImage);
-        nexttest.setOnClickListener(this);
-        lastTest = (Button) findViewById(R.id.lastImage);
-        lastTest.setOnClickListener(this);*/
     }
 
     /**
@@ -436,45 +449,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             case R.id.buttonLogout:
                 logOutApp();
                 break;
-            /*case R.id.nextImage:
-                positionTestList++;
-                sendTestToClientProjector();
-                break;
-            case R.id.lastImage:
-                positionTestList--;
-                sendTestToClientProjector();
-                break;*/
         }
     }
-
-    /**
-     * This method send optotypes to projector
-     */
-    /*public void sendTestToClientProjector(){
-
-        Bitmap image = null;
-
-        if (positionTestList <= -1 || positionTestList == testList.size()){
-            positionTestList = 0;
-        }else if (positionTestList == testList.size()){
-            Log.d("message: ", testList.get(positionTestList));
-        }
-
-        Log.d("message: ", positionTestList + testList.get(positionTestList));
-
-        byte[] byteCode = Base64.decode(testList.get(positionTestList), Base64.DEFAULT);
-        image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
-
-        if (image != null)
-            imageViewControl.setImageBitmap(image);
-        else
-            imageViewControl.setImageResource(R.drawable.imagenotfoud);
-
-        ClientProjector clientProjector = new ClientProjector();
-        clientProjector.sendMessage(positionTestList + testList.get(positionTestList));
-
-    }*
-
 
     /**
      * This method procces data by appointment

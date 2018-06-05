@@ -215,6 +215,8 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         testFormActivity.putStringArrayListExtra("listTest", imagesTest);
         testFormActivity.putExtra("idPatient", String.valueOf( patient.getIdPatient()));
         testFormActivity.putExtra("photo", patient.getPhoto());
+        testFormActivity.putExtra("patient", patient.getName());
+        testFormActivity.putExtra("yearsOld", patient.getYearsOld());
         startActivity(testFormActivity);
 
 
