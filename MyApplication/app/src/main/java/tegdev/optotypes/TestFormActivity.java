@@ -65,6 +65,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
     Bitmap photo = null;
     Patient patient = null;
+    String appointment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,11 +110,10 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         if (extras != null){
             patient = new Patient();
             diagnosticNotes.setIdPatient(extras.getString("idPatient"));
-            patient.setIdPatient(extras.getString("idPatient"));
-            patient.setName(extras.getString("patient"));
-            patient.setYearsOld(extras.getString("yearsOld"));
             photo = (Bitmap) extras.get("photo");
-
+            patient.setIdPatient(extras.getString("idPatient"));
+            patient.setYearsOld(extras.getString("yearsOld"));
+            patient.setName(extras.getString("patient"));
             showData();
         }
 
@@ -126,9 +126,10 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         Date date = new Date();
-        String appointment = dateFormat.format(date);
-        textPatientName.setText("Paciente: " + patient.getName());
+        appointment = dateFormat.format(date);
+
         textAppointmentDate.setText("Fecha: " + appointment);
+        textPatientName.setText("Paciente: " + patient.getName());
         textPatientYearsOld.setText(patient.getYearsOld());
         //textPatientSex;
 
@@ -480,6 +481,9 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
                         Intent newActivity = new Intent(contextActivity, DiagnosticActivity.class);
                         newActivity.putExtra("idPatient",diagnosticNotes.getIdPatient());
                         newActivity.putExtra("photo", photo);
+                        newActivity.putExtra("patient", patient.getName());
+                        newActivity.putExtra("yearsOld", patient.getYearsOld());
+                        newActivity.putExtra("date", appointment);
                         startActivity(newActivity);
 
                     }

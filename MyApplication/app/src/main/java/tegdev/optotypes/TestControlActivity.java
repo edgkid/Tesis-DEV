@@ -75,7 +75,6 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
             patient.setIdPatient(extras.getString("idPatient"));
             patient.setName(extras.getString("patient"));
             patient.setYearsOld(extras.getString("yearsOld"));
-            //idPatient = extras.getString("idPatient");
             photo = (Bitmap)extras.get("photo");
             sendTestToClientProjector();
         }

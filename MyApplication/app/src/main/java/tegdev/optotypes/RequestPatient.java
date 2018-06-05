@@ -67,6 +67,7 @@ public class RequestPatient {
             case 4:
                 httpRequestPatient.connectToResource((CrudRequestTestActivity) context, list, patient, action);
                 break;
+
         }
     }
 

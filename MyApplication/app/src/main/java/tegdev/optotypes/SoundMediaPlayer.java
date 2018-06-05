@@ -63,7 +63,7 @@ public class SoundMediaPlayer extends AppCompatActivity {
             case "barco":
                 mediaPlayer = MediaPlayer.create(this.context, R.raw.barco);
                 break;
-            case "bonbillo":
+            case "bombillo":
                 mediaPlayer = MediaPlayer.create(this.context, R.raw.bombillo);
                 break;
             case "botella":
@@ -138,9 +138,11 @@ public class SoundMediaPlayer extends AppCompatActivity {
 
         }
 
-        mediaPlayer.start();
+        try{
+            mediaPlayer.start();
+        }catch (Exception e){
+            Log.d("sonido", this.imageOptotype);
+        }
     }
-
-
 
 }

@@ -353,6 +353,7 @@ public class HttpHandlerPatient {
 
     }
 
+
     /**
      * This method verify a response server
      * @param result

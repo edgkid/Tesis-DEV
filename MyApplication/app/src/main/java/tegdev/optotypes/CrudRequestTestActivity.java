@@ -112,9 +112,6 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 patient = (PatientsToday) parent.getAdapter().getItem(position);
-                Log.d("message", "test- " + patient.getName());
-                Log.d("message", "test-" + patient.getYearsOld());
-                Log.d("message", "test-" + String.valueOf(patient.getIdPatient()));
                 setDistanceByTest();
 
             }
@@ -214,9 +211,9 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         Intent testFormActivity = new Intent (this, TestControlActivity.class);
         testFormActivity.putStringArrayListExtra("listTest", imagesTest);
         testFormActivity.putExtra("idPatient", String.valueOf( patient.getIdPatient()));
-        testFormActivity.putExtra("photo", patient.getPhoto());
         testFormActivity.putExtra("patient", patient.getName());
         testFormActivity.putExtra("yearsOld", patient.getYearsOld());
+        testFormActivity.putExtra("photo", patient.getPhoto());
         startActivity(testFormActivity);
 
 
