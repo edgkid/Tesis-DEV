@@ -28,8 +28,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         SharedPreferences conexionPreferences = this.getSharedPreferences("connectPreferences", Context.MODE_PRIVATE);
-        String ipWebService = conexionPreferences.getString("IpWebService", "192.168.1.2");
-        String ipShowClient = conexionPreferences.getString("IpShowTest", "192.168.1.2");
+        String ipWebService = conexionPreferences.getString("IpWebService", "");
+        String ipShowClient = conexionPreferences.getString("IpShowTest", "");
         String portConnection = conexionPreferences.getString("PortConecction", "5000");
 
         contextActivity = this;
@@ -76,13 +76,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     public void actionLogin(){
 
+        boolean dataConnection = false;
+        boolean dataUser = false;
+
         String resourceUser = "users/"+editTextUserName.getText().toString() + "," + editTextPaswword.getText().toString();
         RequestUser requestUser = new RequestUser(resourceUser, this);
 
-        if(requestUser.findUserOnSystem()){
+        if (!ConfgConnect.getIpShowTest().equals("") && !ConfgConnect.getIpShowTest().equals(" ") && ConfgConnect.getIpShowTest() != null){
+            if(!ConfgConnect.getIpShowTest().equals("") && !ConfgConnect.getIpShowTest().equals(" ") && ConfgConnect.getIpShowTest() != null){
+                if(requestUser.findUserOnSystem()){
+                    dataConnection = true;
+                }
+            }
+        }
+
+        if (!editTextUserName.getText().toString().equals("") && !editTextUserName.getText().toString().equals(" ")){
+            if (!editTextPaswword.getText().toString().equals("") && !editTextPaswword.getText().toString().equals(" ")){
+                dataUser = true;
+            }
+        }
+
+        if(dataConnection && dataUser){
             callNewActivity();
-        }else{
-            Toast.makeText(this, "Problemas de conexion, imposible ingresar", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -95,13 +110,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String user = "";
         String password = "";
         String roll = "";
+        boolean value = false;
 
         SharedPreferences loginPreferences = this.getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
 
         user =  loginPreferences.getString("user", "defaultUser");
         password = loginPreferences.getString("password", "defaultUser");
 
-        if (!user.equals("defaultUser") && !password.equals("defaultUser")){
+        if (user.equals("defaultUser") && password.equals("defaultUser")){
+            ;
+        }else{
             callNewActivity();
         }
 
