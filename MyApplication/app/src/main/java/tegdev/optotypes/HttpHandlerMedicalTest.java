@@ -50,7 +50,7 @@ public class HttpHandlerMedicalTest {
 
         try{
             url = new URL (path);
-            Log.d("message: ", path);
+            Log.d("carta: ", path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
@@ -67,7 +67,7 @@ public class HttpHandlerMedicalTest {
             wr.flush();
             wr.close();
 
-            Log.d("message: ", listParam.toString() );
+            Log.d("carta: ", listParam.toString() );
 
             responseCode = connection.getResponseCode();
 
@@ -80,10 +80,10 @@ public class HttpHandlerMedicalTest {
                 while ((line = reader.readLine()) !=null ){
                     result.append(line);
                 }
-                Log.d("message code:", String.valueOf(responseCode));
+                Log.d("carta:", String.valueOf(responseCode));
 
             }else
-                Log.d("message: ", "Como que no conecto");
+                Log.d("carta: ", "Como que no conecto");
 
             if (inputStreamResponse != null){
                 try{
@@ -105,7 +105,7 @@ public class HttpHandlerMedicalTest {
         else
             retunrValue = result.toString();
 
-        Log.d("message: ",retunrValue);
+        Log.d("carta: ",retunrValue);
 
         return retunrValue;
     }
@@ -127,7 +127,7 @@ public class HttpHandlerMedicalTest {
 
     public void connectToResource (final CrudRequestTestActivity ctx, final PatientsToday patient, final int distance, final int action, final ImageView test, final ArrayList imageTest){
 
-        Log.d("message: ", "Genera solicitud de conexion");
+        Log.d("carta: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {

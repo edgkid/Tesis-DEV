@@ -39,7 +39,7 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_control);
 
-
+        Log.d("carta", "On Create");
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonSendForm = (Button) findViewById(R.id.idButtonSendForm);
         nextTest = (Button) findViewById(R.id.nextImage);

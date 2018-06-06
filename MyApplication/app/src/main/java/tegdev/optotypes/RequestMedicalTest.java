@@ -207,6 +207,7 @@ public class RequestMedicalTest {
      */
     public void requestTest (PatientsToday patient, int distance, int action, ImageView test, ArrayList imageTest){
 
+        Log.d("carta", "request");
         HttpHandlerMedicalTest httpHandlerMedicalTest = new HttpHandlerMedicalTest(this.request, this.context);
         httpHandlerMedicalTest.connectToResource((CrudRequestTestActivity) context, patient, distance, action, test, imageTest);
 

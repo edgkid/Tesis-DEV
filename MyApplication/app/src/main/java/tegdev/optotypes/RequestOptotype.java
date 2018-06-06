@@ -115,7 +115,8 @@ public class RequestOptotype {
             optotypeDb.onCreate(db);
             value = true;
         }finally{
-            cursor.close();
+            if (cursor != null)
+                cursor.close();
             db.close();
         }
 

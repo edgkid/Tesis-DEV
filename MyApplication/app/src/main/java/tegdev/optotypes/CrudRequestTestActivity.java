@@ -208,13 +208,22 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
      */
     public void nextActivity (){
 
+        Log.d("carta", "llamar a actividad");
+        Log.d("carta", String.valueOf(patient.getPhoto()));
+
         Intent testFormActivity = new Intent (this, TestControlActivity.class);
         testFormActivity.putStringArrayListExtra("listTest", imagesTest);
         testFormActivity.putExtra("idPatient", String.valueOf( patient.getIdPatient()));
         testFormActivity.putExtra("patient", patient.getName());
         testFormActivity.putExtra("yearsOld", patient.getYearsOld());
         testFormActivity.putExtra("photo", patient.getPhoto());
-        startActivity(testFormActivity);
+
+        try{
+            Log.d("carta", "llamar");
+            startActivity(testFormActivity);
+        }catch (Exception e){
+            Log.d("carta", "Coño");
+        }
 
 
     }
