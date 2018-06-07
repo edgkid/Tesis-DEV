@@ -21,17 +21,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DashBoardActivity" />
-        <activity android:name=".CrudSaveAppointmentActivity" />
-        <activity android:name=".CrudModifyAppointmentActivity" />
-        <activity android:name=".CrudDeleteAppointmentActivity" />
-        <activity android:name=".InteractionActivity" />
-        <activity android:name=".ResultInteractionActivity" />
-        <activity android:name=".CrudReadAppointmentActivity" />
-        <activity android:name=".CrudRequestTestActivity" />
-        <activity android:name=".TestFormActivity" />
-        <activity android:name=".DiagnosticActivity" />
-        <activity android:name=".TestControlActivity"></activity>
+        <activity android:name=".DashBoardActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CrudSaveAppointmentActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CrudModifyAppointmentActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CrudDeleteAppointmentActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".InteractionActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ResultInteractionActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CrudReadAppointmentActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CrudRequestTestActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".TestFormActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".DiagnosticActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".TestControlActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
