@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class TestControlActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button buttonSendForm;
     Button buttonLogOut;
     Button nextTest;
     Button lastTest;
@@ -27,14 +26,22 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
     TextView ipClient;
     TextView port;
 
+    TextView avImperial;
+    TextView avSnellen;
+    TextView avLogMar;
+    TextView avDecimal;
+    TextView rowPosition;
+
     ArrayList<String> testList = null;
     ArrayList<String> testListA = null;
     ArrayList<String> testListB = null;
-    //String idPatient;
+
     int positionTestList = -1;
     Context contextActivity;
     Bitmap photo = null;
     Patient patient = null;
+    AvScale avScale = new AvScale();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +50,20 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
 
         Log.d("carta", "On Create");
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
-        buttonSendForm = (Button) findViewById(R.id.idButtonSendForm);
         nextTest = (Button) findViewById(R.id.nextImage);
         lastTest = (Button) findViewById(R.id.lastImage);
         imageTest = (ImageView) findViewById(R.id.idActualTest);
+
+        avImperial = (TextView) findViewById(R.id.textImperialValue);
+        avSnellen = (TextView) findViewById(R.id.textSnellenValue);
+        avLogMar = (TextView) findViewById(R.id.textLogValue);
+        avDecimal = (TextView) findViewById(R.id.textDecimalValue);
+        rowPosition = (TextView) findViewById(R.id.textRowTest);
 
         ipWbeService = (TextView) findViewById(R.id.ipWebService);
         ipClient = (TextView) findViewById(R.id.ipProjector);
         port = (TextView) findViewById(R.id.portProjector);
 
-        buttonSendForm.setOnClickListener(this);
         buttonLogOut.setOnClickListener(this);
         nextTest.setOnClickListener(this);
         lastTest.setOnClickListener(this);
@@ -85,6 +96,16 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         }
 
 
+        imageTest.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                newActivity();
+            }
+        });
+
+
 
     }
 
@@ -108,6 +129,15 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
             imageTest.setImageBitmap(image);
         else
             imageTest.setImageResource(R.drawable.imagenotfoud);
+
+
+        avImperial.setText("Imperial: " + avScale.getAvImperial().get(positionTestList));
+        avSnellen.setText("Snellen: " + avScale.getAvOriginalMetric().get(positionTestList));
+        avLogMar.setText("LogMar: " + avScale.getAvLogmar().get(positionTestList));
+        avDecimal.setText("Decimal: " + avScale.getAvDecimal().get(positionTestList));
+        rowPosition.setText("Fila: " + avScale.getRow().get(positionTestList));
+
+
 
         ClientProjector clientProjector = new ClientProjector();
         clientProjector.sendMessage(positionTestList + testList.get(positionTestList));
@@ -156,9 +186,6 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
             case R.id.lastImage:
                 positionTestList--;
                 sendTestToClientProjector();
-                break;
-            case R.id.idButtonSendForm:
-                newActivity();
                 break;
         }
 

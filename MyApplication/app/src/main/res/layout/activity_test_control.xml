@@ -122,16 +122,101 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/idButtonSendForm"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="425dp"
-            android:text="Aceptar"/>
+        <LinearLayout
+            android:layout_width="230dp"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/textRowTest"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Fila: 0"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="Av = "
+                android:textColor="@android:color/black"
+                android:textSize="30dp"
+                android:layout_marginTop="15dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textImperialValue"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Imperial: 0"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textSnellenValue"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Snellen: 0"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textDecimalValue"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Decimal: 0"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textLogValue"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="LogMar: 0"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>
