@@ -41,6 +41,8 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_crud_request_test);
 
         contextActivity = this;
+        imagesTest.remove(imagesTest);
+
         test = (ImageView) findViewById(R.id.idTestForPatient);
         listPatients = (ListView) findViewById(R.id.idListForRequesTest);
 
@@ -112,6 +114,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 patient = (PatientsToday) parent.getAdapter().getItem(position);
+                imagesTest.remove(imagesTest);
                 setDistanceByTest();
 
             }

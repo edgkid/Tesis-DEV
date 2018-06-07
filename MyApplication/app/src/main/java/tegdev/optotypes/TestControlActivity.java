@@ -79,6 +79,8 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
             patient.setYearsOld(extras.getString("yearsOld"));
             photo = (Bitmap)extras.get("photo");
 
+
+            Log.d("carta", String.valueOf(CrudRequestTestActivity.imagesTest.size()));
             sendTestToClientProjector();
         }
 
@@ -129,6 +131,7 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
 
         testList.removeAll(testList);
         CrudRequestTestActivity.imagesTest.removeAll(CrudRequestTestActivity.imagesTest);
+
         Intent testForm = new Intent(this, TestFormActivity.class);
         testForm.putExtra("idPatient", String.valueOf(patient.getIdPatient()));
         testForm.putExtra("patient", patient.getName());
