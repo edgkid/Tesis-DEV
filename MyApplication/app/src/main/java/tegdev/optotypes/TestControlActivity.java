@@ -28,6 +28,8 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
     TextView port;
 
     ArrayList<String> testList = null;
+    ArrayList<String> testListA = null;
+    ArrayList<String> testListB = null;
     //String idPatient;
     int positionTestList = -1;
     Context contextActivity;
@@ -71,13 +73,16 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         if (extras != null){
             patient = new Patient();
 
-            testList = (ArrayList<String>) getIntent().getStringArrayListExtra("listTest");
+            testList = CrudRequestTestActivity.imagesTest;
             patient.setIdPatient(extras.getString("idPatient"));
             patient.setName(extras.getString("patient"));
             patient.setYearsOld(extras.getString("yearsOld"));
             photo = (Bitmap)extras.get("photo");
+
             sendTestToClientProjector();
         }
+
+
 
     }
 
@@ -122,6 +127,8 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
      */
     public void newActivity(){
 
+        testList.removeAll(testList);
+        CrudRequestTestActivity.imagesTest.removeAll(CrudRequestTestActivity.imagesTest);
         Intent testForm = new Intent(this, TestFormActivity.class);
         testForm.putExtra("idPatient", String.valueOf(patient.getIdPatient()));
         testForm.putExtra("patient", patient.getName());

@@ -29,7 +29,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
     int action = 4;
     int distanceByTest;
     PatientsToday patient = null;
-    ArrayList<String> imagesTest = new ArrayList<String>();
+    public static ArrayList<String> imagesTest = new ArrayList<String>();
 
     TextView ipWbeService;
     TextView ipClient;
@@ -208,22 +208,41 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
      */
     public void nextActivity (){
 
-        Log.d("carta", "llamar a actividad");
-        Log.d("carta", String.valueOf(patient.getPhoto()));
+        /*ArrayList<String> listImagesA = new ArrayList<String>();
+        ArrayList<String> listImagesB = new ArrayList<String>();
+        ArrayList<String> listImagesC = new ArrayList<String>();
 
-        Intent testFormActivity = new Intent (this, TestControlActivity.class);
-        testFormActivity.putStringArrayListExtra("listTest", imagesTest);
-        testFormActivity.putExtra("idPatient", String.valueOf( patient.getIdPatient()));
-        testFormActivity.putExtra("patient", patient.getName());
-        testFormActivity.putExtra("yearsOld", patient.getYearsOld());
-        testFormActivity.putExtra("photo", patient.getPhoto());
+        listImagesA.add(imagesTest.get(0));
+        listImagesA.add(imagesTest.get(1));
+        listImagesA.add(imagesTest.get(2));
+        listImagesA.add(imagesTest.get(3));
+
+        listImagesB.add(imagesTest.get(4));
+        listImagesB.add(imagesTest.get(5));
+        listImagesB.add(imagesTest.get(6));
+        listImagesB.add(imagesTest.get(7));
+
+        listImagesC.add(imagesTest.get(8));
+        listImagesC.add(imagesTest.get(9));
+        listImagesC.add(imagesTest.get(10));
+        listImagesC.add(imagesTest.get(11));*/
+
+
+        Intent testControlActivity = new Intent (this, TestControlActivity.class);
+        //testControlActivity.putStringArrayListExtra("listTestA", listImagesA);
+        //testControlActivity.putStringArrayListExtra("listTestB", listImagesB);
+        testControlActivity.putExtra("idPatient", String.valueOf( patient.getIdPatient()));
+        testControlActivity.putExtra("patient", patient.getName());
+        testControlActivity.putExtra("yearsOld", patient.getYearsOld());
+        testControlActivity.putExtra("photo", patient.getPhoto());
 
         try{
             Log.d("carta", "llamar");
-            startActivity(testFormActivity);
+            startActivity(testControlActivity);
         }catch (Exception e){
             Log.d("carta", "Coño");
         }
+
 
 
     }
