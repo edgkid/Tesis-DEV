@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="av">
+    <string-array name="gender">
 
         <item>M</item>
         <item>F</item>

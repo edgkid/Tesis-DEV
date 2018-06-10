@@ -115,7 +115,8 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                 new ItemMenuDoctor(R.drawable.icon_modify, "Modificar Consulta"),
                 new ItemMenuDoctor(R.drawable.icon_garbage, "Eliminar Consulta"),
                 new ItemMenuDoctor(R.drawable.icon_calendar, "Consulta del Día"),
-                new ItemMenuDoctor(R.drawable.icon_test, "Test de Consulta")
+                new ItemMenuDoctor(R.drawable.icon_test, "Test de Consulta"),
+                new ItemMenuDoctor(R.drawable.icon_new,"Nuevo Paciente")
         };
 
         ItemMenuDoctorAdapter itemMenuDoctorAdapter = new ItemMenuDoctorAdapter(this, R.layout.listview_item_doctor_row, itemsData);
@@ -165,6 +166,8 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                     case 4:
                         newActivity = new Intent(contextActivity, CrudRequestTestActivity.class);
                         break;
+                    case 5:
+                        newActivity = new Intent(contextActivity, CrudNewPatientActivity.class);
                 }
 
                 if (newActivity != null)

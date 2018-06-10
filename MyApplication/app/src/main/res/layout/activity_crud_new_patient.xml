@@ -87,24 +87,23 @@
         <LinearLayout
             android:layout_width="600dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="300dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="120dp"
-                    android:layout_height="150dp">
+                    android:layout_height="170dp">
 
                     <ImageView
                         android:id="@+id/idImagePatient"
-                        android:layout_width="100dp"
-                        android:layout_height="130dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_width="120dp"
+                        android:layout_height="170dp"
                         android:src="@drawable/usuario_icon"/>
 
                 </LinearLayout>
@@ -171,7 +170,8 @@
                         android:layout_height="wrap_content"
                         android:text="Sexo: "
                         android:textSize="20dp"
-                        android:layout_marginLeft="20dp" />
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"/>
 
                     <Spinner
                         android:id="@+id/dGenderPatient"
@@ -183,27 +183,49 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/idYearsOld"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Fecha de Naciemiento"/>
-
-                <DatePicker
-                    android:id="@+id/idDateBrithday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp">
-                </DatePicker>
-
-                <Button
-                    android:id="@+id/idCrudDButtonAcepted"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Aceptar"/>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Edad:" />
 
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="600dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Fecha de Naciemiento"/>
+
+            <DatePicker
+                android:id="@+id/idDateBrithday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp">
+            </DatePicker>
+
+            <Button
+                android:id="@+id/idCrudDButtonAcepted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aceptar"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"/>
 
         </LinearLayout>
 
