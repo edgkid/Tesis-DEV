@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,7 +22,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class CrudNewPatientActivity extends AppCompatActivity implements ImageView.OnClickListener{
 
@@ -42,6 +48,9 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
     TextView port;
 
     Spinner genderList;
+
+    Patient patient = null;
+    Bitmap image;
 
     private String APP_DIRECTORY = "optotypePictureApp/";
     private String MEDIA_DIRECTORY = APP_DIRECTORY + "optotypeMedia";
@@ -150,16 +159,51 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
 
     private void saveNewPatient() {
 
-        String date = String.valueOf(calendar.getDayOfMonth()) + "/" + String.valueOf(calendar.getMonth()+1)
+        String edad = "";
+        String encode = "";
+        int action = 0;
+
+        String date = String.valueOf(calendar.getDayOfMonth()) + "/" + String.valueOf(calendar.getMonth() + 1)
                 + "/" + String.valueOf(calendar.getYear());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date today = new Date();
+        String appointment = dateFormat.format(today);
 
-        Log.d("message", firstName.getText().toString());
-        Log.d("message", secondName.getText().toString());
-        Log.d("message", lastName.getText().toString());
-        Log.d("message", maidenName.getText().toString());
-        Log.d("message", genderList.getSelectedItem().toString());
-        Log.d("message", date);
+        String[] arrayDate = date.split("/");
+        String[] arrayToday = appointment.split("/");
 
+        edad = String.valueOf(Integer.parseInt(arrayToday[2]) - Integer.parseInt(arrayDate[2]));
+
+        if (Integer.parseInt(arrayToday[1]) < Integer.parseInt(arrayDate[1]))
+            edad = String.valueOf(Integer.parseInt(edad) - 1);
+
+        if (image != null){
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream .toByteArray();
+
+            encode = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        }else{
+            Log.d("message", "null");
+        }
+
+        patient = new Patient();
+        patient.setName(firstName.getText().toString());
+        patient.setMiddleName(secondName.getText().toString());
+        patient.setLastName(lastName.getText().toString());
+        patient.setMaidenName(maidenName.getText().toString());
+        patient.setGender(genderList.getSelectedItem().toString());
+        patient.setYearsOld(edad);
+        patient.setNextAppointment(appointment);
+        patient.setPatientDate(date);
+        patient.setFkUser("2");
+        patient.setPhoto(encode);
+
+        RequestPatient requestPatient = new RequestPatient("patients", this);
+        requestPatient.sendDataPatient(patient, action);
+
+        Intent intent = new Intent(this,DashBoardActivity.class);
+        startActivity(intent);
 
     }
 
@@ -176,8 +220,8 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
                             + MEDIA_DIRECTORY + File.separator
                             + TEMPORAL_PICTURE_NAME;
 
-                    Bitmap bitmap = BitmapFactory.decodeFile(dir);
-                    imagePatient.setImageBitmap(bitmap);
+                    image = BitmapFactory.decodeFile(dir);
+                    imagePatient.setImageBitmap(image);
 
                 }
                 break;
@@ -186,6 +230,11 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
                 if(resultCode == RESULT_OK){
                     Uri path = data.getData();
                     imagePatient.setImageURI(path);
+                    try {
+                        image = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), path);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
 

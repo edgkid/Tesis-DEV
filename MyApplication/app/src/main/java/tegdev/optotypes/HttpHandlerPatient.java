@@ -86,6 +86,69 @@ public class HttpHandlerPatient {
     }
 
     /**
+     * This method prepare the Json to send data patient
+     * @param patient
+     */
+    public void sendRequestPOST (Patient patient, int action){
+
+        URL url = null;
+        int responseCode;
+        StringBuilder result = null;
+        DataOutputStream printout;
+        InputStream inputStreamResponse = null;
+        String path = serverPath.getHttp() + serverPath.getIpAdddress() + serverPath.getPathAddress()+ this.request;
+
+        try{
+            url = new URL (path);
+            Log.d("message: ", path);
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/JSON");
+            connection.setRequestProperty("charset", "utf-8");
+            connection.setDoOutput(true);
+
+            //Create JSONObject here
+            JSONArray listParam = new JSONArray();
+            getJsonData(listParam, patient, action);
+
+            OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+            wr.write(listParam.toString());
+            wr.flush();
+            wr.close();
+
+            Log.d("message: ", listParam.toString() );
+
+            responseCode = connection.getResponseCode();
+
+            Log.d("message: ", String.valueOf(responseCode));
+
+            if( responseCode == HttpURLConnection.HTTP_OK){
+                inputStreamResponse = connection.getInputStream();
+                Log.d("message code:", String.valueOf(responseCode));
+            }else
+                Log.d("message: ", "Como que no conecto");
+
+            if (inputStreamResponse != null){
+                try{
+                    inputStreamResponse.close();
+                }
+                catch(Exception ex){
+                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                }
+            }
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+            Log.d("message: ", "Error no estoy haciendo conexion");
+        }
+
+    }
+
+
+    /**
      * This method connect the App with webservice by Post
      * @param patient
      * @param action
@@ -353,6 +416,23 @@ public class HttpHandlerPatient {
 
     }
 
+    /**
+     * Thi method connect to save data patient
+     * @param ctx
+     * @param patient
+     */
+    public void connectToResource (final CrudNewPatientActivity ctx, final Patient patient, final int action){
+
+        Thread tr = new Thread(){
+            @Override
+            public void run() {
+                sendRequestPOST(patient, action);
+            }
+        };
+        tr.start();
+
+    }
+
 
     /**
      * This method verify a response server
@@ -437,6 +517,35 @@ public class HttpHandlerPatient {
             jsonParam = new JSONObject();
             jsonParam.put("action", action);
             jsonParam.put("patient", value);
+            listParam.put(jsonParam);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.d("message: ", "Exception cursor o DB");
+        }
+
+    }
+
+    /**
+     * This method generate a JSON for send data patient to server
+     * @param patient
+     */
+    public void getJsonData(JSONArray listParam, Patient patient, int action){
+
+        JSONObject jsonParam = null;
+
+        try{
+            jsonParam = new JSONObject();
+            jsonParam.put("firstName", patient.getName());
+            jsonParam.put("secondName", patient.getMiddleName());
+            jsonParam.put("firstLastName", patient.getLastName());
+            jsonParam.put("secondLastName", patient.getMaidenName());
+            jsonParam.put("gender", patient.getGender());
+            jsonParam.put("birthday", patient.getPatientDate());
+            jsonParam.put("nextAppointment", patient.getNextAppointment());
+            jsonParam.put("photo", patient.getPhoto());
+            jsonParam.put("fk_user", patient.getFkUser());
+            jsonParam.put("action", String.valueOf(action));
             listParam.put(jsonParam);
 
         }catch (Exception e){

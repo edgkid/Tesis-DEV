@@ -95,11 +95,9 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         center.setVisibility(View.INVISIBLE);
         sustain.setVisibility(View.INVISIBLE);
         maintain.setVisibility(View.INVISIBLE);
-        //description.setVisibility(View.INVISIBLE);
         buttonDiagnostic.setVisibility(View.INVISIBLE);
         perfil.setVisibility(View.INVISIBLE);
         separator.setVisibility(View.INVISIBLE);
-        //descriptionTitle.setVisibility(View.INVISIBLE);
 
         ipWbeService = (TextView) findViewById(R.id.ipWebService);
         ipClient = (TextView) findViewById(R.id.ipProjector);

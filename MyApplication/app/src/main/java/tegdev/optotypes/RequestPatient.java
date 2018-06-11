@@ -71,4 +71,14 @@ public class RequestPatient {
         }
     }
 
+    /**
+     * This method send data patient to server
+     */
+    public void sendDataPatient(Patient patient, int action){
+
+        HttpHandlerPatient httpHandlerPatient = new HttpHandlerPatient(this.request, this.context);
+        httpHandlerPatient.connectToResource((CrudNewPatientActivity) context, patient, action);
+
+    }
+
 }
