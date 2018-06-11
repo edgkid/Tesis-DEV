@@ -129,23 +129,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * This metohd call a new window or activity
      */
     public void callNewActivity (){
+
         Intent dashBoardActivity = new Intent(this, DashBoardActivity.class);
         startActivity(dashBoardActivity);
     }
-
-    /**
-     * This metohd initialize database App
-     */
-    /*public void initializeApp (){
-        InitializeApp newTables = new InitializeApp(contextActivity);
-
-        newTables.findOrCreteTablePatients();
-        newTables.findOrCreateTableOptotypes();
-        newTables.findOrCreateTableInteraction();
-        newTables.findOrCreateTableAvResultToDay();
-        newTables.findOrCreateTableSignalDefect();
-        newTables.findOrCreateTableAntecedentDefect();
-    }*/
 
     @Override
     public void applyData(String ipWebService, String ipShowClient, String portShowClient) {
