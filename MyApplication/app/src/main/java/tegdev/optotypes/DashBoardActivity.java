@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,12 +27,15 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     TextView ipClient;
     TextView port;
 
+    LinearLayout activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
 
         contextActivity = this;
+        activity = (LinearLayout) findViewById(R.id.idLayoudDashBoard);
         logOut = (Button) findViewById(R.id.buttonLogout);
         update = (Button) findViewById(R.id.buttonUpdate);
         imageUser = (ImageView) findViewById(R.id.imageViewLoginUser);
