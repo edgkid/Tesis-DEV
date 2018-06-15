@@ -52,6 +52,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
     TextView textChromaticOd;//idTextChromaticOd
     TextView textChromaticOi;//idTextChromaticOi
+    TextView textTonometriaOd; //idTextChromaticOd
+    TextView textTonometriaOi; // idTextChromaticOi
 
     CheckBox ortoforia; //idOrtoforia
     CheckBox ortotropia; //idOrtotropia
@@ -132,9 +134,9 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         Date date = new Date();
         appointment = dateFormat.format(date);
 
-        //textAppointmentDate.setText("Fecha: " + appointment);
-//        textPatientName.setText("Paciente: " + patient.getName());
-        //      textPatientYearsOld.setText(patient.getYearsOld());
+        textAppointmentDate.setText("Fecha: " + appointment);
+        textPatientName.setText("Paciente: " + patient.getName());
+        textPatientYearsOld.setText(patient.getYearsOld());
         //textPatientSex;
 
     }
@@ -163,6 +165,9 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         textChromaticOd = (TextView) findViewById(R.id.idTextChromaticOd);
         textChromaticOi = (TextView) findViewById(R.id.idTextChromaticOi);
+        textTonometriaOd = (TextView) findViewById(R.id.textTometriaOd);
+        textTonometriaOi = (TextView) findViewById(R.id.textTometriaOi);
+
         ortoforia = (CheckBox) findViewById(R.id.idOrtoforia);
         ortotropia = (CheckBox) findViewById(R.id.idOrtotropia);
         foria = (CheckBox) findViewById(R.id.idForia);
@@ -429,9 +434,40 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     public void processTestForm (){
 
         int action = 0;
-        /*RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
+
+        diagnosticNotes.setOrtoforia((ortoforia.isChecked())? "S" : "N");
+        diagnosticNotes.setOrtotropia(ortotropia.isChecked()? "S" : "N");
+        diagnosticNotes.setForia(foria.isChecked()? "S" : "N");
+        diagnosticNotes.setEndoforia(endoForia.isChecked()? "S" : "N");
+        diagnosticNotes.setExoforia(exotropia.isChecked()? "S" : "N");
+        diagnosticNotes.setHipertropia(hipertropia.isChecked()? "S" : "N");
+        diagnosticNotes.setDvd(dvd.isChecked()? "S" : "N");
+        diagnosticNotes.setCaElevada(caUpper.isChecked()? "S" : "N");
+
+        if (textTonometriaOi.getText().toString() != null && textTonometriaOi.getText().toString() != ""){
+            diagnosticNotes.setTonometriaOi(textTonometriaOi.getText().toString());
+        }else {
+            diagnosticNotes.setTonometriaOi("");
+        }
+        if (textTonometriaOd.getText().toString() != null && textTonometriaOd.getText().toString() != ""){
+            diagnosticNotes.setTonometriaOi(textTonometriaOd.getText().toString());
+        }else {
+            diagnosticNotes.setTonometriaOi("");
+        }
+        if (textChromaticOd.getText().toString() != null && textChromaticOd.getText().toString() != ""){
+            diagnosticNotes.setCrhomaticOd(textChromaticOd.getText().toString());
+        }else {
+            diagnosticNotes.setCrhomaticOd("");
+        }
+        if (textChromaticOi.getText().toString() != null && textChromaticOi.getText().toString() != ""){
+            diagnosticNotes.setCrhomaticOi(textChromaticOi.getText().toString());
+        }else {
+            diagnosticNotes.setCrhomaticOi("");
+        }
+
+        RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
         requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
-        alertDialog();*/
+        alertDialog();
 
     }
 
@@ -448,12 +484,14 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent newActivity = new Intent(contextActivity, DiagnosticActivity.class);
+                        /*Intent newActivity = new Intent(contextActivity, DiagnosticActivity.class);
                         newActivity.putExtra("idPatient",diagnosticNotes.getIdPatient());
                         newActivity.putExtra("photo", photo);
                         newActivity.putExtra("patient", patient.getName());
                         newActivity.putExtra("yearsOld", patient.getYearsOld());
                         newActivity.putExtra("date", appointment);
+                        startActivity(newActivity);*/
+                        Intent newActivity = new Intent (contextActivity, DashBoardActivity.class);
                         startActivity(newActivity);
 
                     }

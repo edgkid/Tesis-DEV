@@ -239,6 +239,10 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         testControlActivity.putExtra("yearsOld", patient.getYearsOld());
         testControlActivity.putExtra("photo", patient.getPhoto());
 
+        Log.d("message", "control-" + String.valueOf(patient.getIdPatient()));
+        Log.d("message", "control-" + patient.getName());
+        Log.d("message", "control-" + patient.getYearsOld());
+
         try{
             Log.d("carta", "llamar");
             startActivity(testControlActivity);

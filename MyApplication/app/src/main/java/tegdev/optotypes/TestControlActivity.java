@@ -93,6 +93,11 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
 
             Log.d("carta", String.valueOf(CrudRequestTestActivity.imagesTest.size()));
             sendTestToClientProjector();
+
+            Log.d("message", "control-" + String.valueOf(patient.getIdPatient()));
+            Log.d("message", "control-" + patient.getName());
+            Log.d("message", "control-" + patient.getYearsOld());
+
         }
 
 
@@ -168,6 +173,10 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         testForm.putExtra("yearsOld", patient.getYearsOld());
         testForm.putExtra("photo", photo);
         startActivity(testForm);
+
+        Log.d("message", "send-form-" + String.valueOf(patient.getIdPatient()));
+        Log.d("message", "send-form-" + patient.getName());
+        Log.d("message", "send-form-" + patient.getYearsOld());
 
     }
 

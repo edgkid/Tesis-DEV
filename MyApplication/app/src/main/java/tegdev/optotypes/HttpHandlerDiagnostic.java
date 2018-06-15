@@ -297,8 +297,20 @@ public class HttpHandlerDiagnostic {
                 jsonParam.put("signalDefect", "");
             jsonParam.put("typeTest", diagnostic.getTypeTest());
             jsonParam.put("colaboratedGrade", diagnostic.getColaborate());
-            jsonParam.put("action", action);
 
+            jsonParam.put("ortoforia", diagnostic.getOrtoforia());
+            jsonParam.put("ortotropia", diagnostic.getOrtotropia());
+            jsonParam.put("foria", diagnostic.getForia());
+            jsonParam.put("endoforia", diagnostic.getEndoforia());
+            jsonParam.put("exoforia", diagnostic.getExoforia());
+            jsonParam.put("dvd", diagnostic.getDvd());
+            jsonParam.put("caElevada", diagnostic.getCaElevada());
+            jsonParam.put("tonometriaOd", diagnostic.getTonometriaOd());
+            jsonParam.put("tonometriaOi", diagnostic.getTonometriaOi());
+            jsonParam.put("crhomaticOd", diagnostic.getCrhomaticOd());
+            jsonParam.put("crhomaticOi", diagnostic.getCrhomaticOi());
+
+            jsonParam.put("action", action);
 
             listParam.put(jsonParam);
 
