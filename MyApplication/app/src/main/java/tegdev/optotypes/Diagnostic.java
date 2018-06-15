@@ -22,6 +22,19 @@ public class Diagnostic {
     private String typeTest;
     private String colaborate;
 
+    private String ortoforia;
+    private String ortotropia;
+    private String foria;
+    private String endoforia;
+    private String exoforia ;
+    private String hipertropia;
+    private String dvd;
+    private String caElevada;
+    private String tonometriaOd;
+    private String tonometriaOi;
+    private String crhomaticOd;
+    private String crhomaticOi;
+
     public String getIdPatient() {
         return idPatient;
     }
@@ -142,4 +155,99 @@ public class Diagnostic {
         this.colaborate = colaborate;
     }
 
+    public String getOrtoforia() {
+        return ortoforia;
+    }
+
+    public void setOrtoforia(String ortoforia) {
+        this.ortoforia = ortoforia;
+    }
+
+    public String getOrtotropia() {
+        return ortotropia;
+    }
+
+    public void setOrtotropia(String ortotropia) {
+        this.ortotropia = ortotropia;
+    }
+
+    public String getForia() {
+        return foria;
+    }
+
+    public void setForia(String foria) {
+        this.foria = foria;
+    }
+
+    public String getEndoforia() {
+        return endoforia;
+    }
+
+    public void setEndoforia(String endoforia) {
+        this.endoforia = endoforia;
+    }
+
+    public String getExoforia() {
+        return exoforia;
+    }
+
+    public void setExoforia(String exoforia) {
+        this.exoforia = exoforia;
+    }
+
+    public String getDvd() {
+        return dvd;
+    }
+
+    public void setDvd(String dvd) {
+        this.dvd = dvd;
+    }
+
+    public String getCaElevada() {
+        return caElevada;
+    }
+
+    public void setCaElevada(String caElevada) {
+        this.caElevada = caElevada;
+    }
+
+    public String getTonometriaOd() {
+        return tonometriaOd;
+    }
+
+    public void setTonometriaOd(String tonometriaOd) {
+        this.tonometriaOd = tonometriaOd;
+    }
+
+    public String getTonometriaOi() {
+        return tonometriaOi;
+    }
+
+    public void setTonometriaOi(String tonometriaOi) {
+        this.tonometriaOi = tonometriaOi;
+    }
+
+    public String getCrhomaticOd() {
+        return crhomaticOd;
+    }
+
+    public void setCrhomaticOd(String crhomaticOd) {
+        this.crhomaticOd = crhomaticOd;
+    }
+
+    public String getCrhomaticOi() {
+        return crhomaticOi;
+    }
+
+    public void setCrhomaticOi(String crhomaticOi) {
+        this.crhomaticOi = crhomaticOi;
+    }
+
+    public String getHipertropia() {
+        return hipertropia;
+    }
+
+    public void setHipertropia(String hipertropia) {
+        this.hipertropia = hipertropia;
+    }
 }
