@@ -435,6 +435,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         int action = 0;
 
+        diagnosticNotes.setSignalDefect("");
         diagnosticNotes.setOrtoforia((ortoforia.isChecked())? "S" : "N");
         diagnosticNotes.setOrtotropia(ortotropia.isChecked()? "S" : "N");
         diagnosticNotes.setForia(foria.isChecked()? "S" : "N");
@@ -443,6 +444,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         diagnosticNotes.setHipertropia(hipertropia.isChecked()? "S" : "N");
         diagnosticNotes.setDvd(dvd.isChecked()? "S" : "N");
         diagnosticNotes.setCaElevada(caUpper.isChecked()? "S" : "N");
+        diagnosticNotes.setIdPatient(patient.getIdPatient());
+        diagnosticNotes.setYears(patient.getYearsOld().split(" ")[1]);
 
         if (textTonometriaOi.getText().toString() != null && textTonometriaOi.getText().toString() != ""){
             diagnosticNotes.setTonometriaOi(textTonometriaOi.getText().toString());
@@ -450,9 +453,9 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             diagnosticNotes.setTonometriaOi("");
         }
         if (textTonometriaOd.getText().toString() != null && textTonometriaOd.getText().toString() != ""){
-            diagnosticNotes.setTonometriaOi(textTonometriaOd.getText().toString());
+            diagnosticNotes.setTonometriaOd(textTonometriaOd.getText().toString());
         }else {
-            diagnosticNotes.setTonometriaOi("");
+            diagnosticNotes.setTonometriaOd("");
         }
         if (textChromaticOd.getText().toString() != null && textChromaticOd.getText().toString() != ""){
             diagnosticNotes.setCrhomaticOd(textChromaticOd.getText().toString());

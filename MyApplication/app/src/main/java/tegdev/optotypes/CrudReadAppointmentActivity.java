@@ -197,6 +197,8 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         perfil.setVisibility(View.VISIBLE);
         separator.setVisibility(View.VISIBLE);
 
+        fillData();
+
         //listData.removeAll(listData);
 
     }

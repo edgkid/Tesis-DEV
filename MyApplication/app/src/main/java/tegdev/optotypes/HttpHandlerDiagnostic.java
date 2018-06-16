@@ -71,7 +71,7 @@ public class HttpHandlerDiagnostic {
             wr.flush();
             wr.close();
 
-            Log.d("message: ", listParam.toString() );
+            Log.d("JSON: ", listParam.toString() );
 
             responseCode = connection.getResponseCode();
 
@@ -295,6 +295,7 @@ public class HttpHandlerDiagnostic {
                 jsonParam.put("signalDefect", diagnostic.getSignalDefect().substring(14));
             else
                 jsonParam.put("signalDefect", "");
+
             jsonParam.put("typeTest", diagnostic.getTypeTest());
             jsonParam.put("colaboratedGrade", diagnostic.getColaborate());
 
