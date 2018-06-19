@@ -413,6 +413,14 @@
 
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="600dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -483,15 +491,7 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="600dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="25dp"
-            android:orientation="vertical">
-
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -510,15 +510,15 @@
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
-                android:background="@android:color/black" />
+                android:background="@android:color/black" />-->
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:background="@color/colorPrimary"
                 android:orientation="horizontal">
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -556,14 +556,14 @@
                     android:textSize="15dp"
                     android:text="OD(mmttg)"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="10dp"/>
 
                 <EditText
                     android:id="@+id/textTometriaOd"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
 
@@ -578,14 +578,14 @@
                         android:textSize="15dp"
                         android:text="OI(mmttg)"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"/>
+                        android:layout_marginTop="10dp"/>
 
                     <EditText
                         android:id="@+id/textTometriaOi"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"/>
+                        android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
 
