@@ -187,14 +187,28 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
      */
     public void callInteractionActivity (){
 
-        final Intent interactionActivity = new Intent(this, InteractionActivity.class);
+        //final Intent interactionActivity = new Intent(this, InteractionActivity.class);
 
+        //final Intent interactionActivity = null;
+        final Context context = this;
         listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Intent interactionActivity = null;
                 PatientsToday patient = (PatientsToday)parent.getAdapter().getItem(position);
-                callActivityByPatient(patient, interactionActivity);
+
+                if (Integer.parseInt(patient.getYearsOld().split(" ")[1]) < 3){
+                    interactionActivity=  new Intent(context, KeyBoardInteractionActivity.class);
+                }else if(Integer.parseInt(patient.getYearsOld().split(" ")[1]) >= 3){
+                    interactionActivity = new Intent(context, InteractionActivity.class);
+                }
+
+                if (interactionActivity != null){
+                    callActivityByPatient(patient, interactionActivity);
+                }else{
+                    Log.d("message", "null");
+                }
 
             }
         });
