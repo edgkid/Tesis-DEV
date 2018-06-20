@@ -176,22 +176,30 @@
                 android:id="@+id/optotypeAa"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeAb"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeAc"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeAd"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
 
 
         </LinearLayout>
@@ -204,23 +212,31 @@
                 android:id="@+id/optotypeBa"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
 
             <ImageView
                 android:id="@+id/optotypeBb"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeBc"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeBd"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
 
         </LinearLayout>
 
@@ -232,22 +248,30 @@
                 android:id="@+id/optotypeCa"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeCb"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeCc"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeCd"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
 
         </LinearLayout>
 
@@ -259,22 +283,30 @@
                 android:id="@+id/optotypeDa"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeDb"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeDc"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
             <ImageView
                 android:id="@+id/optotypeDd"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/imagenotfoud"/>
+                android:src="@drawable/imagenotfoud"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"/>
 
         </LinearLayout>
 
