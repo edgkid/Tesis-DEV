@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -118,8 +119,141 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             showData(patient.getIdPatient(), patient.getName(), patient.getYearsOld(), photo);
             refreshActivity();
 
+            actionOnImage();
         }
 
+    }
+
+    /**
+     * This method allow excute action button on Image
+     */
+    private void actionOnImage() {
+
+        optotypePosAa.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                excuteActionImage(optotypePosAa);
+            }
+        });
+
+        optotypePosAb.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosAb);
+            }
+        });
+
+        optotypePosAc.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosAc);
+            }
+        });
+
+        optotypePosAd.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosAd);
+            }
+        });
+
+        optotypePosBa.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosBa);
+            }
+        });
+
+        optotypePosBb.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosBb);
+            }
+        });
+
+        optotypePosBc.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosBc);
+            }
+        });
+
+        optotypePosBd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosBd);
+            }
+        });
+
+        optotypePosCa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosCa);
+            }
+        });
+
+        optotypePosCb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosCb);
+            }
+        });
+
+        optotypePosCc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosCc);
+            }
+        });
+
+        optotypePosCd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosCd);
+            }
+        });
+
+        optotypePosDa.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosDa);
+            }
+        });
+
+        optotypePosDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosDb);
+            }
+        });
+
+        optotypePosDc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosDc);
+            }
+        });
+
+        optotypePosDd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                excuteActionImage(optotypePosDd);
+            }
+        });
+
+    }
+
+    private void excuteActionImage(ImageView optotype) {
+
+        Log.d("message", "iamgen: " + optotype.getTag().toString() );
     }
 
     /**
