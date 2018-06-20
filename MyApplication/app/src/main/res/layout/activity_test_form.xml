@@ -555,7 +555,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
-                    android:text="OD(mmttg)"
+                    android:text="OD(mmhg)"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"/>
 
@@ -577,7 +577,7 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
-                        android:text="OI(mmttg)"
+                        android:text="OI(mmhg)"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"/>
 
