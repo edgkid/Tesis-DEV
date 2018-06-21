@@ -61,6 +61,7 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
     ArrayList<ImageView> arrayImage = new ArrayList<ImageView>();
     ArrayList<ImageView> arrayImageSelected = new ArrayList<ImageView>();
     Interaction interaction = new Interaction();
+    int action = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +117,7 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
 
             Bitmap photo = (Bitmap) patientExtras.get("photo");
             elements = new ElementsInteraction(this);
-            elements.fillInteractionElements(patient.getYearsOld());
+            elements.fillInteractionElements(patient.getYearsOld().split(" ")[1]);
 
             initializeImage();
             showData(patient.getIdPatient(), patient.getName(), patient.getYearsOld(), photo);
@@ -266,20 +267,39 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
 
         if (!elementSelected(optotype)){
 
-            Bitmap bitmap = ((BitmapDrawable) optotype.getDrawable()).getBitmap();
-            arrayImageSelected.get(interaction.getTotalOptotypes()-1).setImageBitmap(bitmap);
-            arrayImageSelected.get(interaction.getTotalOptotypes()-1).setTag(optotype.getTag());
+            if (interaction.getTotalOptotypes() <= 12) {
 
-            interaction.setTotalOptotypes(interaction.getTotalOptotypes() + 1);
-            if (interaction.getTotalOptotypes() > 12){
-                interaction.setTotalOptotypes(1);
+                Optotype optotypeSelected = new Optotype();
+
+                optotypeSelected.setOptotypeCode(optotype.getTag().toString());
+                optotypeSelected.setOptotypeName(optotype.getTag().toString().split("_")[0]);
+
+                Bitmap bitmap = ((BitmapDrawable) optotype.getDrawable()).getBitmap();
+                arrayImageSelected.get(interaction.getTotalOptotypes()-1).setImageBitmap(bitmap);
+                arrayImageSelected.get(interaction.getTotalOptotypes()-1).setTag(optotype.getTag());
+
+                interaction.setTotalOptotypes(interaction.getTotalOptotypes() + 1);
+                interaction.getOptotypes().add(optotypeSelected);
             }
-
         }
 
         mediaPlayer.setImageOptotype(optotype.getTag().toString().split("_")[0]);
         mediaPlayer.setContext(this);
         mediaPlayer.soundAnswer();
+
+        if (interaction.getTotalOptotypes() > 12){
+            //interaction.setTotalOptotypes(1);
+
+            RequestInteraction requestInteraction = new RequestInteraction(this);
+            requestInteraction.processInteraction(interaction, patient);
+
+            RequestMedicalTest requestMedicalTest = new RequestMedicalTest(this);
+            requestMedicalTest.sendDataInteraction(patient, action);
+
+            Intent dashboardActivity = new Intent(this, DashBoardActivity.class);
+            startActivity(dashboardActivity);
+
+        }
 
     }
 
@@ -386,7 +406,8 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             sizeElements = elements.getElements().size();
 
             try{
-                image = elements.getElements().get(position).getOptotypeCode();
+                //image = elements.getElements().get(position).getOptotypeCode();
+                image = elements.getElements().get(x).getOptotypeCode();
                 Log.d("message: ", image);
                 assingBipmapImage(image, arrayImage.get(x));
             }catch (Exception e){

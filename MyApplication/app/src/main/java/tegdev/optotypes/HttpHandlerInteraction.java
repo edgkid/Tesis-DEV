@@ -113,6 +113,25 @@ public class HttpHandlerInteraction {
     }
 
     /**
+     * This method initialize connection with webservice
+     * @param ctx
+     * @param patient
+     * @param action
+     */
+    public void connectToResource (final KeyBoardInteractionActivity ctx, final Patient patient, final int action){
+
+        Log.d("message: ", "Genera solicitud de conexion");
+        Thread tr = new Thread(){
+            @Override
+            public void run() {
+                sendRequestPOST(patient, action);
+            }
+        };
+        tr.start();
+
+    }
+
+    /**
      * This method genarate JSON to send
      * @param listParam
      * @param idPatient

@@ -55,13 +55,13 @@ public class RequestOptotype {
 
         Log.d("query", yearsOld);
 
-        if (yearsOld.split(" ")[1].equals("3") || Integer.parseInt(yearsOld.split(" ")[1]) <= 2 ){
+        if (yearsOld.equals("3") || Integer.parseInt(yearsOld) <= 2 ){
             query = query + " WHERE OptotypeYear <= 3 ORDER BY random() LIMIT 16";
         }
-        if (yearsOld.split(" ")[1].equals("4")){
+        if (yearsOld.equals("4")){
             query = query + " WHERE OptotypeYear <= 4 ORDER BY random() LIMIT 16";
         }
-        if (yearsOld.split(" ")[1].equals("5") || Integer.parseInt(yearsOld.split(" ")[1]) > 5){
+        if (yearsOld.equals("5") || Integer.parseInt(yearsOld) > 5){
             query = query + " WHERE OptotypeYear <= 5 ORDER BY random() LIMIT 16";
         }
 
