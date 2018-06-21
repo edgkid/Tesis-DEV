@@ -273,6 +273,7 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
 
                 optotypeSelected.setOptotypeCode(optotype.getTag().toString());
                 optotypeSelected.setOptotypeName(optotype.getTag().toString().split("_")[0]);
+                optotypeSelected.setIdOptotype(findidOptotype(optotypeSelected.getOptotypeCode()));
 
                 Bitmap bitmap = ((BitmapDrawable) optotype.getDrawable()).getBitmap();
                 arrayImageSelected.get(interaction.getTotalOptotypes()-1).setImageBitmap(bitmap);
@@ -289,12 +290,11 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
 
         if (interaction.getTotalOptotypes() > 12){
             //interaction.setTotalOptotypes(1);
-
             RequestInteraction requestInteraction = new RequestInteraction(this);
             requestInteraction.processInteraction(interaction, patient);
 
             RequestMedicalTest requestMedicalTest = new RequestMedicalTest(this);
-            requestMedicalTest.sendDataInteraction(patient, action);
+            requestMedicalTest.sendDataInteraction(patient, action, patient.getYearsOld());
 
             Intent dashboardActivity = new Intent(this, DashBoardActivity.class);
             startActivity(dashboardActivity);
@@ -320,6 +320,26 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             }
         }
 
+        return value;
+    }
+
+    /**
+     * This method find a optotype by interaction
+     * @param optotypeCode
+     * @return
+     */
+    private String findidOptotype (String optotypeCode){
+
+        String value = "";
+
+        for(int x = 0; x < elements.getElements().size(); x++){
+
+            if (elements.getElements().get(x).getOptotypeCode().equals(optotypeCode)){
+                value = elements.getElements().get(x).getIdOptotype();
+                break;
+            }
+        }
+        Log.d("message", "idOptotype = " + value);
         return value;
     }
 

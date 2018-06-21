@@ -426,7 +426,7 @@ public class InteractionActivity extends AppCompatActivity {
             requestInteraction.processInteraction(controlInteraction, patient);
 
             RequestMedicalTest requestMedicalTest = new RequestMedicalTest(this);
-            requestMedicalTest.sendDataInteraction(patient, action);
+            requestMedicalTest.sendDataInteraction(patient, action, patient.getYearsOld());
 
             Intent dashboardActivity = new Intent(this, DashBoardActivity.class);
             startActivity(dashboardActivity);
@@ -437,9 +437,6 @@ public class InteractionActivity extends AppCompatActivity {
         mediaPlayer.setImageOptotype(imageOptotype.getTag().toString().split("_")[0]);
         mediaPlayer.setContext(this);
         mediaPlayer.soundAnswer();
-        //// Agregar sonido con nombre de la figura
-        ////Agregar sonido de Muy bien
-        //interactionSound(true);
 
     }
 

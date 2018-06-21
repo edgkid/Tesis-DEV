@@ -71,13 +71,22 @@ public class RequestMedicalTest {
         SQLiteDatabase db = interactionDbHelper.getWritableDatabase();
         Iterator<Optotype> iterator = visualTest.getOptotypes().iterator();
 
+        String idOptotype= "";
+
+
         try{
 
             while (iterator.hasNext()){
-                values.put(InteractionDbContract.InteractionEntry.IDOPTOTYPE, iterator.next().getIdOptotype());
+                idOptotype = iterator.next().getIdOptotype();
+                values.put(InteractionDbContract.InteractionEntry.IDOPTOTYPE, idOptotype );
                 values.put(InteractionDbContract.InteractionEntry.IDPATIENT, visualTest.getIdPatient());
                 values.put(InteractionDbContract.InteractionEntry.TESTCODE, visualTest.getTestCode());
                 values.put(InteractionDbContract.InteractionEntry.EYE, visualTest.getTestEye());
+
+                Log.d("Interaccion", "datp: " + idOptotype);
+                Log.d("Interaccion", "datp: " + String.valueOf(visualTest.getIdPatient()));
+                Log.d("Interaccion", "datp: " + visualTest.getTestCode());
+                Log.d("Interaccion", "datp: " + visualTest.getTestEye());
 
                 db.insert(InteractionDbContract.InteractionEntry.TABLE_NAME, null, values);
             }
@@ -189,11 +198,16 @@ public class RequestMedicalTest {
      * @param patient
      * @param action
      */
-    public void sendDataInteraction(Patient patient, int action){
+    public void sendDataInteraction(Patient patient, int action, String yearsOld){
 
         Log.d("message", "Voy a enviar solicitud de envio de datos");
         HttpHandlerInteraction httpHandlerInteraction = new HttpHandlerInteraction("test",this.context);
-        httpHandlerInteraction.connectToResource((InteractionActivity) context, patient, action);
+
+        if (Integer.parseInt(yearsOld)<= 2){
+            httpHandlerInteraction.connectToResource((KeyBoardInteractionActivity) context, patient, action);
+        }else{
+            httpHandlerInteraction.connectToResource((InteractionActivity) context, patient, action);
+        }
 
     }
 

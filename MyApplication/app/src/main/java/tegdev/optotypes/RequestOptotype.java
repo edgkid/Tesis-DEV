@@ -53,7 +53,6 @@ public class RequestOptotype {
 
         String query = "SELECT optotypeCode, idOptotype FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME;
 
-        Log.d("query", yearsOld);
 
         if (yearsOld.equals("3") || Integer.parseInt(yearsOld) <= 2 ){
             query = query + " WHERE OptotypeYear <= 3 ORDER BY random() LIMIT 16";
@@ -65,7 +64,6 @@ public class RequestOptotype {
             query = query + " WHERE OptotypeYear <= 5 ORDER BY random() LIMIT 16";
         }
 
-        Log.d("query", query);
 
         try{
 
