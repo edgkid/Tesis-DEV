@@ -3,6 +3,8 @@ package tegdev.optotypes;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -58,6 +60,7 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
 
     ArrayList<ImageView> arrayImage = new ArrayList<ImageView>();
     ArrayList<ImageView> arrayImageSelected = new ArrayList<ImageView>();
+    Interaction interaction = new Interaction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,9 +254,53 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method allow excute action by interaction, or puch on image
+     * @param optotype
+     */
     private void excuteActionImage(ImageView optotype) {
 
-        Log.d("message", "iamgen: " + optotype.getTag().toString() );
+        optotype.setBackgroundColor(Color.rgb(0, 230, 57));
+
+        SoundMediaPlayer mediaPlayer = new SoundMediaPlayer();
+
+        if (!elementSelected(optotype)){
+
+            Bitmap bitmap = ((BitmapDrawable) optotype.getDrawable()).getBitmap();
+            arrayImageSelected.get(interaction.getTotalOptotypes()-1).setImageBitmap(bitmap);
+            arrayImageSelected.get(interaction.getTotalOptotypes()-1).setTag(optotype.getTag());
+
+            interaction.setTotalOptotypes(interaction.getTotalOptotypes() + 1);
+            if (interaction.getTotalOptotypes() > 12){
+                interaction.setTotalOptotypes(1);
+            }
+
+        }
+
+        mediaPlayer.setImageOptotype(optotype.getTag().toString().split("_")[0]);
+        mediaPlayer.setContext(this);
+        mediaPlayer.soundAnswer();
+
+    }
+
+    /**
+     * THis method validate if the element was selested
+     * @return
+     */
+    private boolean elementSelected( ImageView optotype){
+
+        boolean value = false;
+
+        for (int x= 0; x < arrayImageSelected.size(); x++){
+            if (arrayImageSelected.get(x).getTag() != null){
+                if (arrayImageSelected.get(x).getTag().toString().equals(optotype.getTag().toString())){
+                    value = true;
+                    break;
+                }
+            }
+        }
+
+        return value;
     }
 
     /**

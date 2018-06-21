@@ -67,26 +67,22 @@
                 <ImageView
                     android:id="@+id/opSelectedAa"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary"/>
+                    android:layout_height="match_parent"/>
 
                 <ImageView
                     android:id="@+id/opSelectedAb"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent"/>
+                    android:layout_height="match_parent"/>
 
                 <ImageView
                     android:id="@+id/opSelectedAc"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary"/>
+                    android:layout_height="match_parent"/>
 
                 <ImageView
                     android:id="@+id/opSelectedAd"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent"/>
+                    android:layout_height="match_parent"/>
 
             </LinearLayout>
 
@@ -98,26 +94,22 @@
                 <ImageView
                     android:id="@+id/opSelectedBa"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent"/>
+                    android:layout_height="match_parent"/>
 
                 <ImageView
                     android:id="@+id/opSelectedBb"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary"/>
+                    android:layout_height="match_parent"/>
 
                 <ImageView
                     android:id="@+id/opSelectedBc"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent"/>
+                    android:layout_height="match_parent"/>
 
                 <ImageView
                     android:id="@+id/opSelectedBd"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary"/>
+                    android:layout_height="match_parent"/>
 
             </LinearLayout>
 
@@ -129,26 +121,22 @@
                 <ImageView
                     android:id="@+id/opSelectedCa"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary"/>
+                    android:layout_height="match_parent"/>
 
                 <ImageView
                     android:id="@+id/opSelectedCb"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent"/>
+                    android:layout_height="match_parent"/>
 
                 <ImageView
                     android:id="@+id/opSelectedCc"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary"/>
+                    android:layout_height="match_parent"/>
 
                 <ImageView
                     android:id="@+id/opSelectedCd"
                     android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent"/>
+                    android:layout_height="match_parent"/>
 
             </LinearLayout>
 
