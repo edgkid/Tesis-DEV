@@ -50,19 +50,22 @@ public class RequestOptotype {
         Cursor cursor = null;
         Optotype optotype = null;
         ArrayList<Optotype> optotypes = new ArrayList<Optotype>();
+
         String query = "SELECT optotypeCode, idOptotype FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME;
 
+        Log.d("query", yearsOld);
 
-
-        if (yearsOld.equals("3") ){
+        if (yearsOld.split(" ")[1].equals("3") || Integer.parseInt(yearsOld.split(" ")[1]) <= 2 ){
             query = query + " WHERE OptotypeYear <= 3 ORDER BY random() LIMIT 16";
         }
-        if (yearsOld.equals("4")){
+        if (yearsOld.split(" ")[1].equals("4")){
             query = query + " WHERE OptotypeYear <= 4 ORDER BY random() LIMIT 16";
         }
-        if (yearsOld.equals("5")){
+        if (yearsOld.split(" ")[1].equals("5") || Integer.parseInt(yearsOld.split(" ")[1]) > 5){
             query = query + " WHERE OptotypeYear <= 5 ORDER BY random() LIMIT 16";
         }
+
+        Log.d("query", query);
 
         try{
 
