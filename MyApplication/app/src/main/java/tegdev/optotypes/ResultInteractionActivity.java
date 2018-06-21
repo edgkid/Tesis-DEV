@@ -58,7 +58,7 @@ public class ResultInteractionActivity extends AppCompatActivity {
             Bitmap photo = (Bitmap) patientExtras.get("photo");
 
             showData(idPatient, patient, yearsOld, photo);
-            //loadListOptotypes(idPatient);
+            loadListOptotypes(idPatient);
         }
 
     }
