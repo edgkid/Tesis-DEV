@@ -1,10 +1,13 @@
 package tegdev.optotypes;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -289,16 +292,13 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
         mediaPlayer.soundAnswer();
 
         if (interaction.getTotalOptotypes() > 12){
-            //interaction.setTotalOptotypes(1);
             RequestInteraction requestInteraction = new RequestInteraction(this);
             requestInteraction.processInteraction(interaction, patient);
 
             RequestMedicalTest requestMedicalTest = new RequestMedicalTest(this);
             requestMedicalTest.sendDataInteraction(patient, action, patient.getYearsOld());
 
-            Intent dashboardActivity = new Intent(this, DashBoardActivity.class);
-            startActivity(dashboardActivity);
-
+            alertDialog();
         }
 
     }
@@ -460,6 +460,30 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             optotypeOption.setImageResource(R.drawable.usuario_icon);
 
         optotypeOption.setTag(image);
+    }
+
+    /**
+     * This method display a Dialog before dlete an  appointment
+     */
+    public void alertDialog(){
+
+        final Context contexActivity = this;
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Se Eliminara una Cita");
+        alertDialog.setIcon(R.mipmap.ic_launcher);
+        alertDialog.setMessage("Muy bien")
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent dashboardActivity = new Intent(contexActivity, DashBoardActivity.class);
+                        startActivity(dashboardActivity);
+                    }
+                });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
+
     }
 
 }
