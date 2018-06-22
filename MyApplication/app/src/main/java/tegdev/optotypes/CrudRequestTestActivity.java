@@ -114,7 +114,8 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 patient = (PatientsToday) parent.getAdapter().getItem(position);
-                imagesTest.remove(imagesTest);
+                imagesTest.removeAll(imagesTest);
+                test.setImageResource(R.drawable.carta);
                 setDistanceByTest();
 
             }
@@ -211,45 +212,14 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
      */
     public void nextActivity (){
 
-        /*ArrayList<String> listImagesA = new ArrayList<String>();
-        ArrayList<String> listImagesB = new ArrayList<String>();
-        ArrayList<String> listImagesC = new ArrayList<String>();
-
-        listImagesA.add(imagesTest.get(0));
-        listImagesA.add(imagesTest.get(1));
-        listImagesA.add(imagesTest.get(2));
-        listImagesA.add(imagesTest.get(3));
-
-        listImagesB.add(imagesTest.get(4));
-        listImagesB.add(imagesTest.get(5));
-        listImagesB.add(imagesTest.get(6));
-        listImagesB.add(imagesTest.get(7));
-
-        listImagesC.add(imagesTest.get(8));
-        listImagesC.add(imagesTest.get(9));
-        listImagesC.add(imagesTest.get(10));
-        listImagesC.add(imagesTest.get(11));*/
-
-
-        Intent testControlActivity = new Intent (this, TestControlActivity.class);
-        //testControlActivity.putStringArrayListExtra("listTestA", listImagesA);
-        //testControlActivity.putStringArrayListExtra("listTestB", listImagesB);
-        testControlActivity.putExtra("idPatient", String.valueOf( patient.getIdPatient()));
-        testControlActivity.putExtra("patient", patient.getName());
-        testControlActivity.putExtra("yearsOld", patient.getYearsOld());
-        testControlActivity.putExtra("photo", patient.getPhoto());
-
-        Log.d("message", "control-" + String.valueOf(patient.getIdPatient()));
-        Log.d("message", "control-" + patient.getName());
-        Log.d("message", "control-" + patient.getYearsOld());
-
-        try{
-            Log.d("carta", "llamar");
+        if (imagesTest.size() != 0){
+            Intent testControlActivity = new Intent (this, TestControlActivity.class);
+            testControlActivity.putExtra("idPatient", String.valueOf( patient.getIdPatient()));
+            testControlActivity.putExtra("patient", patient.getName());
+            testControlActivity.putExtra("yearsOld", patient.getYearsOld());
+            testControlActivity.putExtra("photo", patient.getPhoto());
             startActivity(testControlActivity);
-        }catch (Exception e){
-            Log.d("carta", "Coño");
         }
-
 
 
     }
