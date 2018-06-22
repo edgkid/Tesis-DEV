@@ -466,28 +466,4 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
         optotypeOption.setTag(image);
     }
 
-    /**
-     * This method display a Dialog before dlete an  appointment
-     */
-    public void alertDialog(){
-
-        final Context contexActivity = this;
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle("Se Eliminara una Cita");
-        alertDialog.setIcon(R.mipmap.ic_launcher);
-        alertDialog.setMessage("Muy bien")
-                .setCancelable(false)
-                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        Intent dashboardActivity = new Intent(contexActivity, DashBoardActivity.class);
-                        startActivity(dashboardActivity);
-                    }
-                });
-        AlertDialog alert = alertDialog.create();
-        alert.show();
-
-    }
-
 }
