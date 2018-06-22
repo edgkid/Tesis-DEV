@@ -84,9 +84,10 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
 
         switch (v.getId()){
             case R.id.buttonLogout:
+                logOutApp();
                 break;
             case  R.id.buttonUpdate:
-                logOutApp();
+                loadListPatientsToday();
                 break;
         }
 
@@ -233,7 +234,6 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         CloseAndRefresh closeApp = new CloseAndRefresh(this);
         closeApp.logOutApp(loginPreferences);
     }
-
 
 
 }
