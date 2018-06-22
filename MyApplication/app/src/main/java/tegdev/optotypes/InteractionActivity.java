@@ -430,7 +430,9 @@ public class InteractionActivity extends AppCompatActivity {
             RequestMedicalTest requestMedicalTest = new RequestMedicalTest(this);
             requestMedicalTest.sendDataInteraction(patient, action, patient.getYearsOld());
 
-            alertDialog();
+            //alertDialog();
+            InteractionCustonDialog dialog = new InteractionCustonDialog(this, "ok");
+            dialog.show(getSupportFragmentManager(),"dialog");
 
         }
 
