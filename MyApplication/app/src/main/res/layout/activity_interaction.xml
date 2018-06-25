@@ -52,21 +52,38 @@
             android:layout_marginTop="10dp"
             android:textSize="25dp"/>
 
-        <!--<ImageView
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/chronometer_icon"/>
+
+            <TextView
+                android:id="@+id/idTextTimeOut"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="70dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="30dp"/>
+
+        </LinearLayout>
+
+        <ImageView
             android:id="@+id/imageInteractionEmotion"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="30dp"
             android:layout_gravity="center"
-            android:src="@drawable/emotion_example"/>-->
-
-        <TextView
-            android:id="@+id/idTextPrueba"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="50dp"
-            android:layout_marginTop="30dp"/>
+            android:src="@drawable/emotion_example"/>
 
         <LinearLayout
             android:layout_width="match_parent"

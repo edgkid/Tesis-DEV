@@ -68,7 +68,7 @@ public class InteractionActivity extends AppCompatActivity {
         controlInteraction = new Interaction();
         elements = new ElementsInteraction(this);
 
-        textBackGround = (TextView) findViewById(R.id.idTextPrueba);
+        textBackGround = (TextView) findViewById(R.id.idTextTimeOut);
 
         textDebug = (TextView) findViewById(R.id.textDebug);
         textDebugB = (TextView) findViewById(R.id.textDebug2);
@@ -78,7 +78,7 @@ public class InteractionActivity extends AppCompatActivity {
         textYearsOld = (TextView) findViewById(R.id.textYearsPatient);
 
         imageOptotype = (ImageView) findViewById(R.id.imageViewOptotype);
-        //imageAnimation = (ImageView) findViewById(R.id.imageInteractionEmotion);
+        imageAnimation = (ImageView) findViewById(R.id.imageInteractionEmotion);
         imagePerfil = (ImageView) findViewById(R.id.imageViewInteractionPatient);
 
         imageProgress = (ImageView) findViewById(R.id.progressBar);
@@ -447,7 +447,7 @@ public class InteractionActivity extends AppCompatActivity {
 
         }
 
-        //imageAnimation.setImageResource(R.drawable.emotion_example);
+        imageAnimation.setImageResource(R.drawable.emotion_example);
         fillProgressBar();
         mediaPlayer.setImageOptotype(imageOptotype.getTag().toString().split("_")[0]);
         mediaPlayer.setContext(this);
@@ -463,7 +463,7 @@ public class InteractionActivity extends AppCompatActivity {
     public void workWithBackOption (ImageView optotype, ImageView option){
 
         option.setBackgroundColor(Color.rgb(255, 255, 255));
-        //imageAnimation.setImageResource(R.drawable.triste);
+        imageAnimation.setImageResource(R.drawable.triste);
         //// Agregar sonido de oh! no
         interactionSound(false);
     }
