@@ -20,9 +20,21 @@ public class BackGroundTimeInteraction extends AsyncTask <Void, Integer, Boolean
         this.activity = activity;
     }
 
+    /**
+     * This method stop the thread by one second
+     */
+    private void oneSecond(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        //textCound = (TextView) activity.findViewById(R.id.textImperialValue);
         textCound.setText("0");
 
     }
@@ -30,19 +42,15 @@ public class BackGroundTimeInteraction extends AsyncTask <Void, Integer, Boolean
     @Override
     protected Boolean doInBackground(Void... voids) {
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-        for (int x= 1; x <= 5; x++){
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Log.d("message", "Seg: " + String.valueOf(x));
+        oneSecond();
+
+        for (int x= 1; x <= 6; x++){
+            
+            oneSecond();
+
+            publishProgress(x);
+
             if(isCancelled())
                 break;
         }
@@ -60,8 +68,8 @@ public class BackGroundTimeInteraction extends AsyncTask <Void, Integer, Boolean
     @Override
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
-        /*textCound.setText(values[0]);
-        activity.textBackGround.setText(values[0]);*/
+        Log.d("message", "value:" + values[0]);
+        textCound.setText(String.valueOf(values[0]));
     }
 
     @Override
@@ -70,7 +78,5 @@ public class BackGroundTimeInteraction extends AsyncTask <Void, Integer, Boolean
         Log.d("message", "hilo cancelado");
 
     }
-
-
 
 }
