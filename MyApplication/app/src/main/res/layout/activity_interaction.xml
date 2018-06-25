@@ -52,13 +52,21 @@
             android:layout_marginTop="10dp"
             android:textSize="25dp"/>
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/imageInteractionEmotion"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginTop="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/emotion_example"/>
+            android:src="@drawable/emotion_example"/>-->
+
+        <TextView
+            android:id="@+id/idTextPrueba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="50dp"
+            android:layout_marginTop="30dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"

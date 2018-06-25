@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -53,6 +55,9 @@ public class InteractionActivity extends AppCompatActivity {
     int action = 0;
 
     SoundMediaPlayer mediaPlayer = new SoundMediaPlayer();
+    BackGroundTimeInteraction backGroundTimeInteraction = null;
+
+    TextView textBackGround;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,8 @@ public class InteractionActivity extends AppCompatActivity {
         controlInteraction = new Interaction();
         elements = new ElementsInteraction(this);
 
+        textBackGround = (TextView) findViewById(R.id.idTextPrueba);
+
         textDebug = (TextView) findViewById(R.id.textDebug);
         textDebugB = (TextView) findViewById(R.id.textDebug2);
 
@@ -71,7 +78,7 @@ public class InteractionActivity extends AppCompatActivity {
         textYearsOld = (TextView) findViewById(R.id.textYearsPatient);
 
         imageOptotype = (ImageView) findViewById(R.id.imageViewOptotype);
-        imageAnimation = (ImageView) findViewById(R.id.imageInteractionEmotion);
+        //imageAnimation = (ImageView) findViewById(R.id.imageInteractionEmotion);
         imagePerfil = (ImageView) findViewById(R.id.imageViewInteractionPatient);
 
         imageProgress = (ImageView) findViewById(R.id.progressBar);
@@ -169,6 +176,9 @@ public class InteractionActivity extends AppCompatActivity {
         }catch (Exception e){
             Log.d("message: ", "problemas con el llenado de la lista (Vacia)");
         }
+
+        backGroundTimeInteraction = new BackGroundTimeInteraction(textBackGround, this);
+        backGroundTimeInteraction.execute();
 
     }
 
@@ -382,6 +392,7 @@ public class InteractionActivity extends AppCompatActivity {
                         workWithBackOption(imageOptotype, imageOptotypeC);
                 }
 
+                backGroundTimeInteraction.cancel(true);
                 refreshActivity();
                 break;
         }
@@ -436,7 +447,7 @@ public class InteractionActivity extends AppCompatActivity {
 
         }
 
-        imageAnimation.setImageResource(R.drawable.emotion_example);
+        //imageAnimation.setImageResource(R.drawable.emotion_example);
         fillProgressBar();
         mediaPlayer.setImageOptotype(imageOptotype.getTag().toString().split("_")[0]);
         mediaPlayer.setContext(this);
@@ -450,8 +461,9 @@ public class InteractionActivity extends AppCompatActivity {
      * @param option
      */
     public void workWithBackOption (ImageView optotype, ImageView option){
+
         option.setBackgroundColor(Color.rgb(255, 255, 255));
-        imageAnimation.setImageResource(R.drawable.triste);
+        //imageAnimation.setImageResource(R.drawable.triste);
         //// Agregar sonido de oh! no
         interactionSound(false);
     }
