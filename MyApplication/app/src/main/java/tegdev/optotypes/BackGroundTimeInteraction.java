@@ -46,7 +46,7 @@ public class BackGroundTimeInteraction extends AsyncTask <Void, Integer, Boolean
         oneSecond();
 
         for (int x= 1; x <= 6; x++){
-            
+
             oneSecond();
 
             publishProgress(x);
