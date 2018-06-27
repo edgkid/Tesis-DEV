@@ -448,7 +448,7 @@ public class InteractionActivity extends AppCompatActivity {
 
         }
 
-        imageAnimation.setImageResource(R.drawable.emotion_example);
+        imageAnimation.setImageResource(R.drawable.feliz);
         fillProgressBar();
         mediaPlayer.setImageOptotype(imageOptotype.getTag().toString().split("_")[0]);
         mediaPlayer.setContext(this);
