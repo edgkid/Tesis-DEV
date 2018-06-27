@@ -187,9 +187,6 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
      */
     public void callInteractionActivity (){
 
-        //final Intent interactionActivity = new Intent(this, InteractionActivity.class);
-
-        //final Intent interactionActivity = null;
         final Context context = this;
         listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
