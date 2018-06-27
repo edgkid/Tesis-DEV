@@ -40,7 +40,7 @@ public class InteractionCustonDialog extends AppCompatDialogFragment {
         final View view = inflater.inflate(R.layout.layout_dialog_interaction_correct, null);
 
         builder.setView(view)
-                .setTitle("Custon")
+                .setTitle("Felicidades")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -52,7 +52,7 @@ public class InteractionCustonDialog extends AppCompatDialogFragment {
         imageDialog = (ImageView) view.findViewById(R.id.idMessageDialogGood);
 
         if (option.equals("ok")){
-            imageDialog.setImageResource(R.drawable.ojo_icon);
+            imageDialog.setImageResource(R.drawable.good_job);
         }else if (option.equals("back")){
             imageDialog.setImageResource(R.drawable.imagenotfoud);
         }
