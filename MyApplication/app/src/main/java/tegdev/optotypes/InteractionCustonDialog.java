@@ -54,7 +54,7 @@ public class InteractionCustonDialog extends AppCompatDialogFragment {
         if (option.equals("ok")){
             imageDialog.setImageResource(R.drawable.good_job);
         }else if (option.equals("back")){
-            imageDialog.setImageResource(R.drawable.imagenotfoud);
+            imageDialog.setImageResource(R.drawable.back_job);
         }
 
 
