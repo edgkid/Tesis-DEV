@@ -195,20 +195,10 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent interactionActivity = null;
                 PatientsToday patient = (PatientsToday)parent.getAdapter().getItem(position);
 
-                if (Integer.parseInt(patient.getYearsOld().split(" ")[1]) < 3){
-                    interactionActivity=  new Intent(context, KeyBoardInteractionActivity.class);
-                }else if(Integer.parseInt(patient.getYearsOld().split(" ")[1]) >= 3){
-                    interactionActivity = new Intent(context, InteractionActivity.class);
-                }
-
-                if (interactionActivity != null){
-                    callActivityByPatient(patient, interactionActivity);
-                }else{
-                    Log.d("message", "null");
-                }
+                Intent interactionInstruction = new Intent(context, InstructionInteractionActivity.class);
+                callActivityByPatient(patient, interactionInstruction);
 
             }
         });
