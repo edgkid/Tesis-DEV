@@ -65,6 +65,7 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
     ArrayList<ImageView> arrayImageSelected = new ArrayList<ImageView>();
     Interaction interaction = new Interaction();
     int action = 0;
+    Bitmap photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +119,7 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             patient.setName(patientExtras.getString("patient"));
             patient.setYearsOld(patientExtras.getString("patientYear"));
 
-            Bitmap photo = (Bitmap) patientExtras.get("photo");
+            photo = (Bitmap) patientExtras.get("photo");
             elements = new ElementsInteraction(this);
             elements.fillInteractionElements(patient.getYearsOld().split(" ")[1]);
 
@@ -296,12 +297,18 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             requestInteraction.processInteraction(interaction, patient);
 
             RequestMedicalTest requestMedicalTest = new RequestMedicalTest(this);
+            ///Vuelovo a setear la edad a dos años en caso de que un paciente mayor alla usado esta actividad
+            patient.setYearsOld("2");
             requestMedicalTest.sendDataInteraction(patient, action, patient.getYearsOld());
 
             //alertDialog();
 
-            InteractionCustonDialog dialog = new InteractionCustonDialog(this, "ok");
-            dialog.show(getSupportFragmentManager(),"dialog");
+            InteractionCustonDialog dialog = new InteractionCustonDialog(this, "ok", "Felicidades");
+            dialog.setIdPatient(patient.getIdPatient());
+            dialog.setPatient(patient.getName());
+            dialog.setYearsOld(patient.getYearsOld());
+            dialog.setPhoto(photo);
+            dialog.show(getSupportFragmentManager(), "dialog");
 
         }
 

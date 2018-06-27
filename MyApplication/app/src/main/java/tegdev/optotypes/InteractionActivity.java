@@ -51,8 +51,9 @@ public class InteractionActivity extends AppCompatActivity {
 
     Context contextActivity;
     Patient patient = new Patient();
+    Bitmap photo = null;
     Bundle patientExtras;
-    boolean flag = true;
+    boolean flag = false;
     int action = 0;
 
     SoundMediaPlayer mediaPlayer = new SoundMediaPlayer();
@@ -104,9 +105,10 @@ public class InteractionActivity extends AppCompatActivity {
             String idPatient = patientExtras.getString("IdPatient");
             String patient = patientExtras.getString("patient");
             String yearsOld = patientExtras.getString("patientYear");
-            Bitmap photo = (Bitmap) patientExtras.get("photo");
+            photo = (Bitmap) patientExtras.get("photo");
 
             showData(idPatient, patient, yearsOld, photo);
+
 
         }
 
@@ -178,8 +180,26 @@ public class InteractionActivity extends AppCompatActivity {
             Log.d("message: ", "problemas con el llenado de la lista (Vacia)");
         }
 
-        backGroundTimeInteraction = new BackGroundTimeInteraction(textBackGround, this);
-        backGroundTimeInteraction.execute();
+        if (controlInteraction.getTotalOptotypes() < 12){
+
+            controlInteraction.setDoesNotHit(controlInteraction.getDoesNotHit() + 1 );
+            backGroundTimeInteraction = new BackGroundTimeInteraction(textBackGround, this);
+            backGroundTimeInteraction.execute();
+
+        }
+
+        if (controlInteraction.getDoesNotHit() >= 7  && !flag) {
+
+            InteractionCustonDialog dialog = new InteractionCustonDialog(this, "back", "Intentalo de Nuevo");
+            dialog.setIdPatient(patient.getIdPatient());
+            dialog.setPatient(patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName());
+            dialog.setYearsOld(patient.getYearsOld());
+            dialog.setPhoto(photo);
+            dialog.show(getSupportFragmentManager(), "dialog");
+            backGroundTimeInteraction.cancel(true);
+            flag = false;
+
+        }
 
     }
 
@@ -443,7 +463,11 @@ public class InteractionActivity extends AppCompatActivity {
             requestMedicalTest.sendDataInteraction(patient, action, patient.getYearsOld());
 
             //alertDialog();
-            InteractionCustonDialog dialog = new InteractionCustonDialog(this, "ok");
+            InteractionCustonDialog dialog = new InteractionCustonDialog(this, "ok", "Felicidades");
+            dialog.setIdPatient(patient.getIdPatient());
+            dialog.setPatient(patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName());
+            dialog.setYearsOld(patient.getYearsOld());
+            dialog.setPhoto(photo);
             dialog.show(getSupportFragmentManager(),"dialog");
 
         }
@@ -453,6 +477,9 @@ public class InteractionActivity extends AppCompatActivity {
         mediaPlayer.setImageOptotype(imageOptotype.getTag().toString().split("_")[0]);
         mediaPlayer.setContext(this);
         mediaPlayer.soundAnswer();
+
+        //Para reconocer cuando se acierta o no se hace nada
+        flag = true;
 
     }
 
@@ -467,6 +494,7 @@ public class InteractionActivity extends AppCompatActivity {
         imageAnimation.setImageResource(R.drawable.triste);
         //// Agregar sonido de oh! no
         interactionSound(false);
+        flag = false;
     }
 
     /**

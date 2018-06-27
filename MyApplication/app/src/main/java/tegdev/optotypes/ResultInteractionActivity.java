@@ -72,12 +72,15 @@ public class ResultInteractionActivity extends AppCompatActivity {
      */
     public void showData(String idPatient, String patientName, String yearsOld, Bitmap photo){
 
-        String []completeName = patientName.split(" ");
+        Log.d("Dato", yearsOld);
+        Log.d("Dato", patientName);
+
+       /* String []completeName = patientName.split(" ");
         String [] years = yearsOld.split(" ");
 
         textNames.setText( completeName[0] + " " + completeName[1]);
         textLastNames.setText(completeName[2] + " " + completeName[3]);
-        textYearsOld.setText("Edad: " + years[1] + " años" );
+        textYearsOld.setText("Edad: " + years[1] + " años" );*/
 
         if (photo != null)
             imagePerfil.setImageBitmap(photo);

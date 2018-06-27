@@ -12,9 +12,11 @@ public class Interaction {
     private ArrayList<Optotype> optotypes = new ArrayList<Optotype>();
     private int Position;
     private int totalOptotypes;
+    private int doesNotHit;
 
     public Interaction() {
         this.totalOptotypes = 1;
+        doesNotHit = 0;
     }
 
     public Interaction(Patient patient, ArrayList<Optotype> optotypes, int position, int totalOptotypes) {
@@ -22,6 +24,7 @@ public class Interaction {
         this.optotypes = optotypes;
         Position = position;
         this.totalOptotypes = totalOptotypes;
+        doesNotHit = 0;
     }
 
     public Patient getPatient() {
@@ -56,4 +59,11 @@ public class Interaction {
         this.totalOptotypes = totalOptotypes;
     }
 
+    public int getDoesNotHit() {
+        return doesNotHit;
+    }
+
+    public void setDoesNotHit(int doesNotHit) {
+        this.doesNotHit = doesNotHit;
+    }
 }
