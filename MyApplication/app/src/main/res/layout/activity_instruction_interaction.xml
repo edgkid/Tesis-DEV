@@ -18,7 +18,8 @@
             android:id="@+id/idTextInstruction"
             android:layout_width="300dp"
             android:layout_height="match_parent"
-            android:textSize="40dp"/>
+            android:textSize="30dp"
+            android:layout_marginTop="40dp"/>
 
         <ImageView
             android:id="@+id/idImageInstruction"
@@ -35,6 +36,7 @@
         android:layout_marginRight="50dp">
 
         <TextView
+            android:id="@+id/textNextActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="40dp"

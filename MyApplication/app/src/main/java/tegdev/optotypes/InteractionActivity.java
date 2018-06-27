@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
