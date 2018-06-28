@@ -473,4 +473,9 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
         optotypeOption.setTag(image);
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
 }

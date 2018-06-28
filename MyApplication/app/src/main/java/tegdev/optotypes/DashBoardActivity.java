@@ -247,4 +247,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 }
