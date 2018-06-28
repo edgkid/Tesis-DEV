@@ -131,7 +131,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void callNewActivity (){
 
         Intent dashBoardActivity = new Intent(this, DashBoardActivity.class);
+        dashBoardActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(dashBoardActivity);
+        finish();
     }
 
     @Override
