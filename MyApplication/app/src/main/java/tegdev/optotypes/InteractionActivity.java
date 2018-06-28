@@ -42,6 +42,7 @@ public class InteractionActivity extends AppCompatActivity {
     ImageView imageOptotypeC;
 
     ImageView imageProgress;
+    ImageView buttonListPatient;
 
     TextView textDebug;
     TextView textDebugB;
@@ -70,8 +71,8 @@ public class InteractionActivity extends AppCompatActivity {
         controlInteraction = new Interaction();
         elements = new ElementsInteraction(this);
 
-        textBackGround = (TextView) findViewById(R.id.idTextTimeOut);
 
+        textBackGround = (TextView) findViewById(R.id.idTextTimeOut);
         textDebug = (TextView) findViewById(R.id.textDebug);
         textDebugB = (TextView) findViewById(R.id.textDebug2);
 
@@ -82,6 +83,7 @@ public class InteractionActivity extends AppCompatActivity {
         imageOptotype = (ImageView) findViewById(R.id.imageViewOptotype);
         imageAnimation = (ImageView) findViewById(R.id.imageInteractionEmotion);
         imagePerfil = (ImageView) findViewById(R.id.imageViewInteractionPatient);
+        buttonListPatient = (ImageView) findViewById(R.id.idbuttonReturnListPatient);
 
         imageProgress = (ImageView) findViewById(R.id.progressBar);
 
@@ -111,6 +113,22 @@ public class InteractionActivity extends AppCompatActivity {
 
 
         }
+
+        buttonListPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent dashBoard = new Intent(contextActivity, DashBoardActivity.class);
+                dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                if (backGroundTimeInteraction != null){
+                    backGroundTimeInteraction.cancel(true);
+                }
+
+                startActivity(dashBoard);
+                finish();
+            }
+        });
 
         loadOptotypes();
         refreshActivity();
