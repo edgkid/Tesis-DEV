@@ -156,4 +156,9 @@ public class ResultInteractionActivity extends AppCompatActivity {
         imageOptotype.setVisibility(View.VISIBLE);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 }
