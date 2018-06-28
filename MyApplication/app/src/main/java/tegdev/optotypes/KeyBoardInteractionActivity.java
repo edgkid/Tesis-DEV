@@ -56,6 +56,7 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
     TextView yearsOldPatient;
 
     ImageView perfilPatient;
+    ImageView buttonListPatient;
 
     Patient patient = new Patient();
     ElementsInteraction elements;
@@ -66,13 +67,15 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
     Interaction interaction = new Interaction();
     int action = 0;
     Bitmap photo;
+    Context contextActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_key_board_interaction);
 
-
+        contextActivity = this;
         optotypePosAa = (ImageView) findViewById(R.id.optotypeAa);
         optotypePosAb = (ImageView) findViewById(R.id.optotypeAb);
         optotypePosAc = (ImageView) findViewById(R.id.optotypeAc);
@@ -104,6 +107,7 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
         opSelectedCd = (ImageView) findViewById(R.id.opSelectedCd);
 
         perfilPatient = (ImageView) findViewById(R.id.imageViewInteractionPatient);
+        buttonListPatient = (ImageView) findViewById(R.id.idbuttonReturnListPatient);
 
         textNamePatient = (TextView) findViewById(R.id.textViewNAmePatient);
         textLastNamePatient = (TextView) findViewById(R.id.textViewLastnamePatient);
@@ -126,6 +130,16 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             initializeImage();
             showData(patient.getIdPatient(), patient.getName(), patient.getYearsOld(), photo);
             refreshActivity();
+
+            buttonListPatient.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent dashBoard = new Intent(contextActivity, DashBoardActivity.class);
+                    dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(dashBoard);
+                    finish();
+                }
+            });
 
             actionOnImage();
         }
