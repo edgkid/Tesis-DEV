@@ -25,8 +25,9 @@ public class CloseAndRefresh extends AppCompatActivity {
         cleanPreferencesLogin(loginPreferences);
 
         Intent loginActivity = new Intent(contextActivity, LoginActivity.class);
+        loginActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         contextActivity.startActivity(loginActivity);
-        Toast.makeText(contextActivity, "Saliendo de la aplicación", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
 

@@ -196,7 +196,6 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
                 Intent interactionInstruction = new Intent(context, InstructionInteractionActivity.class);
                 callActivityByPatient(patient, interactionInstruction);
-
             }
         });
 
@@ -225,7 +224,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             activity.putExtra("patient", patient.getName());
             activity.putExtra("patientYear", patient.getYearsOld());
             activity.putExtra("photo", patient.getPhoto());
-            startActivity(activity);
+            //activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            //startActivity(activity);
+            finish();
         }
 
     }
@@ -238,6 +239,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         if (loginPreferences.getString("password", "defaultroll").equals(data)){
             CloseAndRefresh closeApp = new CloseAndRefresh(contextActivity);
             closeApp.logOutApp(loginPreferences);
+            finish();
         }
 
     }
