@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginRight="50dp">
 
         <TextView
             android:id="@+id/idTextInstruction"
-            android:layout_width="300dp"
+            android:layout_width="400dp"
             android:layout_height="match_parent"
             android:textSize="30dp"
             android:layout_marginTop="40dp"/>
@@ -24,7 +24,9 @@
         <ImageView
             android:id="@+id/idImageInstruction"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginLeft="100dp"
+            android:src="@drawable/key_board"/>
 
     </LinearLayout>
 
@@ -32,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginRight="50dp">
 
         <TextView
