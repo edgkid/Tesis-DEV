@@ -218,14 +218,16 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             resultInteraction.putExtra("patient", patient.getName());
             resultInteraction.putExtra("patientYear", patient.getYearsOld());
             resultInteraction.putExtra("photo", patient.getPhoto());
+            resultInteraction.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(resultInteraction);
+            finish();
         } else{
             activity.putExtra("IdPatient", String.valueOf(patient.getIdPatient()));
             activity.putExtra("patient", patient.getName());
             activity.putExtra("patientYear", patient.getYearsOld());
             activity.putExtra("photo", patient.getPhoto());
-            //activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            //startActivity(activity);
+            activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(activity);
             finish();
         }
 
