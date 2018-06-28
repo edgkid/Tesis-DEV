@@ -18,6 +18,7 @@ public class ResultInteractionActivity extends AppCompatActivity {
 
     ImageView imagePerfil;
     ImageView imageOptotype;
+    ImageView buttonListPatient;
 
     TextView textNames;
     TextView  textLastNames;
@@ -38,6 +39,7 @@ public class ResultInteractionActivity extends AppCompatActivity {
         contextActivity = this;
         imagePerfil = (ImageView) findViewById(R.id.imageViewResultPatient);
         imageOptotype = (ImageView) findViewById(R.id.imageOptometriCard);
+        buttonListPatient = (ImageView) findViewById(R.id.idbuttonReturnListPatient);
 
         textNames = (TextView) findViewById(R.id.textViewNAmePatient);
         textLastNames = (TextView) findViewById(R.id.textViewLastnamePatient);
@@ -60,6 +62,16 @@ public class ResultInteractionActivity extends AppCompatActivity {
             showData(idPatient, patient, yearsOld, photo);
             loadListOptotypes(idPatient);
         }
+
+        buttonListPatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent dashBoard = new Intent(contextActivity, DashBoardActivity.class);
+                dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(dashBoard);
+                finish();
+            }
+        });
 
     }
 
