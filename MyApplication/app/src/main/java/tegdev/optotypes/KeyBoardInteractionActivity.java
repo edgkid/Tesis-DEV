@@ -305,7 +305,7 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
 
             InteractionCustonDialog dialog = new InteractionCustonDialog(this, "ok", "Felicidades");
             dialog.setIdPatient(patient.getIdPatient());
-            dialog.setPatient(patient.getName());
+            dialog.setPatient(patient.getName() + " " + patient.getMiddleName() + " "+ patient.getLastName() + " " + patient.getMaidenName());
             dialog.setYearsOld(patient.getYearsOld());
             dialog.setPhoto(photo);
             dialog.show(getSupportFragmentManager(), "dialog");

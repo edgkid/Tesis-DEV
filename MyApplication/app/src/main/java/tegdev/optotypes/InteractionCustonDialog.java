@@ -99,6 +99,8 @@ public class InteractionCustonDialog extends AppCompatDialogFragment {
         nextActivity.putExtra("patientYear", "_ " + yearsOld);
         nextActivity.putExtra("photo", photo);
 
+        Log.d("message", "Dialog: "+ patient);
+
         startActivity(nextActivity);
 
     }

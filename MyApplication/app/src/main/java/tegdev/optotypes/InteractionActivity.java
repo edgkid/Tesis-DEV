@@ -465,6 +465,7 @@ public class InteractionActivity extends AppCompatActivity {
             //alertDialog();
             InteractionCustonDialog dialog = new InteractionCustonDialog(this, "ok", "Felicidades");
             dialog.setIdPatient(patient.getIdPatient());
+            Log.d("message", "envio: "+ patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName());
             dialog.setPatient(patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName());
             dialog.setYearsOld(patient.getYearsOld());
             dialog.setPhoto(photo);
