@@ -175,7 +175,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                 }
 
                 if (newActivity != null)
+                    newActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(newActivity);
+                    finish();
             }
         });
 

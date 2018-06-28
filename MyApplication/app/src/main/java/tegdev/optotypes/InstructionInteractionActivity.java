@@ -80,7 +80,9 @@ public class InstructionInteractionActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (finalInteraction != null){
+                    finalInteraction.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(finalInteraction);
+                    finish();
                 }
 
             }
@@ -90,7 +92,9 @@ public class InstructionInteractionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (finalInteraction != null){
+                    finalInteraction.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(finalInteraction);
+                    finish();
                 }
             }
         });
@@ -99,7 +103,9 @@ public class InstructionInteractionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (finalInteraction != null){
+                    finalInteraction.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(finalInteraction);
+                    finish();
                 }
             }
         });
