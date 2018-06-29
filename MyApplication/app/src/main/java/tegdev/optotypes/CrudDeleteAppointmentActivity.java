@@ -2,6 +2,7 @@ package tegdev.optotypes;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
     Button actionDelete;
     Button buttonLogOut;
     Button buttonUpdate;
+    Button buttonReturnListMenu;
 
     TextView names;
     TextView lastNames;
@@ -61,6 +63,7 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
 
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+        buttonReturnListMenu = (Button) findViewById(R.id.idbuttonReturnListMenu);
         line = (View) findViewById(R.id.separatorD);
 
         perfil.setVisibility(View.INVISIBLE);
@@ -75,6 +78,7 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
         actionDelete.setOnClickListener(this);
         buttonLogOut.setOnClickListener(this);
         buttonUpdate.setOnClickListener(this);
+        buttonReturnListMenu.setOnClickListener(this);
 
         ipWbeService = (TextView) findViewById(R.id.ipWebService);
         ipClient = (TextView) findViewById(R.id.ipProjector);
@@ -106,7 +110,14 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
                 action = 2;
                 alertDialog();
                 break;
+            case R.id.idbuttonReturnListMenu:
 
+                Intent dashBoard = new Intent(this, DashBoardActivity.class);
+                dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(dashBoard);
+                startActivity(dashBoard);
+
+                break;
         }
 
     }

@@ -40,6 +40,7 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
 
     Button buttonAcept;
     Button buttonLogOut;
+    Button buttonReturnListMenu;
 
     DatePicker calendar;
 
@@ -72,6 +73,7 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
         imagePatient = (ImageView) findViewById(R.id.idImagePatient);
         buttonAcept = (Button) findViewById(R.id.idCrudDButtonAcepted);
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
+        buttonReturnListMenu = (Button) findViewById(R.id.idbuttonReturnListMenu);
         calendar = (DatePicker) findViewById(R.id.idDateBrithday);
         genderList = (Spinner) findViewById(R.id.dGenderPatient);
 
@@ -94,6 +96,7 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
 
         buttonAcept.setOnClickListener(this);
         buttonLogOut.setOnClickListener(this);
+        buttonReturnListMenu.setOnClickListener(this);
 
         imagePatient.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +154,12 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
                 break;
             case R.id.idCrudDButtonAcepted:
                 saveNewPatient();
+                break;
+            case R.id.idbuttonReturnListMenu:
+                Intent dashBoard = new Intent(this, DashBoardActivity.class);
+                dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(dashBoard);
+                finish();
                 break;
 
         }

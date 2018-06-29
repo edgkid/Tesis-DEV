@@ -43,6 +43,7 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
     Button buttonLogOut;
     Button buttonUpdate;
     Button buttonDiagnostic;
+    Button buttonReturnMenu;
 
     TextView ipWbeService;
     TextView ipClient;
@@ -78,12 +79,14 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
         buttonDiagnostic = (Button) findViewById(R.id.buttonViewDiagnosticRead);
+        buttonReturnMenu = (Button) findViewById(R.id.idbuttonReturnListMenu);
 
         separator = (View)findViewById(R.id.separatorM);
 
         buttonLogOut.setOnClickListener(this);
         buttonUpdate.setOnClickListener(this);
         buttonDiagnostic.setOnClickListener(this);
+        buttonReturnMenu.setOnClickListener(this);
 
         names.setVisibility(View.INVISIBLE);
         lastNames.setVisibility(View.INVISIBLE);
@@ -129,6 +132,12 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
                 break;
             case R.id.buttonViewDiagnosticRead:
                 displayDiagnosticActivity();
+                break;
+            case R.id.idbuttonReturnListMenu:
+                Intent dashBoard = new Intent (this, DashBoardActivity.class);
+                dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(dashBoard);
+                finish();
                 break;
         }
 

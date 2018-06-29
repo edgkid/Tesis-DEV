@@ -2,6 +2,7 @@ package tegdev.optotypes;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
     Button updated;
     Button logOut;
     Button buttonModify;
+    Button buttonReturnListMenu;
     DatePicker calendar;
     ImageView perfil;
 
@@ -56,6 +58,7 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
         updated = (Button) findViewById(R.id.buttonUpdate);
         logOut = (Button) findViewById(R.id.buttonLogout);
         buttonModify = (Button) findViewById(R.id.idCrudButtonAceptedM);
+        buttonReturnListMenu = (Button) findViewById(R.id.idbuttonReturnListMenu);
         line = (View) findViewById(R.id.separatorM);
 
         perfil.setVisibility(View.INVISIBLE);
@@ -72,6 +75,7 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
         updated.setOnClickListener(this);
         logOut.setOnClickListener(this);
         buttonModify.setOnClickListener(this);
+        buttonReturnListMenu.setOnClickListener(this);
 
         ipWbeService = (TextView) findViewById(R.id.ipWebService);
         ipClient = (TextView) findViewById(R.id.ipProjector);
@@ -102,6 +106,13 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
                 alertDialog();
                 break;
             case R.id.buttonUpdate:
+                break;
+
+            case R.id.idbuttonReturnListMenu:
+                Intent dashBoard = new Intent (this, DashBoardActivity.class);
+                dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(dashBoard);
+                finish();
                 break;
         }
 
