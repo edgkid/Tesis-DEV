@@ -54,9 +54,16 @@
         <activity
             android:name=".TestControlActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".CrudNewPatientActivity" />
-        <activity android:name=".KeyBoardInteractionActivity" />
-        <activity android:name=".InstructionInteractionActivity"></activity>
+        <activity
+            android:name=".CrudNewPatientActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".KeyBoardInteractionActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".InstructionInteractionActivity"
+            android:screenOrientation="landscape"
+            ></activity>
     </application>
 
 </manifest>
