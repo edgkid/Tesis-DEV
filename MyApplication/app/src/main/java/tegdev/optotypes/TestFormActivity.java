@@ -68,6 +68,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
     Button buttonProcess; //AppointmetProcess
     Button logOut;//buttonLogout
+    Button buttonReturnMenu;
 
     Diagnostic diagnosticNotes;
     Context contextActivity;
@@ -82,6 +83,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         contextActivity = this;
         diagnosticNotes = new Diagnostic();
+        buttonReturnMenu = (Button) findViewById(R.id.idbuttonReturnListMenu);
+        buttonReturnMenu.setOnClickListener(this);
 
         ipWbeService = (TextView) findViewById(R.id.ipWebService);
         ipClient = (TextView) findViewById(R.id.ipProjector);
@@ -423,6 +426,12 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.buttonLogout:
                 logOutApp();
+                break;
+            case R.id.idbuttonReturnListMenu:
+                Intent dashBoard = new Intent(this, DashBoardActivity.class);
+                dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(dashBoard);
+                finish();
                 break;
         }
 

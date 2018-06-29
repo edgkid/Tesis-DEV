@@ -24,6 +24,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
     ImageView test;
     Button buttonLogOut;
     Button buttonUpdate;
+    Button buttonReturnMenu;
     Context contextActivity;
 
     int action = 4;
@@ -48,9 +49,11 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
 
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+        buttonReturnMenu = (Button) findViewById(R.id.idbuttonReturnListMenu);
 
         buttonUpdate.setOnClickListener(this);
         buttonLogOut.setOnClickListener(this);
+        buttonReturnMenu.setOnClickListener(this);
 
         ipWbeService = (TextView) findViewById(R.id.ipWebService);
         ipClient = (TextView) findViewById(R.id.ipProjector);
@@ -88,6 +91,12 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
                 break;
             case  R.id.buttonUpdate:
                 loadListPatientsToday();
+                break;
+            case R.id.idbuttonReturnListMenu:
+                Intent dashBoard = new Intent(this, DashBoardActivity.class);
+                dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(dashBoard);
+                finish();
                 break;
         }
 

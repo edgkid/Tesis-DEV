@@ -21,6 +21,7 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
     Button buttonLogOut;
     Button nextTest;
     Button lastTest;
+    Button buttonReturnMenu;
     ImageView imageTest;
     TextView ipWbeService;
     TextView ipClient;
@@ -50,6 +51,7 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
 
         Log.d("carta", "On Create");
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
+        buttonReturnMenu = (Button) findViewById(R.id.idbuttonReturnListMenu);
         nextTest = (Button) findViewById(R.id.nextImage);
         lastTest = (Button) findViewById(R.id.lastImage);
         imageTest = (ImageView) findViewById(R.id.idActualTest);
@@ -67,6 +69,7 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         buttonLogOut.setOnClickListener(this);
         nextTest.setOnClickListener(this);
         lastTest.setOnClickListener(this);
+        buttonReturnMenu.setOnClickListener(this);
 
         try{
             ipWbeService.setText(ipWbeService.getText().toString() + ConfgConnect.getIpWebService());
@@ -195,6 +198,12 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
             case R.id.lastImage:
                 positionTestList--;
                 sendTestToClientProjector();
+                break;
+            case R.id.idbuttonReturnListMenu:
+                Intent dashBoard = new Intent (this, DashBoardActivity.class);
+                dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(dashBoard);
+                finish();
                 break;
         }
 

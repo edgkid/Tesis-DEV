@@ -34,6 +34,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
     Button save;
     ImageButton shared;
     Button buttonLogOut;
+    Button buttonReturnMenu;
 
     DatePicker calendar;
     ImageView perfil;
@@ -66,6 +67,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         shared = (ImageButton) findViewById(R.id.idCrudButtonShareC);
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonLogOut.setOnClickListener(this);
+        buttonReturnMenu = (Button) findViewById(R.id.idbuttonReturnListMenu);
         textShared = (EditText) findViewById(R.id.idCrudShareSaveC);
 
 
@@ -80,6 +82,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
 
         save.setOnClickListener(this);
         shared.setOnClickListener(this);
+        buttonReturnMenu.setOnClickListener(this);
 
         ipWbeService = (TextView) findViewById(R.id.ipWebService);
         ipClient = (TextView) findViewById(R.id.ipProjector);
@@ -115,6 +118,12 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
                 break;
             case R.id.buttonLogout:
                 logOutApp();
+                break;
+            case R.id.idbuttonReturnListMenu:
+                Intent dashboard = new Intent(this, DashBoardActivity.class);
+                dashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(dashboard);
+                finish();
                 break;
         }
 
