@@ -208,4 +208,9 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 }

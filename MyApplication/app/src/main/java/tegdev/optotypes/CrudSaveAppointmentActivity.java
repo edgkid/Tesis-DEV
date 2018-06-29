@@ -247,5 +247,9 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
 
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 
 }

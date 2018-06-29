@@ -244,5 +244,10 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         closeApp.logOutApp(loginPreferences);
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
 
 }

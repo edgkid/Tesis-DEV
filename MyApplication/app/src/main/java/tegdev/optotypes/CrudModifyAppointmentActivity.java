@@ -226,4 +226,9 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
         closeApp.logOutApp(loginPreferences);
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
 }

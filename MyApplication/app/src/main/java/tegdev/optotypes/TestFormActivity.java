@@ -523,4 +523,9 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         closeApp.logOutApp(loginPreferences);
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
 }

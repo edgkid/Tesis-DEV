@@ -229,4 +229,8 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
 
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 }

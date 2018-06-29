@@ -250,5 +250,10 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
 
 }
