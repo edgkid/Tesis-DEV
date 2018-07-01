@@ -28,6 +28,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
     TextView port;
 
     LinearLayout activity;
+    BackGroundServiceDataApp backGroundServiceDataApp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,8 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             port.setText(port.getText().toString() + "no hay conexión");
         }
 
+        backGroundServiceDataApp = new BackGroundServiceDataApp();
+        backGroundServiceDataApp.execute();
         loadMenu();
 
     }
@@ -88,7 +91,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             messageDialog.setTitleMessage("Contraseña");
             messageDialog.setMessageDialog("Ingrese contraseña para cerrar sesión");
             messageDialog.show(getSupportFragmentManager(),"Message Dialog");
+
         }else{
+            backGroundServiceDataApp.cancel(true);
             CloseAndRefresh closeApp = new CloseAndRefresh(contextActivity);
             closeApp.logOutApp(loginPreferences);
         }
@@ -240,9 +245,11 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
 
         if (loginPreferences.getString("password", "defaultroll").equals(data)){
+            backGroundServiceDataApp.cancel(true);
             CloseAndRefresh closeApp = new CloseAndRefresh(contextActivity);
-            closeApp.logOutApp(loginPreferences);
+            closeApp.logOutApp(loginPreferences, backGroundServiceDataApp);
             finish();
+
         }
 
     }

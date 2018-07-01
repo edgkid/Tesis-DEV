@@ -30,6 +30,19 @@ public class CloseAndRefresh extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * This metohd clos the sesion
+     */
+    public void logOutApp(SharedPreferences loginPreferences, BackGroundServiceDataApp backGroundServiceDataApp){
+        cleanPreferencesLogin(loginPreferences);
+
+        backGroundServiceDataApp.cancel(true);
+        Intent loginActivity = new Intent(contextActivity, LoginActivity.class);
+        loginActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        contextActivity.startActivity(loginActivity);
+        finish();
+    }
+
 
     /**
      *This method clean the shared preference to user with login
