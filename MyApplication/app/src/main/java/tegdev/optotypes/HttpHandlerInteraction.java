@@ -79,6 +79,7 @@ public class HttpHandlerInteraction {
 
         }catch (IOException e){
             e.printStackTrace();
+            Log.d("printLog", "Problemas para enviar datos de Interacción");
         }
 
     }

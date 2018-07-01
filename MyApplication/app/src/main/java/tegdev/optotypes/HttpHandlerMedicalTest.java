@@ -86,6 +86,7 @@ public class HttpHandlerMedicalTest {
                 }
                 catch(Exception ex){
                     ex.printStackTrace();
+                    Log.d("printLog", "No hay conexion para solicitar test");
                 }
             }
 
@@ -131,7 +132,8 @@ public class HttpHandlerMedicalTest {
                         if (verifyRespondeServer(result)){
                             procesingJson(result,test, imageTest);
                         } else
-                            Toast.makeText(ctx.getApplicationContext(),"Tfallo en solicitud", Toast.LENGTH_SHORT).show();
+                            Log.d("printLog", "no hay datos de carta");
+
                         interrupt();
                     }
                 });

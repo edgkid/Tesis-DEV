@@ -88,6 +88,7 @@ public class HttpHandlerDiagnostic {
 
         }catch (IOException e){
             e.printStackTrace();
+            Log.d("printLog", "No hay conexion para guardar datos de diagnostico");
         }
 
     }
