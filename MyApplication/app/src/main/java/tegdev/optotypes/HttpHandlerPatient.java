@@ -51,13 +51,11 @@ public class HttpHandlerPatient {
         String retunrValue = "";
 
         try{
-            Log.d("path: ", path);
 
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             responseCode = connection.getResponseCode();// en caso de que halla respuesta el valor es 200
 
-            Log.d("code paciente: ", Integer.toString(responseCode));
             // equivalente a preguntar si la respuesta es igual a 200
             if (responseCode == HttpURLConnection.HTTP_OK){
 
@@ -80,8 +78,6 @@ public class HttpHandlerPatient {
         else
             retunrValue = result.toString();
 
-        Log.d("result : ",retunrValue);
-
         return retunrValue;
     }
 
@@ -100,8 +96,6 @@ public class HttpHandlerPatient {
 
         try{
             url = new URL (path);
-            Log.d("message: ", path);
-
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
@@ -118,31 +112,24 @@ public class HttpHandlerPatient {
             wr.flush();
             wr.close();
 
-            Log.d("message: ", listParam.toString() );
-
             responseCode = connection.getResponseCode();
-
-            Log.d("message: ", String.valueOf(responseCode));
 
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
-                Log.d("message code:", String.valueOf(responseCode));
-            }else
-                Log.d("message: ", "Como que no conecto");
+            }
 
             if (inputStreamResponse != null){
                 try{
                     inputStreamResponse.close();
                 }
                 catch(Exception ex){
-                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                    ex.printStackTrace();
                 }
             }
 
 
         }catch (IOException e){
             e.printStackTrace();
-            Log.d("message: ", "Error no estoy haciendo conexion");
         }
 
     }
@@ -167,7 +154,6 @@ public class HttpHandlerPatient {
         try{
 
             url = new URL (path);
-            Log.d("message: ", path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
@@ -184,13 +170,10 @@ public class HttpHandlerPatient {
             wr.flush();
             wr.close();
 
-            Log.d("message: ", listParam.toString() );
-
             responseCode = connection.getResponseCode();
 
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
-                Log.d("message code:", String.valueOf(responseCode));
 
                 result = new StringBuilder();
                 InputStream input = new BufferedInputStream(connection.getInputStream());
@@ -199,15 +182,14 @@ public class HttpHandlerPatient {
                 while ((line = reader.readLine()) !=null ){
                     result.append(line);
                 }
-            }else
-                Log.d("message: ", "Como que no conecto");
+            }
 
             if (inputStreamResponse != null){
                 try{
                     inputStreamResponse.close();
                 }
                 catch(Exception ex){
-                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                    ex.printStackTrace();
                 }
             }
 
@@ -228,7 +210,6 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudRequestTestActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -261,7 +242,6 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudReadAppointmentActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -305,7 +285,7 @@ public class HttpHandlerPatient {
 
                         if (verifyRespondeServer(result)){
                             fillList(list, result);
-                            Log.d("message: ", "datos");
+
                         } else
                             Toast.makeText(ctx.getApplicationContext(),"problema para cargar lista", Toast.LENGTH_SHORT).show();
                         interrupt();
@@ -326,7 +306,6 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudModifyAppointmentActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -359,7 +338,6 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudDeleteAppointmentActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -392,7 +370,6 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final DashBoardActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -442,7 +419,6 @@ public class HttpHandlerPatient {
     public boolean verifyRespondeServer (String result){
 
         boolean value = false;
-        Log.d("message: ", "Metodo para verificar");
 
         try{
 
@@ -461,8 +437,6 @@ public class HttpHandlerPatient {
      * @param result
      */
     public void fillList(ListView list, String result){
-
-        Log.d("message:", result);
 
         JSONArray array = null;
 
