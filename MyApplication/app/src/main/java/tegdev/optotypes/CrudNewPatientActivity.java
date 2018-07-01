@@ -192,8 +192,6 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
             byte[] byteArray = byteArrayOutputStream .toByteArray();
 
             encode = Base64.encodeToString(byteArray, Base64.DEFAULT);
-        }else{
-            Log.d("message", "null");
         }
 
         patient = new Patient();

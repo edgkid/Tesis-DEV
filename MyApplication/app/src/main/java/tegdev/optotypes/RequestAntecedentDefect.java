@@ -48,7 +48,6 @@ public class RequestAntecedentDefect {
         }catch (Exception e){
             antecedentDb.onCreate(db);
             value = true;
-            Log.d("message", "problemas");
         }finally {
             if (cursor != null)
                 cursor.close();
@@ -79,8 +78,6 @@ public class RequestAntecedentDefect {
         AntecedentDefectHelper antecedentDefectHelper = new AntecedentDefectHelper(this.context);
         SQLiteDatabase db = antecedentDefectHelper.getReadableDatabase();
 
-        Log.d("message", "obteniendo antecendentes");
-
         try {
             cursor = db.rawQuery("SELECT antecedentName FROM " + AntecedentDefectContract.AntecedentDefectContractEntry.TABLE_NAME + where, null);
 
@@ -91,7 +88,7 @@ public class RequestAntecedentDefect {
             }
 
         } catch (Exception e) {
-            Log.d("message: ", "SQLite");
+            e.printStackTrace();
 
         } finally {
 

@@ -50,7 +50,6 @@ public class HttpHandlerMedicalTest {
 
         try{
             url = new URL (path);
-            Log.d("carta: ", path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
@@ -67,8 +66,6 @@ public class HttpHandlerMedicalTest {
             wr.flush();
             wr.close();
 
-            Log.d("carta: ", listParam.toString() );
-
             responseCode = connection.getResponseCode();
 
             if( responseCode == HttpURLConnection.HTTP_OK){
@@ -80,32 +77,27 @@ public class HttpHandlerMedicalTest {
                 while ((line = reader.readLine()) !=null ){
                     result.append(line);
                 }
-                Log.d("carta:", String.valueOf(responseCode));
 
-            }else
-                Log.d("carta: ", "Como que no conecto");
+            }
 
             if (inputStreamResponse != null){
                 try{
                     inputStreamResponse.close();
                 }
                 catch(Exception ex){
-                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                    ex.printStackTrace();
                 }
             }
 
 
         }catch (IOException e){
             e.printStackTrace();
-            Log.d("message: ", "Error no estoy haciendo conexion");
         }
 
         if (result == null)
             retunrValue = "[{}]";
         else
             retunrValue = result.toString();
-
-        Log.d("carta: ",retunrValue);
 
         return retunrValue;
     }
@@ -127,7 +119,6 @@ public class HttpHandlerMedicalTest {
 
     public void connectToResource (final CrudRequestTestActivity ctx, final PatientsToday patient, final int distance, final int action, final ImageView test, final ArrayList imageTest){
 
-        Log.d("carta: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -166,9 +157,7 @@ public class HttpHandlerMedicalTest {
 
 
         }catch (Exception e){
-
             e.printStackTrace();
-            Log.d("message: ", "Exception cursor o DB");
         }
     }
 
@@ -193,12 +182,10 @@ public class HttpHandlerMedicalTest {
             for(int i=1; i<array.length(); i++){
 
                 JSONObject jsonObj  = array.getJSONObject(i);
-                imageTest.add(jsonObj.getString("imageTest"));
             }
 
         }catch (Exception e){
             e.printStackTrace();
-            Log.d("json: ", "No hay valor para procesar");
         }
 
         if (image != null)

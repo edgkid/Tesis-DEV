@@ -521,7 +521,6 @@ public class HttpHandlerPatient {
 
         }catch (Exception e){
             e.printStackTrace();
-            Log.d("message: ", "Exception cursor o DB");
         }
 
     }
@@ -550,7 +549,6 @@ public class HttpHandlerPatient {
 
         }catch (Exception e){
             e.printStackTrace();
-            Log.d("message: ", "Exception cursor o DB");
         }
 
     }

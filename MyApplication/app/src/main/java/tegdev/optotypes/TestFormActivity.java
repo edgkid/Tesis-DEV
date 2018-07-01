@@ -214,8 +214,6 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
      * This method initialize antecendent
      */
     public void initializeAntecedentAdapter(){
-
-        Log.d("message", "inicalizando anteceedentes");
         ArrayList<String> arrayAntecedent = new ArrayList<String>();
         arrayAntecedent.add("Antecedentes");
         RequestAntecedentDefect requestAntecedentDefect = new RequestAntecedentDefect("antecedent",this);
@@ -239,13 +237,11 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 diagnosticNotes.setAvRigth(dropDownAvRight.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getAvRigth());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 diagnosticNotes.setAvRigth(dropDownAvRight.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getAvRigth());
             }
         });
     }
@@ -259,13 +255,11 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 diagnosticNotes.setAvLeft(dropDownLeft.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getAvLeft());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 diagnosticNotes.setAvLeft(dropDownLeft.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getAvLeft());
             }
         });
     }
@@ -279,13 +273,11 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 diagnosticNotes.setCenter(dropDownCenter.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getCenter());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 diagnosticNotes.setCenter(dropDownCenter.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getCenter());
             }
         });
     }
@@ -299,13 +291,11 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 diagnosticNotes.setSustain(dropDownSustain.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getSustain());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 diagnosticNotes.setSustain(dropDownSustain.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getSustain());
             }
         });
     }
@@ -319,13 +309,11 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 diagnosticNotes.setMaintain(dropDownMaintain.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getMaintain());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 diagnosticNotes.setMaintain(dropDownMaintain.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getMaintain());
             }
         });
     }
@@ -339,13 +327,11 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 diagnosticNotes.setTypeTest(dropDownTypeTest.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getTypeTest());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 diagnosticNotes.setTypeTest(dropDownTypeTest.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getTypeTest());
             }
         });
     }
@@ -359,13 +345,11 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 diagnosticNotes.setColaborate(dropDownColaboration.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getColaborate());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 diagnosticNotes.setColaborate(dropDownColaboration.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getColaborate());
             }
         });
     }
@@ -382,14 +366,12 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 textParentMon.setText(textParentMon.getText().toString() + "," + dropDownPreviusMom.getSelectedItem().toString() );
                 diagnosticNotes.setExtendsMon(textParentMon.getText().toString());
-                Log.d("Datos:", diagnosticNotes.getExtendsMon().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 textParentMon.setText(textParentMon.getText().toString() + "," + dropDownPreviusMom.getSelectedItem().toString() );
                 diagnosticNotes.setExtendsMon(textParentMon.getText().toString());
-                Log.d("Datos:", diagnosticNotes.getExtendsMon().toString());
             }
         });
     }
@@ -404,14 +386,12 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 textParentDad.setText(textParentDad.getText().toString() + "," + dropDownPreviusDad.getSelectedItem().toString() );
                 diagnosticNotes.setExtendDad(textParentDad.getText().toString());
-                Log.d("Datos:", diagnosticNotes.getExtendDad().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 textParentDad.setText(textParentDad.getText().toString() + "," + dropDownPreviusDad.getSelectedItem().toString());
                 diagnosticNotes.setExtendDad(textParentDad.getText().toString());
-                Log.d("Datos:", diagnosticNotes.getExtendDad().toString());
             }
         });
     }

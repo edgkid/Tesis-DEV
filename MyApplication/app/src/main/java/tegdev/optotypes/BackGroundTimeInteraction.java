@@ -68,15 +68,12 @@ public class BackGroundTimeInteraction extends AsyncTask <Void, Integer, Boolean
     @Override
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
-        Log.d("message", "value:" + values[0]);
         textCound.setText(String.valueOf(values[0]));
     }
 
     @Override
     protected void onCancelled(Boolean aVoid) {
         super.onCancelled(aVoid);
-        Log.d("message", "hilo cancelado");
-
     }
 
 }

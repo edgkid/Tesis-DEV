@@ -46,8 +46,6 @@ public class HttpHandlerInteraction {
 
         try{
             url = new URL (path);
-            Log.d("message: ", path);
-            Log.d("messafe: ", patient.getIdPatient());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
@@ -64,31 +62,23 @@ public class HttpHandlerInteraction {
             wr.flush();
             wr.close();
 
-            Log.d("message: ", listParam.toString() );
-
             responseCode = connection.getResponseCode();
-
-            Log.d("message: ", String.valueOf(responseCode));
 
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
-                Log.d("message code:", String.valueOf(responseCode));
-            }else
-                Log.d("message: ", "Como que no conecto");
+            }
 
             if (inputStreamResponse != null){
                 try{
                     inputStreamResponse.close();
                 }
                 catch(Exception ex){
-                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                    ex.printStackTrace();
                 }
             }
 
-
         }catch (IOException e){
             e.printStackTrace();
-            Log.d("message: ", "Error no estoy haciendo conexion");
         }
 
     }
@@ -101,7 +91,6 @@ public class HttpHandlerInteraction {
      */
     public void connectToResource (final InteractionActivity ctx, final Patient patient, final int action){
 
-        Log.d("message: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -120,7 +109,6 @@ public class HttpHandlerInteraction {
      */
     public void connectToResource (final KeyBoardInteractionActivity ctx, final Patient patient, final int action){
 
-        Log.d("message: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -168,7 +156,6 @@ public class HttpHandlerInteraction {
         }catch (Exception e){
 
             e.printStackTrace();
-            Log.d("message: ", "Exception cursor o DB");
         }finally{
             if(cursor != null)
                 cursor.close();

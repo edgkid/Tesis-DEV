@@ -364,7 +364,6 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
                 break;
             }
         }
-        Log.d("message", "idOptotype = " + value);
         return value;
     }
 
@@ -451,12 +450,10 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             sizeElements = elements.getElements().size();
 
             try{
-                //image = elements.getElements().get(position).getOptotypeCode();
                 image = elements.getElements().get(x).getOptotypeCode();
-                Log.d("message: ", image);
                 assingBipmapImage(image, arrayImage.get(x));
             }catch (Exception e){
-                Log.d("message: ", "problemas con el llenado de la lista (Vacia)");
+                e.printStackTrace();
             }
 
         }
@@ -476,7 +473,6 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
         try{
             imageCode = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
         }catch (Exception e){
-            Log.d("message: ","Erro al convertir imagen");
             imageCode = null;
         }
         if (imageCode != null)

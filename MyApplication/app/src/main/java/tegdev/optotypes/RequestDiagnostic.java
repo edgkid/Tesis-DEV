@@ -29,7 +29,6 @@ public class RequestDiagnostic {
      */
     public void sendDataDiagnostic(Diagnostic diagnostic, int action){
 
-        Log.d("message:", "llmando a hhtpHandler");
         HttpHandlerDiagnostic httpHandlerDiagnostic = new HttpHandlerDiagnostic("diagnostic", this.context);
         httpHandlerDiagnostic.connectToResource((TestFormActivity) context, diagnostic, action);
 

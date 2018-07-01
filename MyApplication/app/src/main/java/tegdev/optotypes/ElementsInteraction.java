@@ -36,9 +36,6 @@ public class ElementsInteraction {
         requestOptotype.findOptotypes();
 
         elements = requestOptotype.getOptotypes(yearsOld);
-
-        Log.d("message: ", "size = " + this.elements.size());
-
     }
 
     /**
@@ -102,8 +99,6 @@ public class ElementsInteraction {
      * @return
      */
     public String getImageOptotype (String code){
-
-        Log.d("message: ", "acedi a solicitud de optotypo image");
 
         RequestOptotype requestOptotype = new RequestOptotype("optotypes",context);
 

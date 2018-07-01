@@ -76,12 +76,10 @@ public class RequestOptotype {
                     optotype.setOptotypeCode(cursor.getString(0));
                     optotypes.add(optotype);
                 } while(cursor.moveToNext());
-            }else {
-                Log.d("message: ", "NO se lee registro");
             }
 
         }catch (Exception e){
-            Log.d("message: ", "SQLite");
+            e.printStackTrace();
 
         }finally {
             cursor.close();
@@ -112,7 +110,6 @@ public class RequestOptotype {
                 value = false;
             }
         }catch (Exception e){
-            Log.d("message", "catch");
             optotypeDb.onCreate(db);
             value = true;
         }finally{
@@ -131,7 +128,7 @@ public class RequestOptotype {
      * @return
      */
     public String getBipmapOptotype (String code){
-        Log.d("message: ", "acedi a la busqueda del Bitmap");
+
         String value = "";
         OptotypeDbHelper optotypeDb = new OptotypeDbHelper( this.context);
         SQLiteDatabase db = optotypeDb.getReadableDatabase();
@@ -148,7 +145,7 @@ public class RequestOptotype {
             }
 
         }catch (Exception e){
-            Log.d("message: ", "SQLite");
+            e.printStackTrace();
         }finally{
             cursor.close();
             db.close();

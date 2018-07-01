@@ -43,14 +43,10 @@ public class RequestMedicalTest {
         Cursor cursor = null;
         InteractionDbHelper interactionDb = new InteractionDbHelper(this.context);
         SQLiteDatabase db = interactionDb.getReadableDatabase();
-
-        Log.d("message", "Comprobando existencia de tabla interaction");
         try{
             cursor = db.rawQuery("SELECT idInteraction FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME, null);
-            Log.d("message", "existe");
         }catch (Exception e){
             interactionDb.onCreate(db);
-            Log.d("message", "no existe la creamos");
         }finally {
             if (cursor != null)
                 cursor.close();
@@ -65,7 +61,6 @@ public class RequestMedicalTest {
      */
     public void saveTest (VisualTest visualTest, Context context){
 
-        Log.d("message: ", "llego al metodo que salvara cada test");
         ContentValues values = new ContentValues();
         InteractionDbHelper interactionDbHelper = new InteractionDbHelper(context);
         SQLiteDatabase db = interactionDbHelper.getWritableDatabase();
@@ -83,17 +78,11 @@ public class RequestMedicalTest {
                 values.put(InteractionDbContract.InteractionEntry.TESTCODE, visualTest.getTestCode());
                 values.put(InteractionDbContract.InteractionEntry.EYE, visualTest.getTestEye());
 
-                Log.d("Interaccion", "datp: " + idOptotype);
-                Log.d("Interaccion", "datp: " + String.valueOf(visualTest.getIdPatient()));
-                Log.d("Interaccion", "datp: " + visualTest.getTestCode());
-                Log.d("Interaccion", "datp: " + visualTest.getTestEye());
-
                 db.insert(InteractionDbContract.InteractionEntry.TABLE_NAME, null, values);
             }
 
         }catch (Exception e){
             e.printStackTrace();
-            Log.d("Error: ", "Problema al guardar");
         }finally {
             db.close();
         }
@@ -114,8 +103,6 @@ public class RequestMedicalTest {
         String query = "SELECT DISTINCT(idOptotype) FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME;
         query = query + " WHERE idPatient = " + idPatient;
 
-        Log.d("message: ", query);
-
         try{
             cursor = db.rawQuery(query, null);
             if (cursor.moveToFirst()) {
@@ -125,7 +112,6 @@ public class RequestMedicalTest {
             }
 
         }catch (Exception e){
-            Log.d("message: ", "Problema en requesMedicalTest (takeOptotypeByTest)");
             e.printStackTrace();
         }finally{
             cursor.close();
@@ -164,8 +150,6 @@ public class RequestMedicalTest {
 
         query = query.substring(0, (query.length()-1)) + ")";
 
-        Log.d("message: ", query);
-
         try {
 
             cursor = db.rawQuery(query, null);
@@ -187,7 +171,6 @@ public class RequestMedicalTest {
 
         }catch (Exception e){
             e.printStackTrace();
-            Log.d("message: ", "Probelmas con el cursor");
         }
 
         return optotypesData;
@@ -200,7 +183,6 @@ public class RequestMedicalTest {
      */
     public void sendDataInteraction(Patient patient, int action, String yearsOld){
 
-        Log.d("message", "Voy a enviar solicitud de envio de datos");
         HttpHandlerInteraction httpHandlerInteraction = new HttpHandlerInteraction("test",this.context);
 
         if (Integer.parseInt(yearsOld)<= 2){
@@ -221,7 +203,6 @@ public class RequestMedicalTest {
      */
     public void requestTest (PatientsToday patient, int distance, int action, ImageView test, ArrayList imageTest){
 
-        Log.d("carta", "request");
         HttpHandlerMedicalTest httpHandlerMedicalTest = new HttpHandlerMedicalTest(this.request, this.context);
         httpHandlerMedicalTest.connectToResource((CrudRequestTestActivity) context, patient, distance, action, test, imageTest);
 

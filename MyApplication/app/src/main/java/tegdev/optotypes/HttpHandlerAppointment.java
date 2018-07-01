@@ -48,7 +48,6 @@ public class HttpHandlerAppointment {
 
         try{
             url = new URL (path);
-            Log.d("message: ", path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
@@ -67,34 +66,25 @@ public class HttpHandlerAppointment {
             wr.flush();
             wr.close();
 
-            Log.d("message: ", listParam.toString() );
-
             responseCode = connection.getResponseCode();
-            if (responseCode <= 0 )
-                Log.d("message: ", "menor");
-
-            Log.d("message: ", String.valueOf(responseCode));
 
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
                 value = true;
-                Log.d("message code:", String.valueOf(responseCode));
-            }else
-                Log.d("message: ", "Como que no conecto");
+            }
 
             if (inputStreamResponse != null){
                 try{
                     inputStreamResponse.close();
                 }
                 catch(Exception ex){
-                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                    ex.printStackTrace();
                 }
             }
 
 
         }catch (IOException e){
             e.printStackTrace();
-            Log.d("message: ", "Error no estoy haciendo conexion");
         }
 
         return value;
@@ -132,7 +122,6 @@ public class HttpHandlerAppointment {
      */
     public void connectToResource (final CrudModifyAppointmentActivity ctx, final Patient patient, final int option, final String date){
 
-        Log.d("message", "connect");
         Thread tr = new Thread(){
 
             @Override
@@ -175,8 +164,6 @@ public class HttpHandlerAppointment {
      */
     public void getJsonData (JSONArray  listParam, String idPatient, int option, String date ){
 
-        Log.d("message", "JSON");
-
         JSONObject jsonParam = new JSONObject();
 
         try {
@@ -188,7 +175,6 @@ public class HttpHandlerAppointment {
             listParam.put(jsonParam);
         }catch (Exception e){
             e.printStackTrace();
-            Log.d("message", "Exception");
         }
 
     }

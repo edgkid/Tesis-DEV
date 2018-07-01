@@ -53,7 +53,6 @@ public class HttpHandlerDiagnostic {
 
         try{
             url = new URL (path);
-            Log.d("message: ", path);
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -71,31 +70,24 @@ public class HttpHandlerDiagnostic {
             wr.flush();
             wr.close();
 
-            Log.d("JSON: ", listParam.toString() );
-
             responseCode = connection.getResponseCode();
-
-            Log.d("message: ", String.valueOf(responseCode));
 
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
-                Log.d("message code:", String.valueOf(responseCode));
-            }else
-                Log.d("message: ", "Como que no conecto");
+            }
 
             if (inputStreamResponse != null){
                 try{
                     inputStreamResponse.close();
                 }
                 catch(Exception ex){
-                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                    ex.printStackTrace();
                 }
             }
 
 
         }catch (IOException e){
             e.printStackTrace();
-            Log.d("message: ", "Error no estoy haciendo conexion");
         }
 
     }
@@ -118,7 +110,6 @@ public class HttpHandlerDiagnostic {
         try{
 
             url = new URL (path);
-            Log.d("message: ", path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
@@ -135,13 +126,10 @@ public class HttpHandlerDiagnostic {
             wr.flush();
             wr.close();
 
-            Log.d("message: ", listParam.toString() );
-
             responseCode = connection.getResponseCode();
 
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
-                Log.d("message code:", String.valueOf(responseCode));
 
                 result = new StringBuilder();
                 InputStream input = new BufferedInputStream(connection.getInputStream());
@@ -150,15 +138,14 @@ public class HttpHandlerDiagnostic {
                 while ((line = reader.readLine()) !=null ){
                     result.append(line);
                 }
-            }else
-                Log.d("message: ", "Como que no conecto");
+            }
 
             if (inputStreamResponse != null){
                 try{
                     inputStreamResponse.close();
                 }
                 catch(Exception ex){
-                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                    ex.printStackTrace();
                 }
             }
 
@@ -177,7 +164,6 @@ public class HttpHandlerDiagnostic {
      */
     public void connectToResource (final TestFormActivity ctx, final Diagnostic diagnostic, final int action){
 
-        Log.d("message: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -196,7 +182,6 @@ public class HttpHandlerDiagnostic {
      */
     public void connectToResource (final CrudReadAppointmentActivity ctx, final ArrayList diagnostics, final String idPatient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -208,10 +193,8 @@ public class HttpHandlerDiagnostic {
 
                         if (verifyRespondeServer(result)){
                             proccessingJson(diagnostics, result);
-                            Log.d("message", "el servidor trjo resultados");
                             fillData(true, 1);
                         } else{
-                            Log.d("message", "el servidor no trjo resultados");
                             fillData(false, 1);
                         }
 
@@ -233,7 +216,6 @@ public class HttpHandlerDiagnostic {
      */
     public void connectToResource (final DiagnosticActivity ctx, final ArrayList diagnostics, final String idPatient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -245,11 +227,9 @@ public class HttpHandlerDiagnostic {
 
                         if (verifyRespondeServer(result)){
                             proccessingJson(diagnostics, result);
-                            Log.d("message", "el servidor trjo resultados");
                             fillData(true, 2);
                         } else{
                             fillData(false, 2);
-                            Log.d("message", "el servidor no trjo resultados");
                         }
 
                         interrupt();
@@ -319,7 +299,6 @@ public class HttpHandlerDiagnostic {
         }catch (Exception e){
 
             e.printStackTrace();
-            Log.d("message: ", "Problemas generando JSON");
         }
 
     }
@@ -347,7 +326,6 @@ public class HttpHandlerDiagnostic {
         }catch (Exception e){
 
             e.printStackTrace();
-            Log.d("message: ", "Problemas generando JSON");
         }
 
     }
@@ -360,7 +338,6 @@ public class HttpHandlerDiagnostic {
     public boolean verifyRespondeServer (String result){
 
         boolean value = false;
-        Log.d("message: ", "Metodo para verificar");
 
         try{
 
@@ -402,7 +379,6 @@ public class HttpHandlerDiagnostic {
 
                 //list.add(diagnostic);
                 CrudReadAppointmentActivity.listData.add(diagnostic);
-                Log.d("message", "http-" + String.valueOf(CrudReadAppointmentActivity.listData.size()));
             }
         }catch(JSONException e){
             e.printStackTrace();
@@ -415,9 +391,7 @@ public class HttpHandlerDiagnostic {
      */
     public void fillData (boolean value, int caseView){
 
-        Log.d("messsage", "fillData");
         if (value){
-            Log.d("message","hay lista");
             switch (caseView){
                 case 1:
                     getDataCrudReadActivity();
@@ -428,7 +402,6 @@ public class HttpHandlerDiagnostic {
             }
 
         }else{
-            Log.d("message","no hay lista");
             CrudReadAppointmentActivity.avRight.setText("Av Derecho: " + "N/A");
             CrudReadAppointmentActivity.avLeft.setText("Av Izquierdo: " +"N/A");
             CrudReadAppointmentActivity.center.setText("Centra: " + "N/A");

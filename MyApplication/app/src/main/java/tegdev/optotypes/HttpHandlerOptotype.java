@@ -42,13 +42,11 @@ public class HttpHandlerOptotype {
         String retunrValue = "";
 
         try{
-            Log.d("message: ", path);
 
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             responseCode = connection.getResponseCode();// en caso de que halla respuesta el valor es 200
 
-            Log.d("message: ", Integer.toString(responseCode));
             // equivalente a preguntar si la respuesta es igual a 200
             if (responseCode == HttpURLConnection.HTTP_OK){
 
@@ -71,8 +69,6 @@ public class HttpHandlerOptotype {
         else
             retunrValue = result.toString();
 
-        Log.d("result : ",retunrValue);
-
         return result.toString();
     }
 
@@ -80,7 +76,6 @@ public class HttpHandlerOptotype {
     public boolean verifyRespondeServer (String result){
 
         boolean value = false;
-        Log.d("message: ", "Verificando espuesta del servidor");
 
         try{
 
@@ -95,7 +90,6 @@ public class HttpHandlerOptotype {
 
     public void connectToResource (final InteractionActivity ctx){
 
-        Log.d("message: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -126,9 +120,6 @@ public class HttpHandlerOptotype {
         String sql = "";
         ContentValues values = new ContentValues();
 
-        Log.d("message: ", "JSON");
-        Log.d("message ", result.toString());
-
        OptotypeDbHelper optotypeDb = new OptotypeDbHelper(this.context);
         SQLiteDatabase db = optotypeDb.getWritableDatabase();
 
@@ -149,13 +140,10 @@ public class HttpHandlerOptotype {
 
                 db.insert(OptotypeDbContract.OptotypeEntry.TABLE_NAME, null, values);
 
-                Log.d("message: ", ("Insert " + Integer.toString(i)) + jsonObj.getString("optotypeCode"));
-
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.d("json: ", "No hay valor para procesar");
         }finally{
             db.close();
         }

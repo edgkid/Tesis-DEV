@@ -45,10 +45,8 @@ public class SoundMediaPlayer extends AppCompatActivity {
      */
     public void soundAnswer(){
 
-        //String[] answer = imageOptotype.getTag().toString().split("_");
         MediaPlayer mediaPlayer = null;
 
-        Log.d("edgar", this.imageOptotype);
         switch (this.imageOptotype){
 
             case "arbol":
@@ -141,7 +139,7 @@ public class SoundMediaPlayer extends AppCompatActivity {
         try{
             mediaPlayer.start();
         }catch (Exception e){
-            Log.d("sonido", this.imageOptotype);
+            e.printStackTrace();
         }
     }
 

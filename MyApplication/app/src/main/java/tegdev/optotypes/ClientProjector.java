@@ -1,7 +1,6 @@
 package tegdev.optotypes;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,7 +41,6 @@ public class ClientProjector {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.d("message: ", "no Socket");
             }
 
             return null;

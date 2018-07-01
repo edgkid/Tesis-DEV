@@ -49,7 +49,6 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_control);
 
-        Log.d("carta", "On Create");
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonReturnMenu = (Button) findViewById(R.id.idbuttonReturnListMenu);
         nextTest = (Button) findViewById(R.id.nextImage);
@@ -93,16 +92,9 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
             patient.setYearsOld(extras.getString("yearsOld"));
             photo = (Bitmap)extras.get("photo");
 
-
-            Log.d("carta", String.valueOf(CrudRequestTestActivity.imagesTest.size()));
             sendTestToClientProjector();
 
-            Log.d("message", "control-" + String.valueOf(patient.getIdPatient()));
-            Log.d("message", "control-" + patient.getName());
-            Log.d("message", "control-" + patient.getYearsOld());
-
         }
-
 
         imageTest.setOnClickListener(new View.OnClickListener(){
 
@@ -126,8 +118,6 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
 
         if (positionTestList <= -1 || positionTestList == testList.size()){
             positionTestList = 0;
-        }else if (positionTestList == testList.size()){
-            Log.d("message: ", testList.get(positionTestList));
         }
 
         byte[] byteCode = Base64.decode(testList.get(positionTestList), Base64.DEFAULT);
@@ -176,11 +166,6 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         testForm.putExtra("yearsOld", patient.getYearsOld());
         testForm.putExtra("photo", photo);
         startActivity(testForm);
-
-        Log.d("message", "send-form-" + String.valueOf(patient.getIdPatient()));
-        Log.d("message", "send-form-" + patient.getName());
-        Log.d("message", "send-form-" + patient.getYearsOld());
-
     }
 
     @Override

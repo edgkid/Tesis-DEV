@@ -40,15 +40,12 @@ public class HttpHandlerUser {
         String path = serverPath.getHttp() + serverPath.getIpAdddress() + serverPath.getPathAddress()+ this.request;
         String retunrValue = "";
 
-
-       // Log.d("message", path);
         try{
 
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             responseCode = connection.getResponseCode();// en caso de que halla respuesta el valor es 200
 
-            //Log.d("message", Integer.toString(responseCode));
             // equivalente a preguntar si la respuesta es igual a 200
             if (responseCode == HttpURLConnection.HTTP_OK){
 
@@ -71,8 +68,6 @@ public class HttpHandlerUser {
         else
             retunrValue = result.toString();
 
-        //Log.d("message", "result-" + retunrValue);
-
         return retunrValue;
     }
 
@@ -84,8 +79,6 @@ public class HttpHandlerUser {
         try{
 
             JSONArray json = new JSONArray(result);
-
-            //Log.d("message", Integer.toString(json.length()));
             if (json.length() > 0)
                 value = true;
 

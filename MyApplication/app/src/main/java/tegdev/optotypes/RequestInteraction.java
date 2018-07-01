@@ -56,17 +56,11 @@ public class RequestInteraction {
         lVisualTest.setIdPatient(Integer.parseInt(patient.getIdPatient()));
         lVisualTest.setTestCode(lTestCode);
 
-        Log.d("message: ", rTestCode);
-        Log.d("message: ", lTestCode);
-
-        Log.d("message: ", String.valueOf( newData.getOptotypes().size()));
         while (iterator.hasNext()) {
             if (elementsToTest < newData.getOptotypes().size() / 2){
                 rVisualTest.getOptotypes().add(iterator.next());
-                Log.d("message ", "fill rigth");
             }else {
                 lVisualTest.getOptotypes().add(iterator.next());
-                Log.d("message ", "fill left");
             }
 
             elementsToTest ++;
@@ -86,7 +80,6 @@ public class RequestInteraction {
      */
     public boolean validateInteraction (String idPatient){
 
-        Log.d("message: ", "validateInteraction");
         Cursor cursor = null;
         String query = "";
         String id = "";
@@ -98,15 +91,12 @@ public class RequestInteraction {
         query = "SELECT testCode FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME;
         query = query + " WHERE idPatient = " + idPatient;
 
-        Log.d("message: ", query);
-
         try{
 
             cursor = db.rawQuery(query,null);
 
             if (cursor.moveToFirst()) {
                 do {
-                    Log.d("message: ", cursor.getString(0));
                     value = true;
                 } while(cursor.moveToNext());
             }
@@ -114,14 +104,11 @@ public class RequestInteraction {
 
         }catch (Exception e){
             e.printStackTrace();
-            Log.d("error: ", "problema con el cursor");
         }finally{
             if (cursor != null)
                 cursor.close();
             db.close();
         }
-
-        Log.d("message: ", String.valueOf(value));
 
         return value;
     }

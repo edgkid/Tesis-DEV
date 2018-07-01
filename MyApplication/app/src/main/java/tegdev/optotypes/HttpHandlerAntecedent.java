@@ -42,7 +42,6 @@ public class HttpHandlerAntecedent {
         String retunrValue = "";
 
         try{
-            Log.d("message", path);
 
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -70,17 +69,12 @@ public class HttpHandlerAntecedent {
         else
             retunrValue = result.toString();
 
-        //return result.toString();
-
-        Log.d("message", "lpl-" + retunrValue);
-
         return retunrValue;
     }
 
     public boolean verifyRespondeServer (String result){
 
         boolean value = false;
-        Log.d("message: ", "Metodo para verificar");
 
         try{
 
@@ -95,7 +89,6 @@ public class HttpHandlerAntecedent {
 
     public void connectToResource (final TestFormActivity ctx){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -108,8 +101,7 @@ public class HttpHandlerAntecedent {
                         if (verifyRespondeServer(result)){
                             Toast.makeText(ctx.getApplicationContext(),"Conexion con patients", Toast.LENGTH_SHORT).show();
                             procesingJson(result);
-                        } else
-                            Log.d("message","No trae resultados");
+                        }
 
                         interrupt();
                     }
@@ -131,9 +123,6 @@ public class HttpHandlerAntecedent {
         String sql = "";
         ContentValues values = new ContentValues();
 
-        Log.d("message: ", "Metodo para procesar JSON");
-        Log.d("JSON: ", result.toString());
-
         AntecedentDefectHelper antecedentDefectHelper = new AntecedentDefectHelper(this.context);
         SQLiteDatabase db = antecedentDefectHelper.getWritableDatabase();
 
@@ -149,14 +138,12 @@ public class HttpHandlerAntecedent {
                 values.put(AntecedentDefectContract.AntecedentDefectContractEntry.ID, jsonObj.getString("idDefect"));
                 values.put(AntecedentDefectContract.AntecedentDefectContractEntry.ANTECEDENTNAME, jsonObj.getString("name"));
 
-                Log.d("message", jsonObj.getString("idDefect"));
                 db.insert(AntecedentDefectContract.AntecedentDefectContractEntry.TABLE_NAME, null, values);
 
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.d("json: ", "No hay valor para procesar");
         }finally{
             db.close();
         }

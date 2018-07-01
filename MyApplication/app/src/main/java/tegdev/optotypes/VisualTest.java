@@ -95,7 +95,6 @@ public class VisualTest {
      */
     public void save (Context context){
 
-        Log.d("message: ", "llego al metodo save de visual test");
         RequestMedicalTest requestMedicalTest = new RequestMedicalTest(context);
         requestMedicalTest.findOrCreateTableInteraction();
         requestMedicalTest.saveTest(this, context);

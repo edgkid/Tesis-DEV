@@ -24,7 +24,6 @@ public class RequestAppointment {
 
     public void requestActionOnActualAppointment (Patient patient, int option, String date){
 
-        Log.d("message", "Rquest");
         HttpHandlerAppointment httpHandlerAppointment = new HttpHandlerAppointment(request,context);
         switch (option){
             case 0:
