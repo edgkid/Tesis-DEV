@@ -64,7 +64,7 @@ public class SoundMediaPlayer extends AppCompatActivity {
                 mediaPlayer = MediaPlayer.create(this.context, R.raw.barco);
                 break;
             case "bombillo":
-                mediaPlayer = MediaPlayer.create(this.context, R.raw.bombillo);
+                mediaPlayer = MediaPlayer.create(this.context, R.raw.luz);
                 break;
             case "botella":
                 mediaPlayer = MediaPlayer.create(this.context, R.raw.agua);
@@ -88,7 +88,7 @@ public class SoundMediaPlayer extends AppCompatActivity {
                 mediaPlayer = MediaPlayer.create(this.context, R.raw.casa);
                 break;
             case "circulo":
-                mediaPlayer = MediaPlayer.create(this.context, R.raw.aro);
+                mediaPlayer = MediaPlayer.create(this.context, R.raw.circulo);
                 break;
             case "corazon":
                 mediaPlayer = MediaPlayer.create(this.context, R.raw.corazon);
@@ -106,7 +106,7 @@ public class SoundMediaPlayer extends AppCompatActivity {
                 mediaPlayer = MediaPlayer.create(this.context, R.raw.helado);
                 break;
             case "hueso":
-                mediaPlayer = MediaPlayer.create(this.context, R.raw.flor);
+                mediaPlayer = MediaPlayer.create(this.context, R.raw.hueso);
                 break;
             case "lapiz":
                 mediaPlayer = MediaPlayer.create(this.context, R.raw.lapiz);
