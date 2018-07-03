@@ -308,6 +308,10 @@ public class InteractionActivity extends AppCompatActivity {
                 v.startDrag(data,myShadowBuilder,v,0);
             }
 
+            mediaPlayer.setImageOptotype(imageOptotype.getTag().toString().split("_")[0]);
+            mediaPlayer.setContext(contextActivity);
+            mediaPlayer.soundAnswer();
+
             return true;
         }
     };
@@ -361,7 +365,15 @@ public class InteractionActivity extends AppCompatActivity {
 
         MediaPlayer soundDrag = null;
 
+
+
         switch (dragEvent){
+
+            /*case DragEvent.ACTION_DRAG_STARTED:
+                mediaPlayer.setImageOptotype(imageOptotype.getTag().toString().split("_")[0]);
+                mediaPlayer.setContext(this);
+                mediaPlayer.soundAnswer();
+                break;*/
             //Accion para mover elemento
             case DragEvent.ACTION_DRAG_ENTERED:
                 //identificar si es correcta la selección
@@ -493,10 +505,6 @@ public class InteractionActivity extends AppCompatActivity {
 
         imageAnimation.setImageResource(R.drawable.feliz);
         fillProgressBar();
-        mediaPlayer.setImageOptotype(imageOptotype.getTag().toString().split("_")[0]);
-        mediaPlayer.setContext(this);
-        mediaPlayer.soundAnswer();
-
         //Para reconocer cuando se acierta o no se hace nada
         flag = true;
 
