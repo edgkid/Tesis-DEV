@@ -64,6 +64,9 @@
             android:name=".InstructionInteractionActivity"
             android:screenOrientation="landscape"
             ></activity>
+
+        <service android:name="tegdev.optotypes.Service.ServiceForUpdate"/>
+
     </application>
 
 </manifest>
