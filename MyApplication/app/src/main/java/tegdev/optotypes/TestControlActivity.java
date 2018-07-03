@@ -146,6 +146,11 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         rowPosition.setText("Fila: " + avScale.getRow().get(positionTestList));
 
 
+        if(SubProccessControl.proccessRun){
+            SubProccessControl.backGroundProcessForUpdate.cancel(true);
+            SubProccessControl.proccessRun = false;
+            SubProccessControl.processStop = true;
+        }
 
         ClientProjector clientProjector = new ClientProjector();
         clientProjector.sendMessage(positionTestList + testList.get(positionTestList));
