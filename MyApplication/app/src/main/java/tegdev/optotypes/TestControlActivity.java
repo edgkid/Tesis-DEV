@@ -148,6 +148,7 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
 
         if(SubProccessControl.proccessRun){
             SubProccessControl.backGroundProcessForUpdate.cancel(true);
+            SubProccessControl.backGroundProcessForUpdate = new BackGroundProcessForUpdate(this);
             SubProccessControl.proccessRun = false;
             SubProccessControl.processStop = true;
         }
@@ -172,6 +173,12 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
      */
     public void newActivity(){
 
+        if (!SubProccessControl.proccessRun){
+            SubProccessControl.proccessRun = true;
+            SubProccessControl.processStop = false;
+            SubProccessControl.backGroundProcessForUpdate.execute();
+        }
+
         testList.removeAll(testList);
         CrudRequestTestActivity.imagesTest.removeAll(CrudRequestTestActivity.imagesTest);
 
@@ -182,9 +189,7 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         testForm.putExtra("photo", photo);
         startActivity(testForm);
 
-        Log.d("message", "send-form-" + String.valueOf(patient.getIdPatient()));
-        Log.d("message", "send-form-" + patient.getName());
-        Log.d("message", "send-form-" + patient.getYearsOld());
+
 
     }
 
