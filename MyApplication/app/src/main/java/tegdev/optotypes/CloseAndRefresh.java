@@ -24,6 +24,9 @@ public class CloseAndRefresh extends AppCompatActivity {
     public void logOutApp(SharedPreferences loginPreferences){
         cleanPreferencesLogin(loginPreferences);
 
+        SubProccessControl.runAndStopSubProccess();
+        SubProccessControl.backGroundProcessForUpdate.cancel(true);
+
         Intent loginActivity = new Intent(contextActivity, LoginActivity.class);
         loginActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         contextActivity.startActivity(loginActivity);

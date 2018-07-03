@@ -145,13 +145,8 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         avDecimal.setText("Decimal: " + avScale.getAvDecimal().get(positionTestList));
         rowPosition.setText("Fila: " + avScale.getRow().get(positionTestList));
 
-
-        if(SubProccessControl.proccessRun){
-            SubProccessControl.backGroundProcessForUpdate.cancel(true);
-            SubProccessControl.backGroundProcessForUpdate = new BackGroundProcessForUpdate(this);
-            SubProccessControl.proccessRun = false;
-            SubProccessControl.processStop = true;
-        }
+        SubProccessControl.runAndStopSubProccess();
+        SubProccessControl.backGroundProcessForUpdate.cancel(true);
 
         ClientProjector clientProjector = new ClientProjector();
         clientProjector.sendMessage(positionTestList + testList.get(positionTestList));
@@ -173,11 +168,9 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
      */
     public void newActivity(){
 
-        if (!SubProccessControl.proccessRun){
-            SubProccessControl.proccessRun = true;
-            SubProccessControl.processStop = false;
-            SubProccessControl.backGroundProcessForUpdate.execute();
-        }
+        SubProccessControl.runAndStopSubProccess();
+        SubProccessControl.backGroundProcessForUpdate = new BackGroundProcessForUpdate(this);
+        SubProccessControl.backGroundProcessForUpdate.execute();
 
         testList.removeAll(testList);
         CrudRequestTestActivity.imagesTest.removeAll(CrudRequestTestActivity.imagesTest);
@@ -188,8 +181,6 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
         testForm.putExtra("yearsOld", patient.getYearsOld());
         testForm.putExtra("photo", photo);
         startActivity(testForm);
-
-
 
     }
 

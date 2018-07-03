@@ -81,12 +81,6 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
      */
     public void logOutDashBoard(){
 
-        if(SubProccessControl.proccessRun){
-            SubProccessControl.proccessRun = false;
-            SubProccessControl.processStop = true;
-            SubProccessControl.backGroundProcessForUpdate.cancel(true);
-        }
-
         SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
 
         if (loginPreferences.getString("roll", "defaultroll").equals("Paciente Infantil")){

@@ -123,12 +123,22 @@ public class InteractionActivity extends AppCompatActivity {
 
                 if (backGroundTimeInteraction != null){
                     backGroundTimeInteraction.cancel(true);
+                    SubProccessControl.backGroundProcessForUpdate = new BackGroundProcessForUpdate(contextActivity);
+                    SubProccessControl.proccessRun = true;
+                    SubProccessControl.processStop = false;
+                    SubProccessControl.backGroundProcessForUpdate.execute();
                 }
 
                 startActivity(dashBoard);
                 finish();
             }
         });
+
+        if (SubProccessControl.proccessRun){
+            SubProccessControl.proccessRun = false;
+            SubProccessControl.processStop = true;
+            SubProccessControl.backGroundProcessForUpdate.cancel(true);
+        }
 
         loadOptotypes();
         refreshActivity();
@@ -368,12 +378,6 @@ public class InteractionActivity extends AppCompatActivity {
 
 
         switch (dragEvent){
-
-            /*case DragEvent.ACTION_DRAG_STARTED:
-                mediaPlayer.setImageOptotype(imageOptotype.getTag().toString().split("_")[0]);
-                mediaPlayer.setContext(this);
-                mediaPlayer.soundAnswer();
-                break;*/
             //Accion para mover elemento
             case DragEvent.ACTION_DRAG_ENTERED:
                 //identificar si es correcta la selección
@@ -485,6 +489,11 @@ public class InteractionActivity extends AppCompatActivity {
         }
 
         if (controlInteraction.getTotalOptotypes() >= 12){
+
+            SubProccessControl.runAndStopSubProccess();
+            SubProccessControl.backGroundProcessForUpdate = new BackGroundProcessForUpdate(this);
+            SubProccessControl.backGroundProcessForUpdate.execute();
+
             Toast.makeText(this, "fin de la interacción", Toast.LENGTH_SHORT).show();
             RequestInteraction requestInteraction = new RequestInteraction(this);
             requestInteraction.processInteraction(controlInteraction, patient);
