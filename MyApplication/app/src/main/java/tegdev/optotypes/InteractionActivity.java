@@ -122,11 +122,12 @@ public class InteractionActivity extends AppCompatActivity {
                 dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 if (backGroundTimeInteraction != null){
+
                     backGroundTimeInteraction.cancel(true);
+                    SubProccessControl.runAndStopSubProccess();
                     SubProccessControl.backGroundProcessForUpdate = new BackGroundProcessForUpdate(contextActivity);
-                    SubProccessControl.proccessRun = true;
-                    SubProccessControl.processStop = false;
                     SubProccessControl.backGroundProcessForUpdate.execute();
+
                 }
 
                 startActivity(dashBoard);
@@ -374,8 +375,6 @@ public class InteractionActivity extends AppCompatActivity {
     public void actionDrag (int dragEvent, View view, int option){
 
         MediaPlayer soundDrag = null;
-
-
 
         switch (dragEvent){
             //Accion para mover elemento

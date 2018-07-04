@@ -134,6 +134,11 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             buttonListPatient.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    SubProccessControl.runAndStopSubProccess();
+                    SubProccessControl.backGroundProcessForUpdate = new BackGroundProcessForUpdate(contextActivity);
+                    SubProccessControl.backGroundProcessForUpdate.execute();
+
                     Intent dashBoard = new Intent(contextActivity, DashBoardActivity.class);
                     dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(dashBoard);
