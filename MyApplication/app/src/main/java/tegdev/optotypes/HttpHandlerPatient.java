@@ -485,8 +485,15 @@ public class HttpHandlerPatient {
                         "Edad: " + jsonObj.getString("yearsOld"),
                         jsonObj.getString("image"),null);
 
-                namePatient = patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName();
+                if(patient.getMiddleName().equals("") || patient.getMiddleName() == null){
+                    patient.setMiddleName("-");
+                }
 
+                if (patient.getMaidenName().equals("") || patient.getMaidenName() == null ){
+                    patient.setMaidenName("-");
+                }
+
+                namePatient = patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName();
 
                 byte[] byteCode = Base64.decode(patient.getPhoto(), Base64.DEFAULT);
                 Bitmap image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
