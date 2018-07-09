@@ -163,7 +163,7 @@ public class HttpHandlerResourceForUpdate {
             for(int i=0; i<array.length(); i++){
 
                 JSONObject jsonObj  = array.getJSONObject(i);
-                
+
                 values.put(PatientDbContract.PatientEntry.ID, jsonObj.getString("idPatient"));
                 values.put(PatientDbContract.PatientEntry.FISTNAME, jsonObj.getString("firstName"));
                 values.put(PatientDbContract.PatientEntry.MIDDLENAME, jsonObj.getString("middleName"));
