@@ -6,6 +6,6 @@ package tegdev.optotypes;
 
 public class InitialiceDataService {
 
-    
+
 
 }
