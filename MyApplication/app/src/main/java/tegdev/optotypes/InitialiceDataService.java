@@ -20,6 +20,13 @@ public class InitialiceDataService {
     }
 
     /**
+     * This method initlialice a context value with context Login Activity
+     */
+    public void initialiceContext(Context activityContext){
+        SubProccessControl.context = activityContext;
+    }
+
+    /**
      * This method create a Table Patient if this table no exits
      */
     public void initialiceResourcePatient(){
