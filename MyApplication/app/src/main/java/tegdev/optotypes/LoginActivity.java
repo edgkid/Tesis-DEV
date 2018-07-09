@@ -133,8 +133,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     public void callNewActivity (){
 
-        /*BackGroundProccessForUpdate backGroundProccessForUpdate = new BackGroundProccessForUpdate();
-        backGroundProccessForUpdate.execute();*/
+        if (SubProccessControl.proccessStop){
+            SubProccessControl.proccessStop = false;
+            SubProccessControl.proccessRun = true;
+            SubProccessControl.backGroundProccessForUpdate = new BackGroundProccessForUpdate();
+            SubProccessControl.backGroundProccessForUpdate.execute();
+        }
 
         Intent dashBoardActivity = new Intent(this, DashBoardActivity.class);
         dashBoardActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
