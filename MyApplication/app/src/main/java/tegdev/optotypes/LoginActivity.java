@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         verifyPreferencesLogin();
 
         InitialiceDataService initialiceDataService = new InitialiceDataService(this);
+        initialiceDataService.initialiceContext(this);
         initialiceDataService.initialiceResourcePatient();
 
     }
@@ -79,6 +80,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     public void actionLogin(){
 
+        Log.d("printLog", "Action Login");
         boolean dataConnection = false;
         boolean dataUser = false;
 

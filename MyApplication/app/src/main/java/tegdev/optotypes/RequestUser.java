@@ -29,6 +29,7 @@ public class RequestUser {
         String user = "";
         String roll = "";
 
+        Log.d("printLog", "En request");
         HttpHandlerUser httpRequestUser = new HttpHandlerUser(request, context);
         httpRequestUser.connectToResource((LoginActivity) context, user, password);
 

@@ -40,15 +40,15 @@ public class HttpHandlerUser {
         String path = serverPath.getHttp() + serverPath.getIpAdddress() + serverPath.getPathAddress()+ this.request;
         String retunrValue = "";
 
-
-       // Log.d("message", path);
+        Log.d("printLog", "enviando solicitud");
+        Log.d("printLog", path);
         try{
 
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             responseCode = connection.getResponseCode();// en caso de que halla respuesta el valor es 200
 
-            //Log.d("message", Integer.toString(responseCode));
+            Log.d("printLog", Integer.toString(responseCode));
             // equivalente a preguntar si la respuesta es igual a 200
             if (responseCode == HttpURLConnection.HTTP_OK){
 
@@ -71,7 +71,7 @@ public class HttpHandlerUser {
         else
             retunrValue = result.toString();
 
-        //Log.d("message", "result-" + retunrValue);
+        Log.d("printLog", "result-" + retunrValue);
 
         return retunrValue;
     }
@@ -81,11 +81,12 @@ public class HttpHandlerUser {
 
         boolean value = false;
 
+        Log.d("printLog", "Verificando datos de respuesta");
         try{
 
             JSONArray json = new JSONArray(result);
 
-            //Log.d("message", Integer.toString(json.length()));
+            Log.d("printLog", Integer.toString(json.length()));
             if (json.length() > 0)
                 value = true;
 
@@ -96,6 +97,7 @@ public class HttpHandlerUser {
 
     public void connectToResource (final LoginActivity ctx, final String user, final String password){
 
+        Log.d("printLog", "En connect to Resource");
         Thread tr = new Thread(){
             @Override
             public void run() {
