@@ -19,7 +19,7 @@ public class PatientDbHelper extends DbApp {
     public void onCreate(SQLiteDatabase db) {
 
         String sql ="";
-        
+
         sql = sql + "CREATE TABLE " + PatientDbContract.PatientEntry.TABLE_NAME + " ( ";
         sql = sql + PatientDbContract.PatientEntry._ID + " INTEGER PRIMARY KEY, ";
         sql = sql + PatientDbContract.PatientEntry.ID + " TEXT, ";
