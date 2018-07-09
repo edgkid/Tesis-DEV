@@ -1,9 +1,12 @@
 package tegdev.optotypes;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -11,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
 
 /**
  * Created by edgar on 09/07/2018.
@@ -147,8 +151,37 @@ public class HttpHandlerResourceForUpdate {
      */
     private void savePatientLocalData (String result){
 
-        Log.d("printLog", result);
+        JSONArray array = null;
+        ContentValues values = new ContentValues();
+        PatientDbHelper patientDbHelper = new PatientDbHelper(context);
+        SQLiteDatabase db = patientDbHelper.getWritableDatabase();
+
+        try{
+
+            array = new JSONArray(result);
+
+            for(int i=0; i<array.length(); i++){
+
+                JSONObject jsonObj  = array.getJSONObject(i);
+                
+                values.put(PatientDbContract.PatientEntry.ID, jsonObj.getString("idPatient"));
+                values.put(PatientDbContract.PatientEntry.FISTNAME, jsonObj.getString("firstName"));
+                values.put(PatientDbContract.PatientEntry.MIDDLENAME, jsonObj.getString("middleName"));
+                values.put(PatientDbContract.PatientEntry.LASTNAME, jsonObj.getString("lastName"));
+                values.put(PatientDbContract.PatientEntry.MAIDENNAME, jsonObj.getString("maidenName"));
+                values.put(PatientDbContract.PatientEntry.GENDER, jsonObj.getString("gender"));
+                values.put(PatientDbContract.PatientEntry.YEARSOLD, jsonObj.getString("yearsOld"));
+                values.put(PatientDbContract.PatientEntry.BIRTHDAY, jsonObj.getString("birthday"));
+                values.put(PatientDbContract.PatientEntry.NEXTAPPOINTMENT, jsonObj.getString("nextAppointmentDate"));
+                values.put(PatientDbContract.PatientEntry.IMAGE, jsonObj.getString("image"));
+
+                db.insert(PatientDbContract.PatientEntry.TABLE_NAME, null, values);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            db.close();
+        }
     }
-
-
 }

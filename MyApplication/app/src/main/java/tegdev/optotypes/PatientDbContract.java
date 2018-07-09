@@ -17,7 +17,6 @@ public class PatientDbContract {
         public static final String MIDDLENAME = "middleName";
         public static final String LASTNAME = "lastNam";
         public static final String MAIDENNAME = "maidenName";
-
         public static final String GENDER = "gender";
         public static final String BIRTHDAY = "birthday";
         public static final String YEARSOLD = "yearsOld";
