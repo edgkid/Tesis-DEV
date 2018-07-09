@@ -35,6 +35,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_dash_board);
 
         contextActivity = this;
+        InitialiceDataService initialiceDataService = new InitialiceDataService(this);
+        initialiceDataService.initialiceContext(this);
+
         activity = (LinearLayout) findViewById(R.id.idLayoudDashBoard);
         logOut = (Button) findViewById(R.id.buttonLogout);
         update = (Button) findViewById(R.id.buttonUpdate);

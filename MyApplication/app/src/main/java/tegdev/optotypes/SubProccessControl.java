@@ -11,7 +11,7 @@ public class SubProccessControl {
     public static boolean proccessRun = false;
     public static boolean proccessStop = true;
     public static BackGroundProccessForUpdate backGroundProccessForUpdate = null;
-    public static Context context = null;
+    public static  Context context= null;
 
     /**
      * This method allows initialice parameters for control the service
@@ -26,6 +26,8 @@ public class SubProccessControl {
             SubProccessControl.proccessRun = true;
         }
     }
+
+
 
 
 

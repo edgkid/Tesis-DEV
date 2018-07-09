@@ -26,11 +26,21 @@ public class BackGroundProccessForUpdate extends AsyncTask<Void, Integer, Boolea
         }
     }
 
+    /**
+     * This method allows execute the update on LocalResource
+     */
+    private void excuteTheUpdates(){
+
+        String requets = "patients";
+        RequestUpdatingResource requestUpdatingResource = new RequestUpdatingResource(requets);
+
+        requestUpdatingResource.requestResourcePatient();
+
+    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-
-
     }
 
     @Override
@@ -39,6 +49,7 @@ public class BackGroundProccessForUpdate extends AsyncTask<Void, Integer, Boolea
         while (true){
 
             Log.d("printLog", "Service is Running");
+            excuteTheUpdates();
             proccessPause();
 
             if (isCancelled()){

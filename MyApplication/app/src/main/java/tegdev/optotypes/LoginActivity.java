@@ -48,8 +48,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         verifyPreferencesLogin();
 
         InitialiceDataService initialiceDataService = new InitialiceDataService(this);
-        initialiceDataService.initialiceContext(this);
         initialiceDataService.initialiceResourcePatient();
+
 
     }
 
