@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import java.util.ResourceBundle;
+
 /**
  * Created by Edgar on 27/05/2018.
  */
@@ -22,6 +24,7 @@ public class CloseAndRefresh extends AppCompatActivity {
      * This metohd clos the sesion
      */
     public void logOutApp(SharedPreferences loginPreferences){
+
         cleanPreferencesLogin(loginPreferences);
 
         Intent loginActivity = new Intent(contextActivity, LoginActivity.class);

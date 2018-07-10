@@ -35,6 +35,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_dash_board);
 
         contextActivity = this;
+
         activity = (LinearLayout) findViewById(R.id.idLayoudDashBoard);
         logOut = (Button) findViewById(R.id.buttonLogout);
         update = (Button) findViewById(R.id.buttonUpdate);
@@ -58,6 +59,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         }
 
         loadMenu();
+        startService(new Intent (contextActivity, ServiceForUpdate.class));
 
     }
 
@@ -93,6 +95,8 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             CloseAndRefresh closeApp = new CloseAndRefresh(contextActivity);
             closeApp.logOutApp(loginPreferences);
         }
+
+        stopService(new Intent(contextActivity, ServiceForUpdate.class));
     }
 
     /**

@@ -16,6 +16,11 @@ public class ServiceForUpdate extends Service {
 
 
     private Context context;
+    private BackGroundServiceForUpdate backGroundServiceForUpdate = new BackGroundServiceForUpdate();
+
+    public ServiceForUpdate() {
+
+    }
 
     public ServiceForUpdate(Context context) {
         this.context = context;
@@ -34,6 +39,8 @@ public class ServiceForUpdate extends Service {
 
         Log.d("printLog", "Inicio del Servicio");
 
+        backGroundServiceForUpdate.execute();
+
         return START_STICKY;
     }
 
@@ -49,6 +56,8 @@ public class ServiceForUpdate extends Service {
         super.onDestroy();
 
         /// Codigo para finalizar el servicio
+        backGroundServiceForUpdate.cancel(true);
         Log.d("printLog", "fin del Servicio");
+
     }
 }
