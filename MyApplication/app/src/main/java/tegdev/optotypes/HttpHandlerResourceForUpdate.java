@@ -2,7 +2,9 @@ package tegdev.optotypes;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -112,7 +114,6 @@ public class HttpHandlerResourceForUpdate {
 
                 String result = sendRequestGet();
                 Log.d("printLog", "Preparado para solicitar y actualizar Pacientes");
-                Log.d("printLog", result);
                 if (verifyRespondeServer(result)){
                     manageLocalData(result, 0);
                 } else{
@@ -128,13 +129,14 @@ public class HttpHandlerResourceForUpdate {
      */
     public void manageLocalData(String result, int localData){
 
-        RequestUpdatingResource requestUpdatingResource = new RequestUpdatingResource("patients");
+        RequestUpdatingResource requestUpdatingResource = new RequestUpdatingResource("patients", SubProccessControl.context);
 
         switch (localData){
             case 0:
                 Log.d("printLog", "Datos de Paciente");
                 requestUpdatingResource.deleteLocalPatientResource();
                 savePatientLocalData(result);
+                pruebasQuery(); //// para ver que se guarda
                 break;
             case 1:
                 Log.d("printLog", "Datos de Interaccion");
@@ -153,7 +155,8 @@ public class HttpHandlerResourceForUpdate {
 
         JSONArray array = null;
         ContentValues values = new ContentValues();
-        PatientDbHelper patientDbHelper = new PatientDbHelper(context);
+
+        PatientDbHelper patientDbHelper = new PatientDbHelper(SubProccessControl.context);
         SQLiteDatabase db = patientDbHelper.getWritableDatabase();
 
         try{
@@ -175,7 +178,11 @@ public class HttpHandlerResourceForUpdate {
                 values.put(PatientDbContract.PatientEntry.NEXTAPPOINTMENT, jsonObj.getString("nextAppointmentDate"));
                 values.put(PatientDbContract.PatientEntry.IMAGE, jsonObj.getString("image"));
 
-                db.insert(PatientDbContract.PatientEntry.TABLE_NAME, null, values);
+                try{
+                    db.insert(PatientDbContract.PatientEntry.TABLE_NAME, null, values);
+                }catch (SQLiteException s){
+                    s.printStackTrace();
+                }
             }
 
         }catch (Exception e){
@@ -184,4 +191,34 @@ public class HttpHandlerResourceForUpdate {
             db.close();
         }
     }
+
+    public void pruebasQuery (){
+
+        Cursor cursor = null;
+        String query = "SELECT idPatient FROM " + PatientDbContract.PatientEntry.TABLE_NAME;
+        PatientDbHelper patientDbHelper = new PatientDbHelper(SubProccessControl.context);
+        SQLiteDatabase db = patientDbHelper.getReadableDatabase();
+
+        try{
+
+            cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    Log.d("printLog", cursor.getString(0) );
+
+                } while(cursor.moveToNext());
+            }
+
+        }catch (Exception e){
+            Log.d("message: ", "SQLite");
+
+        }finally {
+            cursor.close();
+            db.close();
+        }
+
+
+    }
+
 }

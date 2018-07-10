@@ -39,12 +39,12 @@ public class RequestUpdatingResource {
 
         Log.d("printLog", "Borro datos viejos");
 
-        String query ="DELETE FROM " + PatientDbContract.PatientEntry.TABLE_NAME;
         PatientDbHelper patientDbHelper = new PatientDbHelper(SubProccessControl.context);
         SQLiteDatabase db = patientDbHelper.getWritableDatabase();
 
-        db.execSQL(query);
+        db.delete(PatientDbContract.PatientEntry.TABLE_NAME, null, null);
 
+        db.close();
     }
 
 }

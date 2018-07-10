@@ -32,8 +32,7 @@ public class BackGroundProccessForUpdate extends AsyncTask<Void, Integer, Boolea
     private void excuteTheUpdates(){
 
         String requets = "patients";
-        RequestUpdatingResource requestUpdatingResource = new RequestUpdatingResource(requets);
-
+        RequestUpdatingResource requestUpdatingResource = new RequestUpdatingResource(requets, SubProccessControl.context);
         requestUpdatingResource.requestResourcePatient();
 
     }
