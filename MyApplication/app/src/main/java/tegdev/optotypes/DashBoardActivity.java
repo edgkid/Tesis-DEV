@@ -59,7 +59,8 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         }
 
         loadMenu();
-        startService(new Intent (contextActivity, ServiceForUpdate.class));
+        ControlForService.context = this;
+        ControlForService.runAndStopService();
 
     }
 
@@ -96,7 +97,8 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             closeApp.logOutApp(loginPreferences);
         }
 
-        stopService(new Intent(contextActivity, ServiceForUpdate.class));
+        ControlForService.run  = true;
+        ControlForService.runAndStopService();
     }
 
     /**

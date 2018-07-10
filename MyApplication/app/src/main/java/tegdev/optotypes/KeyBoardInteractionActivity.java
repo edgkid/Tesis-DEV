@@ -144,6 +144,9 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             actionOnImage();
         }
 
+        ControlForService.run  = true;
+        ControlForService.runAndStopService();
+
     }
 
     /**

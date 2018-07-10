@@ -113,7 +113,8 @@ public class TestControlActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
-
+        ControlForService.run  = true;
+        ControlForService.runAndStopService();
 
     }
 

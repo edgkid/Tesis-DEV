@@ -133,6 +133,9 @@ public class InteractionActivity extends AppCompatActivity {
         loadOptotypes();
         refreshActivity();
 
+        ControlForService.run  = true;
+        ControlForService.runAndStopService();
+
     }
 
     /**
