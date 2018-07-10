@@ -142,7 +142,7 @@ public class HttpHandlerPatient {
 
         }catch (IOException e){
             e.printStackTrace();
-            Log.d("message: ", "Error no estoy haciendo conexion");
+            Log.d("printLog", "No hay conexion");
         }
 
     }
@@ -242,7 +242,8 @@ public class HttpHandlerPatient {
                             Toast.makeText(ctx.getApplicationContext(),"Conexion con patients", Toast.LENGTH_SHORT).show();
                             fillList(list, result);
                         } else
-                            Toast.makeText(ctx.getApplicationContext(),"Conexion No patients", Toast.LENGTH_SHORT).show();
+                            Log.d("printLog", "No traje datos de pacientes");
+
                         interrupt();
                     }
                 });
@@ -275,7 +276,7 @@ public class HttpHandlerPatient {
                             Toast.makeText(ctx.getApplicationContext(),"Conexion con patients", Toast.LENGTH_SHORT).show();
                             fillList(list, result);
                         } else
-                            Toast.makeText(ctx.getApplicationContext(),"Conexion No patients", Toast.LENGTH_SHORT).show();
+                            Log.d("printLog", "No traje datos de pacientes");
                         interrupt();
                     }
                 });
@@ -307,7 +308,7 @@ public class HttpHandlerPatient {
                             fillList(list, result);
                             Log.d("message: ", "datos");
                         } else
-                            Toast.makeText(ctx.getApplicationContext(),"problema para cargar lista", Toast.LENGTH_SHORT).show();
+                            Log.d("printLog", "No traje datos de pacientes");
                         interrupt();
                     }
                 });
@@ -339,7 +340,7 @@ public class HttpHandlerPatient {
                         if (verifyRespondeServer(result)){
                             fillList(list, result);
                         } else
-                            Toast.makeText(ctx.getApplicationContext(),"Conexion No patients", Toast.LENGTH_SHORT).show();
+                            Log.d("printLog", "No traje datos de pacientes");
                         interrupt();
                     }
                 });
@@ -372,7 +373,7 @@ public class HttpHandlerPatient {
                         if (verifyRespondeServer(result)){
                             fillList(list, result);
                         } else
-                            Toast.makeText(ctx.getApplicationContext(),"Conexion No patients", Toast.LENGTH_SHORT).show();
+                            Log.d("printLog", "No traje datos de pacientes");
                         interrupt();
                     }
                 });
@@ -404,8 +405,10 @@ public class HttpHandlerPatient {
 
                         if (verifyRespondeServer(result)){
                             fillList(list, result);
-                        } else
-                            Toast.makeText(ctx.getApplicationContext(),"Conexion No patients", Toast.LENGTH_SHORT).show();
+                        } else{
+                            RequestPatient requestPatient = new RequestPatient(context);
+                            requestPatient.getLocalData(list);
+                        }
                         interrupt();
                     }
                 });
