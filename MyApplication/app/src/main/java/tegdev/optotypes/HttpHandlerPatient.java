@@ -393,7 +393,6 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final DashBoardActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -406,9 +405,11 @@ public class HttpHandlerPatient {
                         if (verifyRespondeServer(result)){
                             fillList(list, result);
                         } else{
+                            Log.d("printLog", "no traje datos del servidor, usare los locales");
                             RequestPatient requestPatient = new RequestPatient(context);
                             requestPatient.getLocalData(list);
                         }
+
                         interrupt();
                     }
                 });

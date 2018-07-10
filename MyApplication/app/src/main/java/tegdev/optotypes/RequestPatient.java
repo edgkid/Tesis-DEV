@@ -114,11 +114,11 @@ public class RequestPatient {
                     patient.setYearsOld(cursor.getString(5));
                     patient.setPhoto(cursor.getString(6));
 
-                    if(patient.getMiddleName().equals("") || patient.getMiddleName() == null){
+                    if( patient.getMiddleName() == null || patient.getMiddleName().equals("")){
                         patient.setMiddleName("-");
                     }
 
-                    if (patient.getMaidenName().equals("") || patient.getMaidenName() == null ){
+                    if ( patient.getMaidenName() == null || patient.getMaidenName().equals("") ){
                         patient.setMaidenName("-");
                     }
 
@@ -138,6 +138,7 @@ public class RequestPatient {
 
         }catch (Exception e){
             e.printStackTrace();
+            Log.d("printLog", "Excepcion generada en get Local Data");
         }finally{
             if (cursor != null){
                 cursor.close();
