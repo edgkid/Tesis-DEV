@@ -62,6 +62,10 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
         loadMenu();
 
+        SubProccessControl.runAndStopSubProceess();
+        SubProccessControl.backGroundProccessForUpdate = new BackGroundProccessForUpdate();
+        SubProccessControl.backGroundProccessForUpdate.execute();
+
     }
 
 

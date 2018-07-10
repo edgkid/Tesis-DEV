@@ -142,6 +142,8 @@ public class KeyBoardInteractionActivity extends AppCompatActivity {
             });
 
             actionOnImage();
+            SubProccessControl.runAndStopSubProceess();
+            SubProccessControl.backGroundProccessForUpdate.cancel(true);
         }
 
     }

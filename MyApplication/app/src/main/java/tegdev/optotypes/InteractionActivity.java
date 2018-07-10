@@ -133,6 +133,10 @@ public class InteractionActivity extends AppCompatActivity {
         loadOptotypes();
         refreshActivity();
 
+        SubProccessControl.runAndStopSubProceess();
+        SubProccessControl.backGroundProccessForUpdate.cancel(true);
+
+
     }
 
     /**

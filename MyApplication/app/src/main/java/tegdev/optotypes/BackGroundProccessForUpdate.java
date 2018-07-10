@@ -20,7 +20,7 @@ public class BackGroundProccessForUpdate extends AsyncTask<Void, Integer, Boolea
      */
     private void proccessPause(){
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -48,7 +48,7 @@ public class BackGroundProccessForUpdate extends AsyncTask<Void, Integer, Boolea
         while (true){
 
             Log.d("printLog", "Service is Running");
-            excuteTheUpdates();
+            //excuteTheUpdates();
             proccessPause();
 
             if (isCancelled()){
