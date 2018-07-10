@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 /**
  * Created by edgar on 10/07/2018.
@@ -27,7 +28,13 @@ public class ServiceForUpdate extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
+        //return super.onStartCommand(intent, flags, startId);
+
+        ///Codigo de inico de ejecución del servicio
+
+        Log.d("printLog", "Inicio del Servicio");
+
+        return START_STICKY;
     }
 
     @Nullable
@@ -40,5 +47,8 @@ public class ServiceForUpdate extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        /// Codigo para finalizar el servicio
+        Log.d("printLog", "fin del Servicio");
     }
 }
