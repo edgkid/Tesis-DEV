@@ -136,7 +136,6 @@ public class HttpHandlerResourceForUpdate {
                 Log.d("printLog", "Datos de Paciente");
                 requestUpdatingResource.deleteLocalPatientResource();
                 savePatientLocalData(result);
-                pruebasQuery(); //// para ver que se guarda
                 break;
             case 1:
                 Log.d("printLog", "Datos de Interaccion");
