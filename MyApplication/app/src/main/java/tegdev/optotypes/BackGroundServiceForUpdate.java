@@ -25,6 +25,13 @@ public class BackGroundServiceForUpdate extends AsyncTask<Void, Integer, Boolean
         }
     }
 
+    /**
+     * This method initialice update the nesesary local data
+     */
+    private void updateData (){
+
+    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
