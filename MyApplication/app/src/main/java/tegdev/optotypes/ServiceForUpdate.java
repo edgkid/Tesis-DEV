@@ -29,16 +29,24 @@ public class ServiceForUpdate extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        initializeLocalData();
+    }
+
+    /**
+     * This method send local request to initialice local data
+     */
+    private void initializeLocalData() {
+
+        LocalDataStructure localDataStructure = new LocalDataStructure(ControlForService.context);
+        localDataStructure.findOrCreatePatientTable();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         //return super.onStartCommand(intent, flags, startId);
-
         ///Codigo de inico de ejecución del servicio
-
         Log.d("printLog", "Inicio del Servicio");
-
+        initializeLocalData();
         backGroundServiceForUpdate.execute();
 
         return START_STICKY;
