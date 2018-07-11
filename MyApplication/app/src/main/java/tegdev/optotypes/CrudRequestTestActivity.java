@@ -79,6 +79,9 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         });
 
         loadListPatientsToday();
+        ControlForService.run  = true;
+        ControlForService.runAndStopService();
+
 
     }
 
