@@ -95,7 +95,7 @@ public class HttpHandlerForUpdate {
 
 
     public void connectToResource (final Context ctx){
-        
+
         Thread tr = new Thread(){
             @Override
             public void run() {
