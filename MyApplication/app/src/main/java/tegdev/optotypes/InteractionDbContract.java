@@ -17,6 +17,7 @@ public class InteractionDbContract {
         public static final String IDPATIENT = "idPatient";
         public static final String TESTCODE = "testCode";
         public static final String EYE = "eye";
+        public static final String STATUS = "status";
 
     }
 

@@ -47,10 +47,8 @@ public class RequestMedicalTest {
         Log.d("message", "Comprobando existencia de tabla interaction");
         try{
             cursor = db.rawQuery("SELECT idInteraction FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME, null);
-            Log.d("message", "existe");
         }catch (Exception e){
             interactionDb.onCreate(db);
-            Log.d("message", "no existe la creamos");
         }finally {
             if (cursor != null)
                 cursor.close();

@@ -56,17 +56,11 @@ public class RequestInteraction {
         lVisualTest.setIdPatient(Integer.parseInt(patient.getIdPatient()));
         lVisualTest.setTestCode(lTestCode);
 
-        Log.d("message: ", rTestCode);
-        Log.d("message: ", lTestCode);
-
-        Log.d("message: ", String.valueOf( newData.getOptotypes().size()));
         while (iterator.hasNext()) {
             if (elementsToTest < newData.getOptotypes().size() / 2){
                 rVisualTest.getOptotypes().add(iterator.next());
-                Log.d("message ", "fill rigth");
             }else {
                 lVisualTest.getOptotypes().add(iterator.next());
-                Log.d("message ", "fill left");
             }
 
             elementsToTest ++;

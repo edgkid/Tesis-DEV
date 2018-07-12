@@ -28,6 +28,7 @@ public class InteractionDbHelper extends DbApp {
         sql = sql + InteractionDbContract.InteractionEntry.IDPATIENT + " TEXT, ";
         sql = sql + InteractionDbContract.InteractionEntry.TESTCODE + " TEXT, ";
         sql = sql + InteractionDbContract.InteractionEntry.EYE + " TEXT, ";
+        sql = sql + InteractionDbContract.InteractionEntry.STATUS + " TEXT, ";
         sql = sql + " UNIQUE ( " + InteractionDbContract.InteractionEntry.ID + " ) ";
         sql = sql +" ) ";
 
@@ -48,6 +49,7 @@ public class InteractionDbHelper extends DbApp {
         sql = sql + InteractionDbContract.InteractionEntry.IDPATIENT + " TEXT, ";
         sql = sql + InteractionDbContract.InteractionEntry.TESTCODE + " TEXT, ";
         sql = sql + InteractionDbContract.InteractionEntry.EYE + " TEXT, ";
+        sql = sql + InteractionDbContract.InteractionEntry.STATUS + " TEXT, ";
         sql = sql + " UNIQUE ( " + InteractionDbContract.InteractionEntry.ID + " ) ";
         sql = sql +" ) ";
 
