@@ -67,6 +67,7 @@ public class RequestMedicalTest {
         ContentValues values = new ContentValues();
         InteractionDbHelper interactionDbHelper = new InteractionDbHelper(context);
         SQLiteDatabase db = interactionDbHelper.getWritableDatabase();
+
         Iterator<Optotype> iterator = visualTest.getOptotypes().iterator();
 
         String idOptotype= "";
@@ -80,11 +81,8 @@ public class RequestMedicalTest {
                 values.put(InteractionDbContract.InteractionEntry.IDPATIENT, visualTest.getIdPatient());
                 values.put(InteractionDbContract.InteractionEntry.TESTCODE, visualTest.getTestCode());
                 values.put(InteractionDbContract.InteractionEntry.EYE, visualTest.getTestEye());
+                values.put(InteractionDbContract.InteractionEntry.STATUS, "N");
 
-                Log.d("Interaccion", "datp: " + idOptotype);
-                Log.d("Interaccion", "datp: " + String.valueOf(visualTest.getIdPatient()));
-                Log.d("Interaccion", "datp: " + visualTest.getTestCode());
-                Log.d("Interaccion", "datp: " + visualTest.getTestEye());
 
                 db.insert(InteractionDbContract.InteractionEntry.TABLE_NAME, null, values);
             }
