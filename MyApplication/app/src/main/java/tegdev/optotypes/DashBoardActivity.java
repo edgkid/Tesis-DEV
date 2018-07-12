@@ -59,6 +59,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         }
 
         loadMenu();
+
         ControlForService.context = this;
         ControlForService.runAndStopService();
 

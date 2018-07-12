@@ -1,6 +1,8 @@
 package tegdev.optotypes;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -392,7 +394,7 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final DashBoardActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
+       /* Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -412,7 +414,8 @@ public class HttpHandlerPatient {
 
             }
         };
-        tr.start();
+        tr.start();*/
+       fillList(list, "");
 
     }
 
@@ -462,49 +465,66 @@ public class HttpHandlerPatient {
      */
     public void fillList(ListView list, String result){
 
-        Log.d("message:", result);
-
-        JSONArray array = null;
-
+        Cursor cursor = null;
         String namePatient;
+        int i = 0;
+        String query = "SELECT idPatient, firstName, middleName, lastName, maidenName, yearsOld, image ";
+        query = query + " FROM " + PatientDbContract.PatientEntry.TABLE_NAME;
+
+        PatientDbHelper patientDbHelper = new PatientDbHelper(context);
+        SQLiteDatabase db = patientDbHelper.getReadableDatabase();
 
         try{
 
-            array = new JSONArray(result);
+            cursor = db.rawQuery(query, null);
+            PatientsToday patientsData[] = new PatientsToday[countLocalPatient()];
 
-            PatientsToday patientsData[] = new PatientsToday[array.length()];
+            if (cursor.moveToFirst()){
 
-            for(int i=0; i<array.length(); i++){
+                do {
+                    Patient patient = new Patient(
+                            cursor.getString(0),
+                            cursor.getString(1),
+                            cursor.getString(3),
+                            cursor.getString(2),
+                            cursor.getString(4),
+                            "Edad: " + cursor.getString(5),
+                            cursor.getString(6),
+                            null);
 
-                JSONObject jsonObj  = array.getJSONObject(i);
-                Patient patient = new Patient ( jsonObj.getString("idPatient"),
-                        jsonObj.getString("firstName"),
-                        jsonObj.getString("lastName"),
-                        jsonObj.getString("middleName"),
-                        jsonObj.getString("maidenName"),
-                        "Edad: " + jsonObj.getString("yearsOld"),
-                        jsonObj.getString("image"),null);
+                    if(patient.getMiddleName().equals("") || patient.getMiddleName() == null){
+                        patient.setMiddleName("-");
+                    }
 
-                if(patient.getMiddleName().equals("") || patient.getMiddleName() == null){
-                    patient.setMiddleName("-");
-                }
+                    if (patient.getMaidenName().equals("") || patient.getMaidenName() == null ){
+                        patient.setMaidenName("-");
+                    }
 
-                if (patient.getMaidenName().equals("") || patient.getMaidenName() == null ){
-                    patient.setMaidenName("-");
-                }
+                    namePatient = patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName();
 
-                namePatient = patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName();
+                    byte[] byteCode = Base64.decode(patient.getPhoto(), Base64.DEFAULT);
+                    Bitmap image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
+                    patientsData[i] = new PatientsToday(namePatient, patient.getYearsOld(),image, Integer.parseInt(patient.getIdPatient()));
 
-                byte[] byteCode = Base64.decode(patient.getPhoto(), Base64.DEFAULT);
-                Bitmap image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
-                patientsData[i] = new PatientsToday(namePatient, patient.getYearsOld(),image, Integer.parseInt(patient.getIdPatient()));
+                    i++;
+
+                }while(cursor.moveToNext());
             }
 
             PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(context,R.layout.listview_item_patients_today_row, patientsData);
             list.setAdapter(patientsAdapter);
 
-        }catch(JSONException e){
+        }catch (Exception e){
+
             e.printStackTrace();
+
+        }finally {
+
+            if (cursor != null){
+                cursor.close();
+            }
+
+            db.close();
         }
 
     }
@@ -560,5 +580,40 @@ public class HttpHandlerPatient {
             Log.d("message: ", "Exception cursor o DB");
         }
 
+    }
+
+    /**
+     * This method get total Patient in table patient_db_app
+     * @return
+     */
+    private int countLocalPatient(){
+
+        int value = 0;
+
+        Cursor cursor = null;
+        String query = "SELECT count (idPatient) FROM " + PatientDbContract.PatientEntry.TABLE_NAME ;
+
+        PatientDbHelper patientDbHelper = new PatientDbHelper(ControlForService.context);
+        SQLiteDatabase db = patientDbHelper.getReadableDatabase();
+
+        try{
+            cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()){
+                value = Integer.parseInt(cursor.getString(0));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+
+            if (cursor != null){
+                cursor.close();
+            }
+
+            db.close();
+        }
+
+        return value;
     }
 }

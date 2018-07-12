@@ -13,7 +13,7 @@ public class PatientDbContract {
         public static final String TABLE_NAME = "patient_db_app";
 
         public static final String ID = "idPatient";
-        public static final String FIRSTNAME = "firstNamee";
+        public static final String FIRSTNAME = "firstName";
         public static final String MIDDLENAME = "middleName";
         public static final String LASTNAME = "lastName";
         public static final String MAIDENNAME = "maidenName";

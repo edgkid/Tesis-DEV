@@ -74,7 +74,7 @@ public class HttpHandlerForUpdate {
 
         Log.d("result : ",retunrValue);
 
-        return result.toString();
+        return retunrValue;
     }
 
     public boolean verifyRespondeServer (String result){
