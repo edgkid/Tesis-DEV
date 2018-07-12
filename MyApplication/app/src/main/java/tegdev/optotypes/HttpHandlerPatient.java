@@ -230,7 +230,7 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudRequestTestActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
+        /*Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -251,7 +251,8 @@ public class HttpHandlerPatient {
 
             }
         };
-        tr.start();
+        tr.start();*/
+        fillList(list, "");
     }
 
     /**
@@ -263,7 +264,7 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudReadAppointmentActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
+        /*Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -284,7 +285,8 @@ public class HttpHandlerPatient {
 
             }
         };
-        tr.start();
+        tr.start();*/
+        fillList(list, "");
     }
 
     /**
@@ -296,7 +298,7 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudSaveAppointmentActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Thread tr = new Thread(){
+        /*Thread tr = new Thread(){
             @Override
             public void run() {
 
@@ -316,7 +318,8 @@ public class HttpHandlerPatient {
 
             }
         };
-        tr.start();
+        tr.start();*/
+        fillList(list, "");
     }
 
     /**
@@ -328,7 +331,7 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudModifyAppointmentActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
+        /*Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -348,8 +351,8 @@ public class HttpHandlerPatient {
 
             }
         };
-        tr.start();
-
+        tr.start();*/
+        fillList(list, "");
     }
 
     /**
@@ -361,7 +364,7 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudDeleteAppointmentActivity ctx, final ListView list, final Patient patient, final int action){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
+        /*Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -381,8 +384,8 @@ public class HttpHandlerPatient {
 
             }
         };
-        tr.start();
-
+        tr.start();*/
+        fillList(list, "");
     }
 
     /**
