@@ -73,8 +73,11 @@ public class HttpHandlerInteraction {
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
                 Log.d("message code:", String.valueOf(responseCode));
-            }else
-                Log.d("message: ", "Como que no conecto");
+
+                /// Aqui solicito cambiar estatus a S
+                RequestInteraction requestInteraction = new RequestInteraction(ControlForService.context);
+                requestInteraction.modifyLocalStatus(patient.getIdPatient());
+            }
 
             if (inputStreamResponse != null){
                 try{
