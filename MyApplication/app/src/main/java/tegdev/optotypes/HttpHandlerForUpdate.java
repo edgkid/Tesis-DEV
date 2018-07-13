@@ -12,8 +12,11 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -77,6 +80,70 @@ public class HttpHandlerForUpdate {
         return retunrValue;
     }
 
+    /**
+     * This method send rquest by post
+     */
+    public void sendRequestPOST (){
+
+        URL url = null;
+        int responseCode;
+        StringBuilder result = null;
+        DataOutputStream printout;
+        InputStream inputStreamResponse = null;
+        String path = serverPath.getHttp() + serverPath.getIpAdddress() + serverPath.getPathAddress()+ this.request;
+
+        try{
+            url = new URL (path);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/JSON");
+            connection.setRequestProperty("charset", "utf-8");
+            connection.setDoOutput(true);
+
+            //Create JSONObject here
+            JSONArray listParam = new JSONArray();
+            getJsonInteraction(listParam);
+
+            OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+            wr.write(listParam.toString());
+            wr.flush();
+            wr.close();
+
+            Log.d("message: ", listParam.toString() );
+
+            responseCode = connection.getResponseCode();
+
+            Log.d("message: ", String.valueOf(responseCode));
+
+            if( responseCode == HttpURLConnection.HTTP_OK){
+                inputStreamResponse = connection.getInputStream();
+                Log.d("message code:", String.valueOf(responseCode));
+
+                /// Aqui solicito cambiar estatus a S
+                RequestInteraction requestInteraction = new RequestInteraction(ControlForService.context);
+                requestInteraction.modifyLocalStatus();
+
+            }
+
+            if (inputStreamResponse != null){
+                try{
+                    inputStreamResponse.close();
+                }
+                catch(Exception ex){
+                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                }
+            }
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+            Log.d("message: ", "Error no estoy haciendo conexion");
+        }
+
+    }
+
+
     public boolean verifyRespondeServer (String result){
 
         boolean value = false;
@@ -94,17 +161,25 @@ public class HttpHandlerForUpdate {
     }
 
 
-    public void connectToResource (final Context ctx){
+    public void connectToResource (final Context ctx, final int action){
 
         Thread tr = new Thread(){
             @Override
             public void run() {
 
-                String result= sendRequestGet();
-                if (verifyRespondeServer(result)){
-                    deleteDataPatient();
-                    saveDataPatient(result);
+                switch (action){
+                    case 0 :
+                        String result= sendRequestGet();
+                        if (verifyRespondeServer(result)){
+                            deleteDataPatient();
+                            saveDataPatient(result);
+                        }
+                        break;
+                    case 1 :
+                        sendRequestPOST();
+                        break;
                 }
+
             }
         };
         tr.start();
@@ -164,6 +239,56 @@ public class HttpHandlerForUpdate {
         SQLiteDatabase db = patientDbHelper.getWritableDatabase();
 
         db.delete(PatientDbContract.PatientEntry.TABLE_NAME, null,null);
+    }
+
+    /**
+     * This method get the all interaction data in status N and send
+     */
+    private void getJsonInteraction(JSONArray  listParam){
+
+        Cursor cursor = null;
+        JSONObject jsonParam = null;
+        String query = "SELECT idInteraction, idOptotype, idPatient, testCode, eye, status FROM ";
+        query = query + InteractionDbContract.InteractionEntry.TABLE_NAME ;
+        query = query + " WHERE status = 'N'";
+
+        InteractionDbHelper interactionDbHelper = new InteractionDbHelper(ControlForService.context);
+        SQLiteDatabase db = interactionDbHelper.getReadableDatabase();
+
+        try{
+            cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()){
+                do {
+                    Log.d("printLog", "_______________");
+                    Log.d("printLog", "idInteraction" + cursor.getString(0));
+                    Log.d("printLog", "idOptotype" + cursor.getString(1));
+                    Log.d("printLog", "idPatient" + cursor.getString(2));
+                    Log.d("printLog", cursor.getString(3));
+                    Log.d("printLog", cursor.getString(4));
+                    Log.d("printLog", cursor.getString(5));
+                    Log.d("printLog", "_______________");
+
+                    jsonParam = new JSONObject();
+                    jsonParam.put("idPatient", cursor.getString(1));
+                    jsonParam.put("idOptotype", cursor.getString(0));
+                    jsonParam.put("testCode", cursor.getString(2));
+                    jsonParam.put("eye", cursor.getString(3));
+                    jsonParam.put("action", 0);
+                    listParam.put(jsonParam);
+
+                }while(cursor.moveToNext());
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (cursor != null){
+                cursor.close();
+            }
+            db.close();
+        }
+
     }
 
     private void prubsaveData (String table, String column){

@@ -131,41 +131,18 @@ public class RequestInteraction {
         values.put("status", "S");
         db.update(InteractionDbContract.InteractionEntry.TABLE_NAME, values, "idPatient = " + idPatient,null);
         db.close();
-
-        consultaDePrueba();
-
     }
 
-    private int consultaDePrueba(){
+    public void modifyLocalStatus(){
 
-        int value = 0;
+        Log.d("printLog", "Modifico todos los status en S");
 
-        Cursor cursor = null;
-        String query = "SELECT  testCode FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME ;
-
+        ContentValues values = new ContentValues();
         InteractionDbHelper interactionDbHelper = new InteractionDbHelper(ControlForService.context);
-        SQLiteDatabase db = interactionDbHelper.getReadableDatabase();
-
-        try{
-            cursor = db.rawQuery(query, null);
-
-            if (cursor.moveToFirst()){
-                Log.d("printLog", "testEdg" + cursor.getString(0));
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-
-            if (cursor != null){
-                cursor.close();
-            }
-
-            db.close();
-        }
-
-        return value;
+        SQLiteDatabase db = interactionDbHelper.getWritableDatabase();
+        values.put("status", "S");
+        db.update(InteractionDbContract.InteractionEntry.TABLE_NAME, values, null,null);
+        db.close();
     }
-
 
 }

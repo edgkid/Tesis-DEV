@@ -19,7 +19,7 @@ public class BackGroundServiceForUpdate extends AsyncTask<Void, Integer, Boolean
      */
     private void serviceThreadPause(){
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -32,6 +32,9 @@ public class BackGroundServiceForUpdate extends AsyncTask<Void, Integer, Boolean
 
         RequestForUpdateLocalData requestForUpdateLocalData = new RequestForUpdateLocalData("patients", ControlForService.context);
         requestForUpdateLocalData.startUpdatePatients();
+
+        requestForUpdateLocalData.setRequest("test");
+        requestForUpdateLocalData.startUpdateInteraction();
     }
 
     @Override
@@ -46,7 +49,6 @@ public class BackGroundServiceForUpdate extends AsyncTask<Void, Integer, Boolean
         while(true){
 
             Log.d("printLog", "Run Service");
-
             updateData();
             serviceThreadPause();
 
