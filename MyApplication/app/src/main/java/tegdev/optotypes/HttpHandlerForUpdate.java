@@ -171,6 +171,7 @@ public class HttpHandlerForUpdate {
                     case 0 :
                         String result= sendRequestGet();
                         if (verifyRespondeServer(result)){
+                            Log.d("Resultado", result);
                             deleteDataPatient();
                             saveDataPatient(result);
                         }
@@ -270,10 +271,10 @@ public class HttpHandlerForUpdate {
                     Log.d("printLog", "_______________");
 
                     jsonParam = new JSONObject();
-                    jsonParam.put("idPatient", cursor.getString(1));
-                    jsonParam.put("idOptotype", cursor.getString(0));
-                    jsonParam.put("testCode", cursor.getString(2));
-                    jsonParam.put("eye", cursor.getString(3));
+                    jsonParam.put("idPatient", cursor.getString(2));
+                    jsonParam.put("idOptotype", cursor.getString(1));
+                    jsonParam.put("testCode", cursor.getString(3));
+                    jsonParam.put("eye", cursor.getString(4));
                     jsonParam.put("action", 0);
                     listParam.put(jsonParam);
 

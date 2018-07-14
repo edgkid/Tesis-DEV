@@ -17,9 +17,9 @@ public class BackGroundServiceForUpdate extends AsyncTask<Void, Integer, Boolean
     /**
      * This method stop the thread by one second
      */
-    private void serviceThreadPause(){
+    private void serviceThreadPause(int value){
         try {
-            Thread.sleep(5000);
+            Thread.sleep(value);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -46,11 +46,20 @@ public class BackGroundServiceForUpdate extends AsyncTask<Void, Integer, Boolean
     @Override
     protected Boolean doInBackground(Void... voids) {
 
+        int value = 0;
+
         while(true){
 
             Log.d("printLog", "Run Service");
-            updateData();
-            serviceThreadPause();
+            if (ControlForService.exitsConnection()){
+                Log.d("printLog", "Existe conexion a trabajar");
+                updateData();
+                value = 60000;
+            }else{
+                Log.d("printLog", "No Conneccting");
+                value = 5000;
+            }
+            serviceThreadPause(value);
 
             if (isCancelled()){
                 break;
