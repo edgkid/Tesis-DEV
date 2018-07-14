@@ -88,7 +88,7 @@ public class RequestSignalDefect {
             }
 
         }catch (Exception e){
-            Log.d("message: ", "SQLite");
+            e.printStackTrace();
 
         }finally {
 

@@ -190,15 +190,12 @@ public class InteractionActivity extends AppCompatActivity {
         position = number.intValue();
         sizeElements = elements.getElements().size();
 
-        Log.d("message: ", String.valueOf(position));
-
         try{
             image = elements.getElements().get(position).getOptotypeCode();
-            Log.d("message: ", image);
             assingBipmapImage(image, imageOptotype);
             assignOptotypeOptions(position, sizeElements, image);
         }catch (Exception e){
-            Log.d("message: ", "problemas con el llenado de la lista (Vacia)");
+            e.printStackTrace();
         }
 
         if (controlInteraction.getTotalOptotypes() < 12){
@@ -284,7 +281,6 @@ public class InteractionActivity extends AppCompatActivity {
         try{
             imageCode = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
         }catch (Exception e){
-            Log.d("message: ","Erro al convertir imagen");
             imageCode = null;
         }
         if (imageCode != null)
@@ -498,7 +494,6 @@ public class InteractionActivity extends AppCompatActivity {
             //alertDialog();
             InteractionCustonDialog dialog = new InteractionCustonDialog(this, "ok", "Felicidades");
             dialog.setIdPatient(patient.getIdPatient());
-            Log.d("message", "envio: "+ patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName());
             dialog.setPatient(patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName());
             dialog.setYearsOld(patient.getYearsOld());
             dialog.setPhoto(photo);
@@ -569,7 +564,6 @@ public class InteractionActivity extends AppCompatActivity {
         MediaPlayer interactionSound = null;
         int sound = (int) (Math.random() * 3) + 1;
 
-        //Log.d("sonido: ", Integer.toString(sound));
         if (value){
             switch (sound){
                 case 1:

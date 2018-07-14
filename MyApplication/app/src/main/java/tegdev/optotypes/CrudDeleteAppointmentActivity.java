@@ -143,7 +143,6 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PatientsToday patientsToday = (PatientsToday) parent.getAdapter().getItem(position);
 
-                //Log.d("message", " lpl-" + String.valueOf(((PatientsToday) parent.getAdapter().getItem(position)).getIdPatient()));
                 patient = new Patient();
                 patient.setIdPatient(String.valueOf(((PatientsToday) parent.getAdapter().getItem(position)).getIdPatient()));
 

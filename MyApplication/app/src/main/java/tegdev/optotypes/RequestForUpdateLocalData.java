@@ -28,8 +28,6 @@ public class RequestForUpdateLocalData {
      */
     public void startUpdatePatients (){
 
-        Log.d("printLog", "cominicon con el handler para acutlizar datos de pacientes");
-
         HttpHandlerForUpdate httpHandlerForUpdate = new HttpHandlerForUpdate(request,context);
         httpHandlerForUpdate.connectToResource(context, 0);
     }

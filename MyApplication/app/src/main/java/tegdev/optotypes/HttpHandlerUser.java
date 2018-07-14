@@ -40,16 +40,12 @@ public class HttpHandlerUser {
         String path = serverPath.getHttp() + serverPath.getIpAdddress() + serverPath.getPathAddress()+ this.request;
         String retunrValue = "";
 
-
-       // Log.d("message", path);
         try{
 
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             responseCode = connection.getResponseCode();// en caso de que halla respuesta el valor es 200
 
-            //Log.d("message", Integer.toString(responseCode));
-            // equivalente a preguntar si la respuesta es igual a 200
             if (responseCode == HttpURLConnection.HTTP_OK){
 
                 result = new StringBuilder();
@@ -71,8 +67,6 @@ public class HttpHandlerUser {
         else
             retunrValue = result.toString();
 
-        //Log.d("message", "result-" + retunrValue);
-
         return retunrValue;
     }
 
@@ -85,7 +79,6 @@ public class HttpHandlerUser {
 
             JSONArray json = new JSONArray(result);
 
-            //Log.d("message", Integer.toString(json.length()));
             if (json.length() > 0)
                 value = true;
 
@@ -106,11 +99,11 @@ public class HttpHandlerUser {
                     public void run() {
 
                         if (verifyRespondeServer(result)){
-                            Toast.makeText(ctx.getApplicationContext(),"Conexion con login", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ctx.getApplicationContext(),"Inicio Exitoso", Toast.LENGTH_SHORT).show();
                             procesingJson(result, user, password);
 
                         } else
-                            Toast.makeText(ctx.getApplicationContext(),"Conexion No login", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ctx.getApplicationContext(),"No se comprobaron datos", Toast.LENGTH_SHORT).show();
                         interrupt();
                     }
                 });

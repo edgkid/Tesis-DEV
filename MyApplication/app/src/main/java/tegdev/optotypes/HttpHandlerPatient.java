@@ -53,14 +53,11 @@ public class HttpHandlerPatient {
         String retunrValue = "";
 
         try{
-            Log.d("path: ", path);
 
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             responseCode = connection.getResponseCode();// en caso de que halla respuesta el valor es 200
 
-            Log.d("code paciente: ", Integer.toString(responseCode));
-            // equivalente a preguntar si la respuesta es igual a 200
             if (responseCode == HttpURLConnection.HTTP_OK){
 
                 result = new StringBuilder();
@@ -82,8 +79,6 @@ public class HttpHandlerPatient {
         else
             retunrValue = result.toString();
 
-        Log.d("result : ",retunrValue);
-
         return retunrValue;
     }
 
@@ -102,7 +97,6 @@ public class HttpHandlerPatient {
 
         try{
             url = new URL (path);
-            Log.d("message: ", path);
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -120,31 +114,24 @@ public class HttpHandlerPatient {
             wr.flush();
             wr.close();
 
-            Log.d("message: ", listParam.toString() );
-
             responseCode = connection.getResponseCode();
-
-            Log.d("message: ", String.valueOf(responseCode));
 
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
-                Log.d("message code:", String.valueOf(responseCode));
-            }else
-                Log.d("message: ", "Como que no conecto");
+            }
 
             if (inputStreamResponse != null){
                 try{
                     inputStreamResponse.close();
                 }
                 catch(Exception ex){
-                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                    ex.printStackTrace();
                 }
             }
 
 
         }catch (IOException e){
             e.printStackTrace();
-            Log.d("message: ", "Error no estoy haciendo conexion");
         }
 
     }
@@ -169,7 +156,6 @@ public class HttpHandlerPatient {
         try{
 
             url = new URL (path);
-            Log.d("message: ", path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
@@ -186,13 +172,10 @@ public class HttpHandlerPatient {
             wr.flush();
             wr.close();
 
-            Log.d("message: ", listParam.toString() );
-
             responseCode = connection.getResponseCode();
 
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
-                Log.d("message code:", String.valueOf(responseCode));
 
                 result = new StringBuilder();
                 InputStream input = new BufferedInputStream(connection.getInputStream());
@@ -201,15 +184,14 @@ public class HttpHandlerPatient {
                 while ((line = reader.readLine()) !=null ){
                     result.append(line);
                 }
-            }else
-                Log.d("message: ", "Como que no conecto");
+            }
 
             if (inputStreamResponse != null){
                 try{
                     inputStreamResponse.close();
                 }
                 catch(Exception ex){
-                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                    ex.printStackTrace();
                 }
             }
 
@@ -448,7 +430,6 @@ public class HttpHandlerPatient {
     public boolean verifyRespondeServer (String result){
 
         boolean value = false;
-        Log.d("message: ", "Metodo para verificar");
 
         try{
 
@@ -551,7 +532,6 @@ public class HttpHandlerPatient {
 
         }catch (Exception e){
             e.printStackTrace();
-            Log.d("message: ", "Exception cursor o DB");
         }
 
     }
@@ -580,7 +560,6 @@ public class HttpHandlerPatient {
 
         }catch (Exception e){
             e.printStackTrace();
-            Log.d("message: ", "Exception cursor o DB");
         }
 
     }

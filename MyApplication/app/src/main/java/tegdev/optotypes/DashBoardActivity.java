@@ -88,7 +88,6 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
 
         if (loginPreferences.getString("roll", "defaultroll").equals("Paciente Infantil")){
-            Log.d("message", "abrir dialogo");
             MessageDialog messageDialog = new MessageDialog();
             messageDialog.setTitleMessage("Contraseña");
             messageDialog.setMessageDialog("Ingrese contraseña para cerrar sesión");

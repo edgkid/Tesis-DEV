@@ -38,10 +38,6 @@ public class InstructionInteractionActivity extends AppCompatActivity {
             String yearsOld = patientExtras.getString("patientYear");
             Bitmap photo = (Bitmap) patientExtras.get("photo");
 
-            Log.d("message", "id: " + idPatient);
-            Log.d("message", "paciente: " + patient);
-            Log.d("message", "edad:" + yearsOld);
-
             showInstruction(yearsOld);
             actionOnActivity(yearsOld, patient, idPatient, photo);
         }

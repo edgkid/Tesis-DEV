@@ -23,7 +23,6 @@ public class LocalDataStructure {
      */
     public void findOrCreatePatientTable (){
 
-        Log.d("printLog", "Verifico o inicializo tabla para pacientes");
         Cursor cursor = null;
         String query = "SELECT idPatient FROM " + PatientDbContract.PatientEntry.TABLE_NAME;
 
@@ -34,15 +33,7 @@ public class LocalDataStructure {
 
             cursor = db.rawQuery(query,null);
 
-            Log.d("printLog", "La tabla existe");
-            if (cursor.moveToFirst()){
-                Log.d("printLog", "Tabla con datos");
-            }else{
-                Log.d("printLog", "Tabla sin datos");
-            }
-
         }catch (Exception e){
-            Log.d("printLog", "creo la tabla");
             patientDbHelper.onCreate(db);
             e.printStackTrace();
         }finally {

@@ -42,7 +42,6 @@ public class HttpHelperSignal {
         String retunrValue = "";
 
         try{
-            Log.d("path: ", path);
 
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -76,7 +75,6 @@ public class HttpHelperSignal {
     public boolean verifyRespondeServer (String result){
 
         boolean value = false;
-        Log.d("message: ", "Metodo para verificar");
 
         try{
 
@@ -92,7 +90,6 @@ public class HttpHelperSignal {
 
     public void connectToResource (final TestFormActivity ctx){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -123,9 +120,6 @@ public class HttpHelperSignal {
         String sql = "";
         ContentValues values = new ContentValues();
 
-        Log.d("message: ", "Metodo para procesar JSON");
-        Log.d("JSON: ", result.toString());
-
         SignalDbHelper signalDbHelper = new SignalDbHelper(this.context);
         SQLiteDatabase db = signalDbHelper.getWritableDatabase();
 
@@ -142,13 +136,10 @@ public class HttpHelperSignal {
                 values.put(SignalDbContract.SignalDbContractEntry.SIGNALNAME, jsonObj.getString("name"));
 
                 db.insert(SignalDbContract.SignalDbContractEntry.TABLE_NAME, null, values);
-                Log.d("message", "inserta: " + jsonObj.getString("name"));
-
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.d("json: ", "No hay valor para procesar");
         }finally{
             db.close();
         }

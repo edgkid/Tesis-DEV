@@ -164,7 +164,6 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Log.d("message","acción");
                 patientToday = (PatientsToday)parent.getAdapter().getItem(position);
                 idPatient = String.valueOf(patientToday.getIdPatient());
                 action = 1;
@@ -255,8 +254,6 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
      * This method display the diagnostic activity
      */
     public void displayDiagnosticActivity(){
-
-        Log.d("message", avLeft.getText().toString());
 
         if (avRight.getText().toString().equals("Av Derecho: N/A")){
             alertDialog();

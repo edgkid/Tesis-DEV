@@ -42,7 +42,7 @@ public class ClientProjector {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.d("message: ", "no Socket");
+                Log.d("printLog", "no Socket");
             }
 
             return null;

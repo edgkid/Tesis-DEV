@@ -261,15 +261,6 @@ public class HttpHandlerForUpdate {
 
             if (cursor.moveToFirst()){
                 do {
-                    Log.d("printLog", "_______________");
-                    Log.d("printLog", "idInteraction" + cursor.getString(0));
-                    Log.d("printLog", "idOptotype" + cursor.getString(1));
-                    Log.d("printLog", "idPatient" + cursor.getString(2));
-                    Log.d("printLog", cursor.getString(3));
-                    Log.d("printLog", cursor.getString(4));
-                    Log.d("printLog", cursor.getString(5));
-                    Log.d("printLog", "_______________");
-
                     jsonParam = new JSONObject();
                     jsonParam.put("idPatient", cursor.getString(2));
                     jsonParam.put("idOptotype", cursor.getString(1));
@@ -292,28 +283,6 @@ public class HttpHandlerForUpdate {
 
     }
 
-    private void prubsaveData (String table, String column){
 
-        Log.d("printLog", "Consulto datos");
-        Cursor cursor = null;
-        String query = "SELECT " + column + " FROM " + table;
-
-        PatientDbHelper patientDbHelper = new PatientDbHelper(ControlForService.context);
-        SQLiteDatabase db = patientDbHelper.getReadableDatabase();
-
-        try{
-            cursor = db.rawQuery(query, null);
-
-            if (cursor.moveToFirst()){
-                do {
-                    Log.d("printLog", cursor.getString(0));
-                }while(cursor.moveToNext());
-            }
-
-        }catch (Exception e){
-
-        }
-
-    }
 
 }

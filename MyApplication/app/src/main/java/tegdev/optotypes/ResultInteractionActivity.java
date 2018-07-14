@@ -53,7 +53,6 @@ public class ResultInteractionActivity extends AppCompatActivity {
 
         if (patientExtras != null){
 
-            Log.d("message", "Existen Datos");
             String idPatient = patientExtras.getString("IdPatient");
             String patient = patientExtras.getString("patient");
             String yearsOld = patientExtras.getString("patientYear");
@@ -83,9 +82,6 @@ public class ResultInteractionActivity extends AppCompatActivity {
      * @param photo
      */
     public void showData(String idPatient, String patientName, String yearsOld, Bitmap photo){
-
-        Log.d("Dato", "llega: " + yearsOld);
-        Log.d("Dato", "llega: " + patientName);
 
         String []completeName = patientName.split(" ");
         String [] years = yearsOld.split(" ");
@@ -156,8 +152,6 @@ public class ResultInteractionActivity extends AppCompatActivity {
      * @param optotype
      */
     public void interactionElement(OptotypeForPatient  optotype){
-
-        Log.d("message", "lpl-" + optotype.getOptotypeCode());
 
         if (optotype.getImage() != null){
             imageOptotype.setImageBitmap(optotype.getImage());
