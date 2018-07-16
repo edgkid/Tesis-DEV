@@ -12,7 +12,7 @@ public class FormDataDbContract {
 
         public static final String TABLE_NAME = "form_db_app";
 
-        public static final String ID = "idform";
+        public static final String ID = "idForm";
         public static final String PATIENTDATA = "patientData";
         public static final String AVDATA = "avData";
         public static final String OTHERTESTA = "otherTestA";

@@ -1,6 +1,9 @@
 package tegdev.optotypes;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -52,6 +55,9 @@ public class HttpHandlerDiagnostic {
         String path = serverPath.getHttp() + serverPath.getIpAdddress() + serverPath.getPathAddress()+ this.request;
 
         try{
+
+            Log.d("printLog", path);
+
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -64,6 +70,8 @@ public class HttpHandlerDiagnostic {
             JSONArray listParam = new JSONArray();
             getJsonData(listParam, diagnostic, action);
 
+            Log.d("printLog", listParam.toString());
+
             OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
             wr.write(listParam.toString());
             wr.flush();
@@ -75,6 +83,12 @@ public class HttpHandlerDiagnostic {
                 inputStreamResponse = connection.getInputStream();
 
                 /// elimino cambio status de datos e ala apliacción
+
+                revisionDeguardado();
+                RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
+                requestDiagnostic.modifyLocalStatus();
+                Log.d("pritnLog", "mis nuevos estatus son");
+                revisionDeguardado();
             }
 
             if (inputStreamResponse != null){
@@ -486,7 +500,83 @@ public class HttpHandlerDiagnostic {
      */
     public void saveDataDiagnostic (Diagnostic diagnostic){
 
-        Log.d("printLog", "Metodo para salvar datos de formulario");
+        Log.d("printLog", "en HttpHandler");
+
+        //String patientData = diagnostic.getIdPatient() + "-" + diagnostic.getYears() + "-" + diagnostic.getSex();
+        String patientData = diagnostic.getIdPatient() + "-" + diagnostic.getYears() + "-" + "M";
+        String avData = diagnostic.getAvRigth() + "-" + diagnostic.getAvLeft() + "-" + diagnostic.getCenter() + "-";
+        avData = avData + diagnostic.getSustain() + "-" + diagnostic.getMaintain();
+        String otherTestA = diagnostic.getCrhomaticOd() + "-" + diagnostic.getCrhomaticOi() + "-";
+        otherTestA = otherTestA + diagnostic.getTonometriaOd() + "-" + diagnostic.getTonometriaOi();
+        String otherTestB = diagnostic.getForia() + "-" + diagnostic.getEndoforia() + "-" + diagnostic.getEndoforia() + "-";
+        otherTestB = otherTestB + diagnostic.getExoforia() + "-" + diagnostic.getOrtoforia() + "-" + diagnostic.getOrtotropia();
+        otherTestB = otherTestB + diagnostic.getDvd() + "-" + diagnostic.getCaElevada();
+        String test = diagnostic.getTypeTest() + "-" + diagnostic.getColaborate();
+        String status = "N";
+
+
+        FormDataDbHelper formDataDbHelper = new FormDataDbHelper(ControlForService.context);
+        SQLiteDatabase db = formDataDbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        try{
+
+            values.put(FormDataDbContract.FormDataEntry.PATIENTDATA, patientData);
+            values.put(FormDataDbContract.FormDataEntry.AVDATA, avData);
+            values.put(FormDataDbContract.FormDataEntry.OTHERTESTA, otherTestA);
+            values.put(FormDataDbContract.FormDataEntry.OTHERTESTB, otherTestB);
+            values.put(FormDataDbContract.FormDataEntry.TESTUSED, test);
+            values.put(FormDataDbContract.FormDataEntry.STATUS, status);
+
+            db.insert(FormDataDbContract.FormDataEntry.TABLE_NAME, null, values);
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            db.close();
+
+        }
+    }
+
+    private void revisionDeguardado(){
+
+        Cursor cursor = null;
+        FormDataDbHelper formDataDbHelper = new FormDataDbHelper(ControlForService.context);
+        SQLiteDatabase db = formDataDbHelper.getReadableDatabase();
+
+        String query = " SELECT patientData, avData, status FROM " + FormDataDbContract.FormDataEntry.TABLE_NAME;
+
+        try{
+
+            cursor = db.rawQuery( query, null);
+
+            if (cursor.moveToFirst()){
+                do{
+
+                    Log.d("pritnLog", "_____________________");
+                    Log.d("pritnLog", cursor.getString(0));
+                    Log.d("pritnLog", cursor.getString(1));
+                    Log.d("pritnLog", cursor.getString(2));
+                    Log.d("pritnLog", "_____________________");
+
+                }while(cursor.moveToNext());
+            }
+
+        }catch (Exception e){
+
+        }finally {
+
+            if (cursor != null)
+                cursor.close();
+
+            db.close();
+        }
+
+
 
     }
 

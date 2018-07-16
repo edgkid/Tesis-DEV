@@ -45,4 +45,67 @@ public class LocalDataStructure {
 
     }
 
+
+    /**
+     * This method initialize local table for data diagnostic
+     */
+    public void findOrCreateDiagnosticTable (){
+
+        Cursor cursor = null;
+        String query = " SELECT idForm FROM " + FormDataDbContract.FormDataEntry.TABLE_NAME;
+
+        FormDataDbHelper formDataDbHelper = new FormDataDbHelper(context);
+        SQLiteDatabase db = formDataDbHelper.getReadableDatabase();
+
+        try{
+
+            cursor = db.rawQuery(query, null);
+            Log.d("printLog","tengo tabla de diagnosticos");
+        }catch (Exception e){
+
+            formDataDbHelper.onCreate(db);
+            e.printStackTrace();
+            Log.d("printLog","Creo tabla de Diagnostico");
+
+        }finally {
+
+            if (cursor != null ){
+                cursor.close();
+            }
+            db.close();
+        }
+
+    }
+
+    /**
+     * This method initialize local table for data interacion
+     */
+    public void findOrCreateInteractionTable (){
+
+        Cursor cursor = null;
+        String query = " SELECT idInteraction FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME;
+
+        InteractionDbHelper interactionDbHelper = new InteractionDbHelper(ControlForService.context);
+        SQLiteDatabase db = interactionDbHelper.getReadableDatabase();
+
+        try{
+
+            cursor = db.rawQuery(query, null);
+            Log.d("printLog","tengo tabla de nteraccion");
+        }catch (Exception e){
+
+            interactionDbHelper.onCreate(db);
+            e.printStackTrace();
+            Log.d("printLog","Creo tabla de Interaccion");
+
+        }finally {
+
+            if (cursor != null ){
+                cursor.close();
+            }
+            db.close();
+        }
+
+    }
+
 }

@@ -1,6 +1,8 @@
 package tegdev.optotypes;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -65,8 +67,24 @@ public class RequestDiagnostic {
      */
     public void saveDataDiagnostic (Diagnostic diagnostic){
 
+        Log.d("printLog", "En request");
         HttpHandlerDiagnostic httpHandlerDiagnostic = new HttpHandlerDiagnostic("diagnostic", ControlForService.context);
         httpHandlerDiagnostic.saveDataDiagnostic(diagnostic);
+    }
+
+    /**
+     * This method modify local status data
+     */
+    public void modifyLocalStatus(){
+
+        ContentValues values = new ContentValues();
+
+        FormDataDbHelper formDataDbHelper = new FormDataDbHelper(ControlForService.context);
+        SQLiteDatabase db = formDataDbHelper.getWritableDatabase();
+        values.put("status", "S");
+
+        db.update(FormDataDbContract.FormDataEntry.TABLE_NAME, values, null,null);
+        db.close();
     }
 
 }

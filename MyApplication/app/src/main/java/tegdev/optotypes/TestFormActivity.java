@@ -464,7 +464,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
 
         requestDiagnostic.saveDataDiagnostic(diagnosticNotes);
-        //requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
+        requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
 
         alertDialog();
 

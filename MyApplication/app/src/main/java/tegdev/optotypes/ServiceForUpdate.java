@@ -38,7 +38,11 @@ public class ServiceForUpdate extends Service {
     private void initializeLocalData() {
 
         LocalDataStructure localDataStructure = new LocalDataStructure(ControlForService.context);
+
         localDataStructure.findOrCreatePatientTable();
+        localDataStructure.findOrCreateInteractionTable();
+        localDataStructure.findOrCreateDiagnosticTable();
+
     }
 
     @Override
