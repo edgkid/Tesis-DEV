@@ -43,7 +43,7 @@ public class FormDataDbHelper extends DbApp {
         sql = sql + FormDataDbContract.FormDataEntry.ORTOFORIA + " TEXT, ";
         sql = sql + FormDataDbContract.FormDataEntry.ORTOTROPIA + " TEXT, ";
         sql = sql + FormDataDbContract.FormDataEntry.DVD + " TEXT, ";
-        sql = sql + FormDataDbContract.FormDataEntry
+        sql = sql + FormDataDbContract.FormDataEntry.CAELEVADA + " TEXT, ";
 
 
         sql = sql + " UNIQUE ( " + FormDataDbContract.FormDataEntry.ID + " ) ";
