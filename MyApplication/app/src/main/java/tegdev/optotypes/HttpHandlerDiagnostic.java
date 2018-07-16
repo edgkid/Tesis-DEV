@@ -504,16 +504,21 @@ public class HttpHandlerDiagnostic {
 
         //String patientData = diagnostic.getIdPatient() + "-" + diagnostic.getYears() + "-" + diagnostic.getSex();
         String patientData = diagnostic.getIdPatient() + "-" + diagnostic.getYears() + "-" + "M";
+
         String avData = diagnostic.getAvRigth() + "-" + diagnostic.getAvLeft() + "-" + diagnostic.getCenter() + "-";
         avData = avData + diagnostic.getSustain() + "-" + diagnostic.getMaintain();
+
         String otherTestA = diagnostic.getCrhomaticOd() + "-" + diagnostic.getCrhomaticOi() + "-";
         otherTestA = otherTestA + diagnostic.getTonometriaOd() + "-" + diagnostic.getTonometriaOi();
+
         String otherTestB = diagnostic.getForia() + "-" + diagnostic.getEndoforia() + "-" + diagnostic.getEndoforia() + "-";
         otherTestB = otherTestB + diagnostic.getExoforia() + "-" + diagnostic.getOrtoforia() + "-" + diagnostic.getOrtotropia();
         otherTestB = otherTestB + diagnostic.getDvd() + "-" + diagnostic.getCaElevada();
+
         String test = diagnostic.getTypeTest() + "-" + diagnostic.getColaborate();
         String status = "N";
 
+        String antecedent = diagnostic.getExtendDad() + "-" + diagnostic.getExtendsMon();
 
         FormDataDbHelper formDataDbHelper = new FormDataDbHelper(ControlForService.context);
         SQLiteDatabase db = formDataDbHelper.getWritableDatabase();
@@ -527,6 +532,7 @@ public class HttpHandlerDiagnostic {
             values.put(FormDataDbContract.FormDataEntry.OTHERTESTA, otherTestA);
             values.put(FormDataDbContract.FormDataEntry.OTHERTESTB, otherTestB);
             values.put(FormDataDbContract.FormDataEntry.TESTUSED, test);
+            values.put(FormDataDbContract.FormDataEntry.ANTECEDENT, antecedent);
             values.put(FormDataDbContract.FormDataEntry.STATUS, status);
 
             db.insert(FormDataDbContract.FormDataEntry.TABLE_NAME, null, values);
@@ -548,7 +554,7 @@ public class HttpHandlerDiagnostic {
         FormDataDbHelper formDataDbHelper = new FormDataDbHelper(ControlForService.context);
         SQLiteDatabase db = formDataDbHelper.getReadableDatabase();
 
-        String query = " SELECT patientData, avData, status FROM " + FormDataDbContract.FormDataEntry.TABLE_NAME;
+        String query = " SELECT patientData, avData, otherTestA, otherTestB, testUsed,  status, antecedent FROM " + FormDataDbContract.FormDataEntry.TABLE_NAME;
 
         try{
 
@@ -561,6 +567,10 @@ public class HttpHandlerDiagnostic {
                     Log.d("pritnLog", cursor.getString(0));
                     Log.d("pritnLog", cursor.getString(1));
                     Log.d("pritnLog", cursor.getString(2));
+                    Log.d("pritnLog", cursor.getString(3));
+                    Log.d("pritnLog", cursor.getString(4));
+                    Log.d("pritnLog", cursor.getString(5));
+                    Log.d("pritnLog", cursor.getString(6));
                     Log.d("pritnLog", "_____________________");
 
                 }while(cursor.moveToNext());
