@@ -73,6 +73,8 @@ public class HttpHandlerDiagnostic {
 
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
+
+                /// elimino cambio status de datos e ala apliacción
             }
 
             if (inputStreamResponse != null){
@@ -83,7 +85,6 @@ public class HttpHandlerDiagnostic {
                     ex.printStackTrace();
                 }
             }
-
 
         }catch (IOException e){
             e.printStackTrace();

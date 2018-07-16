@@ -458,6 +458,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             diagnosticNotes.setCrhomaticOi("");
         }
 
+        //// antes de enviar guardo en Local
         RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
         requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
         alertDialog();
