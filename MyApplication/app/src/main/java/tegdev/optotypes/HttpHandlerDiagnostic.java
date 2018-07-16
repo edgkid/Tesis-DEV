@@ -480,5 +480,15 @@ public class HttpHandlerDiagnostic {
 
     }
 
+    /**
+     * This method save the diagnostic data in local db
+     * @param diagnostic
+     */
+    public void saveDataDiagnostic (Diagnostic diagnostic){
+
+        Log.d("printLog", "Metodo para salvar datos de formulario");
+
+    }
+
 
 }

@@ -459,8 +459,13 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         }
 
         //// antes de enviar guardo en Local
+        //// codigo para guardar en el local
+
         RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
-        requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
+
+        requestDiagnostic.saveDataDiagnostic(diagnosticNotes);
+        //requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
+
         alertDialog();
 
     }

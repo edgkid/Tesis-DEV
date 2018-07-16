@@ -57,7 +57,16 @@ public class RequestDiagnostic {
         HttpHandlerDiagnostic httpHandlerDiagnostic =  new HttpHandlerDiagnostic("diagnostic", this.context);
         httpHandlerDiagnostic.connectToResource((DiagnosticActivity) this.context, objects, idPatient, action);
 
+    }
 
+    /**
+     * This methiod send reques to save diagnostic notes in movil
+     * @param diagnostic
+     */
+    public void saveDataDiagnostic (Diagnostic diagnostic){
+
+        HttpHandlerDiagnostic httpHandlerDiagnostic = new HttpHandlerDiagnostic("diagnostic", ControlForService.context);
+        httpHandlerDiagnostic.saveDataDiagnostic(diagnostic);
     }
 
 }
