@@ -519,7 +519,8 @@ public class HttpHandlerDiagnostic {
         String test = diagnostic.getTypeTest() + "-" + diagnostic.getColaborate();
         String status = "N";
 
-        String antecedent = diagnostic.getExtendDad() + "-" + diagnostic.getExtendsMon();
+        String antecedentDad = diagnostic.getExtendDad();
+        String antecedentMon = diagnostic.getExtendsMon();
 
         FormDataDbHelper formDataDbHelper = new FormDataDbHelper(ControlForService.context);
         SQLiteDatabase db = formDataDbHelper.getWritableDatabase();
@@ -533,7 +534,8 @@ public class HttpHandlerDiagnostic {
             values.put(FormDataDbContract.FormDataEntry.OTHERTESTA, otherTestA);
             values.put(FormDataDbContract.FormDataEntry.OTHERTESTB, otherTestB);
             values.put(FormDataDbContract.FormDataEntry.TESTUSED, test);
-            values.put(FormDataDbContract.FormDataEntry.ANTECEDENT, antecedent);
+            values.put(FormDataDbContract.FormDataEntry.ANTECEDENTDAD, antecedentDad);
+            values.put(FormDataDbContract.FormDataEntry.ANTECEDENTMON, antecedentMon);
             values.put(FormDataDbContract.FormDataEntry.STATUS, status);
 
             db.insert(FormDataDbContract.FormDataEntry.TABLE_NAME, null, values);
