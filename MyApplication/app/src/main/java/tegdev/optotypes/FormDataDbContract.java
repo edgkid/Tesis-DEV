@@ -18,7 +18,8 @@ public class FormDataDbContract {
         public static final String OTHERTESTA = "otherTestA";
         public static final String OTHERTESTB = "otherTestB";
         public static final String TESTUSED = "testUsed";
-        public static final String ANTECEDENT = "antecedent";
+        public static final String ANTECEDENTDAD = "antecedentDad";
+        public static final String ANTECEDENTMON = "antecedentMon";
         public static final String STATUS = "status";
 
     }

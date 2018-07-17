@@ -283,6 +283,41 @@ public class HttpHandlerForUpdate {
 
     }
 
+    private void getJsonDiagnostic (){
+
+        Cursor cursor = null;
+        String query = "SELECT patientData, avData, testA, testB, typeTest, antecedentDad, antecedentMon FROM";
+        query = query + FormDataDbContract.FormDataEntry.TABLE_NAME;
+        FormDataDbHelper formDataDbHelper = new FormDataDbHelper(ControlForService.context);
+        SQLiteDatabase db = formDataDbHelper.getReadableDatabase();
+
+        try{
+
+            cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()){
+
+                do{
+
+                }while(cursor.moveToNext());
+
+            }
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            if (cursor != null){
+                cursor.close();
+            }
+            db.close();
+        }
+
+
+    }
+
 
 
 }

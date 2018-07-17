@@ -26,7 +26,8 @@ public class FormDataDbHelper extends DbApp {
         sql = sql + FormDataDbContract.FormDataEntry.OTHERTESTA + " TEXT, ";
         sql = sql + FormDataDbContract.FormDataEntry.OTHERTESTB + " TEXT, ";
         sql = sql + FormDataDbContract.FormDataEntry.TESTUSED + " TEXT, ";
-        sql = sql + FormDataDbContract.FormDataEntry.ANTECEDENT + " TEXT, ";
+        sql = sql + FormDataDbContract.FormDataEntry.ANTECEDENTDAD + " TEXT, ";
+        sql = sql + FormDataDbContract.FormDataEntry.ANTECEDENTMON + " TEXT, ";
         sql = sql + FormDataDbContract.FormDataEntry.STATUS + " TEXT, ";
 
         sql = sql + " UNIQUE ( " + FormDataDbContract.FormDataEntry.ID + " ) ";
@@ -49,7 +50,8 @@ public class FormDataDbHelper extends DbApp {
         sql = sql + FormDataDbContract.FormDataEntry.OTHERTESTA + " TEXT, ";
         sql = sql + FormDataDbContract.FormDataEntry.OTHERTESTB + " TEXT, ";
         sql = sql + FormDataDbContract.FormDataEntry.TESTUSED + " TEXT, ";
-        sql = sql + FormDataDbContract.FormDataEntry.ANTECEDENT + " TEXT, ";
+        sql = sql + FormDataDbContract.FormDataEntry.ANTECEDENTDAD + " TEXT, ";
+        sql = sql + FormDataDbContract.FormDataEntry.ANTECEDENTMON + " TEXT, ";
         sql = sql + FormDataDbContract.FormDataEntry.STATUS + " TEXT, ";
 
         sql = sql + " UNIQUE ( " + FormDataDbContract.FormDataEntry.ID + " ) ";
