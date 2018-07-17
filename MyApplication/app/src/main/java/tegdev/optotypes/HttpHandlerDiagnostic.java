@@ -277,6 +277,7 @@ public class HttpHandlerDiagnostic {
             jsonParam.put("maintain", diagnostic.getMaintain());
             jsonParam.put("avRigth", diagnostic.getAvRigth());
             jsonParam.put("avLeft", diagnostic.getAvLeft());
+
             if (diagnostic.getExtendsMon().length() > 14)
                 jsonParam.put("antecedentMon", diagnostic.getExtendsMon().substring(14));
             else
