@@ -35,6 +35,9 @@ public class BackGroundServiceForUpdate extends AsyncTask<Void, Integer, Boolean
 
         requestForUpdateLocalData.setRequest("test");
         requestForUpdateLocalData.startUpdateInteraction();
+
+        requestForUpdateLocalData.setRequest("diagnostic");
+        requestForUpdateLocalData.startUpdateFormaData();
     }
 
     @Override

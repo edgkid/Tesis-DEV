@@ -143,6 +143,73 @@ public class HttpHandlerForUpdate {
 
     }
 
+    public void sendDataDiagnostic() {
+
+        URL url = null;
+        int responseCode;
+        StringBuilder result = null;
+        DataOutputStream printout;
+        InputStream inputStreamResponse = null;
+        String path = serverPath.getHttp() + serverPath.getIpAdddress() + serverPath.getPathAddress()+ this.request;
+
+        try{
+
+            Log.d("printLog", path);
+            url = new URL (path);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/JSON");
+            connection.setRequestProperty("charset", "utf-8");
+            connection.setDoOutput(true);
+
+            //Create JSONObject here
+            JSONArray listParam = new JSONArray();
+            getJsonDiagnostic(listParam);
+
+            Log.d("printLog", listParam.toString());
+
+            OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+            wr.write(listParam.toString());
+            wr.flush();
+            wr.close();
+
+            Log.d("message: ", listParam.toString() );
+
+            responseCode = connection.getResponseCode();
+
+            Log.d("message: ", String.valueOf(responseCode));
+
+            if( responseCode == HttpURLConnection.HTTP_OK){
+                inputStreamResponse = connection.getInputStream();
+                Log.d("message code:", String.valueOf(responseCode));
+
+                /// Aqui solicito cambiar estatus a S
+                /*RequestInteraction requestInteraction = new RequestInteraction(ControlForService.context);
+                requestInteraction.modifyLocalStatus();*/
+
+                RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
+                requestDiagnostic.modifyLocalStatus();
+
+            }
+
+            if (inputStreamResponse != null){
+                try{
+                    inputStreamResponse.close();
+                }
+                catch(Exception ex){
+                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                }
+            }
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+            Log.d("message: ", "Error no estoy haciendo conexion");
+        }
+
+    }
+
 
     public boolean verifyRespondeServer (String result){
 
@@ -178,6 +245,10 @@ public class HttpHandlerForUpdate {
                         break;
                     case 1 :
                         sendRequestPOST();
+                        break;
+
+                    case 2:
+                        sendDataDiagnostic();
                         break;
                 }
 
@@ -283,11 +354,13 @@ public class HttpHandlerForUpdate {
 
     }
 
-    private void getJsonDiagnostic (){
+    private void getJsonDiagnostic (JSONArray  listParam){
 
         Cursor cursor = null;
-        String query = "SELECT patientData, avData, testA, testB, typeTest, antecedentDad, antecedentMon FROM";
-        query = query + FormDataDbContract.FormDataEntry.TABLE_NAME;
+        JSONObject jsonParam = null;
+        String query = "SELECT patientData, avData, otherTestA, otherTestB, testUsed, antecedentDad, antecedentMon FROM ";
+        query = query + FormDataDbContract.FormDataEntry.TABLE_NAME + " WHERE status = 'N' ";
+
         FormDataDbHelper formDataDbHelper = new FormDataDbHelper(ControlForService.context);
         SQLiteDatabase db = formDataDbHelper.getReadableDatabase();
 
@@ -298,6 +371,18 @@ public class HttpHandlerForUpdate {
             if (cursor.moveToFirst()){
 
                 do{
+
+                    jsonParam = new JSONObject();
+                    jsonParam.put("patientData", cursor.getString(2));
+                    jsonParam.put("avData", cursor.getString(1));
+                    jsonParam.put("testA", cursor.getString(3));
+                    jsonParam.put("testB", cursor.getString(4));
+                    jsonParam.put("typeTest", cursor.getString(1));
+                    jsonParam.put("antecedentDad", cursor.getString(3));
+                    jsonParam.put("antecedentMon", cursor.getString(4));
+                    jsonParam.put("signalDefect", 0);
+                    jsonParam.put("action", 4);
+                    listParam.put(jsonParam);
 
                 }while(cursor.moveToNext());
 

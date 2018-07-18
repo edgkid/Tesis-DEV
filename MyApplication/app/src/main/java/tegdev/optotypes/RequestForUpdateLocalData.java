@@ -65,7 +65,7 @@ public class RequestForUpdateLocalData {
     public void startUpdateFormaData(){
 
         Cursor cursor = null;
-        String query = "SELECT  testCode FROM " + FormDataDbContract.FormDataEntry.TABLE_NAME ;
+        String query = "SELECT  status FROM " + FormDataDbContract.FormDataEntry.TABLE_NAME ;
         query = query + " WHERE status = 'N' ";
 
         FormDataDbHelper formDataDbHelper = new FormDataDbHelper(ControlForService.context);
@@ -78,7 +78,7 @@ public class RequestForUpdateLocalData {
             if (cursor.moveToFirst()){
 
                 HttpHandlerForUpdate httpHandlerForUpdate = new HttpHandlerForUpdate(request, context);
-                // codigo para actualizar datosd e formulario
+                httpHandlerForUpdate.connectToResource(context, 2);
 
             }
 

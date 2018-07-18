@@ -87,8 +87,9 @@ public class HttpHandlerDiagnostic {
                 revisionDeguardado();
                 RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
                 requestDiagnostic.modifyLocalStatus();
-                Log.d("pritnLog", "mis nuevos estatus son");
-                revisionDeguardado();
+
+                /*Log.d("pritnLog", "mis nuevos estatus son");
+                revisionDeguardado();*/
             }
 
             if (inputStreamResponse != null){
@@ -503,8 +504,8 @@ public class HttpHandlerDiagnostic {
 
         Log.d("printLog", "en HttpHandler");
 
-        //String patientData = diagnostic.getIdPatient() + "-" + diagnostic.getYears() + "-" + diagnostic.getSex();
-        String patientData = diagnostic.getIdPatient() + "-" + diagnostic.getYears() + "-" + "M";
+        String patientData = diagnostic.getIdPatient() + "-" + diagnostic.getYears() + "-" + diagnostic.getSex();
+        //String patientData = diagnostic.getIdPatient() + "-" + diagnostic.getYears() + "-" + "M";
 
         String avData = diagnostic.getAvRigth() + "-" + diagnostic.getAvLeft() + "-" + diagnostic.getCenter() + "-";
         avData = avData + diagnostic.getSustain() + "-" + diagnostic.getMaintain();
@@ -557,7 +558,7 @@ public class HttpHandlerDiagnostic {
         FormDataDbHelper formDataDbHelper = new FormDataDbHelper(ControlForService.context);
         SQLiteDatabase db = formDataDbHelper.getReadableDatabase();
 
-        String query = " SELECT patientData, avData, otherTestA, otherTestB, testUsed,  status, antecedent FROM " + FormDataDbContract.FormDataEntry.TABLE_NAME;
+        String query = " SELECT patientData, avData, otherTestA, otherTestB, testUsed,  status, antecedentDad, antecedentMon FROM " + FormDataDbContract.FormDataEntry.TABLE_NAME;
 
         try{
 
@@ -574,6 +575,7 @@ public class HttpHandlerDiagnostic {
                     Log.d("pritnLog", cursor.getString(4));
                     Log.d("pritnLog", cursor.getString(5));
                     Log.d("pritnLog", cursor.getString(6));
+                    Log.d("pritnLog", cursor.getString(7));
                     Log.d("pritnLog", "_____________________");
 
                 }while(cursor.moveToNext());

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AlertDialog;
@@ -140,7 +142,47 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         textAppointmentDate.setText("Fecha: " + appointment);
         textPatientName.setText("Paciente: " + patient.getName());
         textPatientYearsOld.setText(patient.getYearsOld());
-        //textPatientSex;
+        getDataPatient();
+
+
+    }
+
+    private void getDataPatient(){
+
+        Cursor cursor = null;
+        String query = " SELECT gender, birthday FROM " + PatientDbContract.PatientEntry.TABLE_NAME;
+
+        PatientDbHelper patientDbHelper = new PatientDbHelper(ControlForService.context);
+        SQLiteDatabase db = patientDbHelper.getReadableDatabase();
+
+        try {
+
+            cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()){
+
+                do{
+
+                    diagnosticNotes.setSex(cursor.getString(0));
+                    textPatientSex.setText("Sexo: " + cursor.getString(0));
+                    textPatientDate.setText("Fecha de Nacimiento: " + cursor.getString(1));
+
+                }while(cursor.moveToNext());
+
+            }
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            if(cursor != null){
+                cursor.close();
+            }
+
+            db.close();
+        }
 
     }
 
