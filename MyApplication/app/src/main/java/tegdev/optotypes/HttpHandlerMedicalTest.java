@@ -134,7 +134,6 @@ public class HttpHandlerMedicalTest {
                         if (verifyRespondeServer(result)){
                             procesingJson(result,test, imageTest);
                             saveOrReplaceTest(imageTest, patient.getYearsOld());
-                            pruebaSqlite();
                         } else
                             Toast.makeText(ctx.getApplicationContext(),"No se pudo procesar la carta", Toast.LENGTH_SHORT).show();
                         interrupt();
@@ -178,44 +177,6 @@ public class HttpHandlerMedicalTest {
 
         db.close();
     }
-
-    private void pruebaSqlite() {
-
-        Cursor cursor = null;
-        String query = " SELECT testYear FROM " + ImageTestDbContract.ImageTestEntry.TABLE_NAME;
-;
-        ImageTestDbHelper imageTestDbHelper = new ImageTestDbHelper(ControlForService.context);
-        SQLiteDatabase db = imageTestDbHelper.getReadableDatabase();
-
-        try{
-
-            cursor = db.rawQuery(query, null);
-
-            if (cursor.moveToFirst()){
-                do{
-                    Log.d("printLog", "______________");
-                    Log.d("printLog", cursor.getString(0));
-                    Log.d("printLog", "______________");
-
-                }while(cursor.moveToNext());
-            }
-
-        }catch (Exception e){
-
-            e.printStackTrace();
-
-        }finally {
-
-            if (cursor != null){
-                cursor.close();
-            }
-            db.close();
-
-        }
-
-
-    }
-
 
     private boolean existTest(String yearsOld) {
 
