@@ -96,4 +96,29 @@ public class RequestForUpdateLocalData {
 
     }
 
+    public void startUpdateImageTest(){
+
+        Cursor cursor = null;
+        String query = " SELECT idImageTest FROM " + ImageTestDbContract.ImageTestEntry.TABLE_NAME;
+        ImageTestDbHelper imageTestDbHelper = new ImageTestDbHelper(ControlForService.context);
+        SQLiteDatabase db = imageTestDbHelper.getReadableDatabase();
+
+        try{
+            cursor = db.rawQuery( query, null);
+            Log.d("printLog", "Existe tabla de test");
+        }catch (Exception e){
+            Log.d("printLog", "Creo tabla de test");
+            imageTestDbHelper.onCreate(db);
+            e.printStackTrace();
+        }finally {
+
+            if(cursor != null){
+                cursor.close();
+            }
+            db.close();
+        }
+
+
+    }
+
 }

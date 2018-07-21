@@ -33,6 +33,9 @@ public class BackGroundServiceForUpdate extends AsyncTask<Void, Integer, Boolean
         RequestForUpdateLocalData requestForUpdateLocalData = new RequestForUpdateLocalData("patients", ControlForService.context);
         requestForUpdateLocalData.startUpdatePatients();
 
+        requestForUpdateLocalData.setRequest("");
+        requestForUpdateLocalData.startUpdateImageTest();
+
         requestForUpdateLocalData.setRequest("test");
         requestForUpdateLocalData.startUpdateInteraction();
 
@@ -57,7 +60,7 @@ public class BackGroundServiceForUpdate extends AsyncTask<Void, Integer, Boolean
             if (ControlForService.exitsConnection()){
                 Log.d("printLog", "Existe conexion a trabajar");
                 updateData();
-                value = 60000;
+                value = 10000;
             }else{
                 Log.d("printLog", "No Conneccting");
                 value = 5000;

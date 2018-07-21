@@ -1,6 +1,9 @@
 package tegdev.optotypes;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -130,6 +133,8 @@ public class HttpHandlerMedicalTest {
 
                         if (verifyRespondeServer(result)){
                             procesingJson(result,test, imageTest);
+                            saveOrReplaceTest(imageTest, patient.getYearsOld());
+                            pruebaSqlite();
                         } else
                             Toast.makeText(ctx.getApplicationContext(),"No se pudo procesar la carta", Toast.LENGTH_SHORT).show();
                         interrupt();
@@ -139,7 +144,117 @@ public class HttpHandlerMedicalTest {
             }
         };
         tr.start();
+    }
 
+    private void saveOrReplaceTest(ArrayList imageTest, String yearsOld) {
+
+        Log.d("printLog", yearsOld.split(" ")[1]);
+        ContentValues values = new ContentValues();
+        String where = " testYear = " + yearsOld.split(" ")[1];
+        ImageTestDbHelper imageTestDbHelper = new ImageTestDbHelper(ControlForService.context);
+        SQLiteDatabase db = imageTestDbHelper.getWritableDatabase();
+
+        values.put("testCard", imageTest.get(0).toString());
+        values.put("rowOne", imageTest.get(1).toString());
+        values.put("rowTwo", imageTest.get(2).toString());
+        values.put("rowThree", imageTest.get(3).toString());
+        values.put("rowFour", imageTest.get(4).toString());
+        values.put("rowFive", imageTest.get(5).toString());
+        values.put("rowSix", imageTest.get(6).toString());
+        values.put("rowSeven", imageTest.get(7).toString());
+        values.put("rowEigth", imageTest.get(8).toString());
+        values.put("rowNine", imageTest.get(9).toString());
+        values.put("rowTen", imageTest.get(10).toString());
+        values.put("rowEleven", imageTest.get(11).toString());
+        values.put("testYear", yearsOld.split(" ")[1]);
+
+        if (existTest(yearsOld)){
+            Log.d("printLog", "Actualizo");
+            db.update(ImageTestDbContract.ImageTestEntry.TABLE_NAME, values, where, null);
+        }else{
+            Log.d("printLog", "Guardo");
+            db.insert(ImageTestDbContract.ImageTestEntry.TABLE_NAME, null, values);
+        }
+
+        db.close();
+    }
+
+    private void pruebaSqlite() {
+
+        Cursor cursor = null;
+        String query = " SELECT testYear FROM " + ImageTestDbContract.ImageTestEntry.TABLE_NAME;
+;
+        ImageTestDbHelper imageTestDbHelper = new ImageTestDbHelper(ControlForService.context);
+        SQLiteDatabase db = imageTestDbHelper.getReadableDatabase();
+
+        try{
+
+            cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()){
+                do{
+                    Log.d("printLog", "______________");
+                    Log.d("printLog", cursor.getString(0));
+                    Log.d("printLog", "______________");
+
+                }while(cursor.moveToNext());
+            }
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            if (cursor != null){
+                cursor.close();
+            }
+            db.close();
+
+        }
+
+
+    }
+
+
+    private boolean existTest(String yearsOld) {
+
+        Boolean value = false;
+        Cursor cursor = null;
+        String query = " SELECT testYear FROM " + ImageTestDbContract.ImageTestEntry.TABLE_NAME;
+
+        Log.d("printLog", "condicion:" + yearsOld.split(" ")[1] );
+        query = query + " WHERE testYear = '" + yearsOld.split(" ")[1] + "'";
+        Log.d("printLog", "condicion:" + query);
+        ImageTestDbHelper imageTestDbHelper = new ImageTestDbHelper(ControlForService.context);
+        SQLiteDatabase db = imageTestDbHelper.getReadableDatabase();
+
+        try{
+
+            cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()){
+                Log.d("printLog", "registros");
+                value = true;
+            }else{
+                Log.d("printLog", "No registros");
+            }
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            if (cursor != null){
+                cursor.close();
+            }
+            db.close();
+
+        }
+
+
+        return value;
     }
 
 
