@@ -2,10 +2,12 @@ package tegdev.optotypes;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.ImageView;
@@ -133,9 +135,16 @@ public class HttpHandlerMedicalTest {
 
                         if (verifyRespondeServer(result)){
                             procesingJson(result,test, imageTest);
-                            saveOrReplaceTest(imageTest, patient.getYearsOld());
-                        } else
-                            Toast.makeText(ctx.getApplicationContext(),"No se pudo procesar la carta", Toast.LENGTH_SHORT).show();
+
+                            if (imageTest.size() > 0){
+                                saveOrReplaceTest(imageTest, patient.getYearsOld());
+                            }else if (imageTest.size() <= 0){
+                                alertDialog(patient);
+                            }
+
+                        } else{
+                            alertDialog(patient);
+                        }
                         interrupt();
                     }
                 });
@@ -269,6 +278,27 @@ public class HttpHandlerMedicalTest {
             test.setImageBitmap(image);
         else
             test.setImageResource(R.drawable.imagenotfoud);
+
+    }
+
+    /**
+     * This method display a dialog by validate
+     */
+    public void alertDialog(PatientsToday patient){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+        alertDialog.setTitle("Problemas con la Carta");
+        alertDialog.setIcon(R.mipmap.ic_launcher);
+        alertDialog.setMessage("Hay problemas de conexion o no existen datos de interacción para el paciente " + patient.getName())
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
 
     }
 

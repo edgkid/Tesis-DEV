@@ -75,6 +75,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
             public void onClick(View v) {
 
                 nextActivity();
+
             }
         });
 
@@ -232,8 +233,9 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
             testControlActivity.putExtra("yearsOld", patient.getYearsOld());
             testControlActivity.putExtra("photo", patient.getPhoto());
             startActivity(testControlActivity);
+        }else{
+            Log.d("printLog", "preguntar si desea utilizar carta alternativa");
         }
-
 
     }
 
