@@ -184,6 +184,16 @@ public class ListDialog extends AppCompatDialogFragment {
         }
 
 
+        setImageTest();
+        Log.d("printLn", "tamaño de arreglo: "+ CrudRequestTestActivity.imagesTest.size());
+
+    }
+
+    /**
+     * This method show the alternative test
+     */
+    private void setImageTest() {
+
         byte[] byteCode = Base64.decode(CrudRequestTestActivity.imagesTest.get(0), Base64.DEFAULT);
         test.setTag("local");
         Bitmap image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
@@ -191,8 +201,6 @@ public class ListDialog extends AppCompatDialogFragment {
         if (image != null){
             test.setImageBitmap(image);
         }
-
-        Log.d("printLn", "tamaño de arreglo: "+ CrudRequestTestActivity.imagesTest.size());
 
     }
 
