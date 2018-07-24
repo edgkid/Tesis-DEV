@@ -74,8 +74,19 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
             @Override
             public void onClick(View v) {
 
-                nextActivity();
+                if (test.getTag() != null){
 
+                    if (test.getTag().equals("test")){
+                        nextActivity();
+                    }
+
+                    if (test.getTag().equals("NotFoud")){
+                        Log.d("printLog", "Evluar uso del ultimo test");
+                    }
+
+                }else{
+                    Log.d("printLog", "Por favro solicite la carta");
+                }
             }
         });
 

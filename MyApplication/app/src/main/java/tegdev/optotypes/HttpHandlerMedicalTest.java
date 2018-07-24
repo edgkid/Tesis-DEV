@@ -274,11 +274,13 @@ public class HttpHandlerMedicalTest {
             e.printStackTrace();
         }
 
-        if (image != null)
+        if (image != null){
             test.setImageBitmap(image);
-        else
+            test.setTag("test");
+        } else{
             test.setImageResource(R.drawable.imagenotfoud);
-
+            test.setTag("NotFoud");
+        }
     }
 
     /**
