@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,6 +34,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
     int distanceByTest;
     PatientsToday patient = null;
     public static ArrayList<String> imagesTest = new ArrayList<String>();
+    public static boolean local = false;
 
     TextView ipWbeService;
     TextView ipClient;
@@ -76,12 +80,19 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
 
                 if (test.getTag() != null){
 
-                    if (test.getTag().equals("test")){
-                        nextActivity();
-                    }
+                    if (!local){
+                        if (test.getTag().equals("test")){
+                            nextActivity();
+                        }
 
-                    if (test.getTag().equals("NotFoud")){
-                        Log.d("printLog", "Evluar uso del ultimo test");
+                        if (test.getTag().equals("NotFoud")){
+                            showOptionCard();
+                        }
+                    }else{
+
+                        Log.d("printLog", "Peueba con alternativa Local");
+                        Log.d("printLog", String.valueOf(imagesTest.size()));
+                        nextActivity();
                     }
 
                 }else{
@@ -141,6 +152,8 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
                 patient = (PatientsToday) parent.getAdapter().getItem(position);
                 imagesTest.removeAll(imagesTest);
                 test.setImageResource(R.drawable.carta);
+                local = false;
+                test.setTag(null);
                 setDistanceByTest();
 
             }
@@ -155,6 +168,17 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         MessageDialog messageDialog = new MessageDialog();
         messageDialog.setTitleMessage("Distancia de Test");
         messageDialog.show(getSupportFragmentManager(),"Message Dialog");
+    }
+
+    /**
+     * This method display some option to use card
+     */
+    public void showOptionCard(){
+
+        ListDialog listDialog = new ListDialog(test);
+        listDialog.setTitleMessage("Selecciona una Alternativa");
+        listDialog.setMessageDialog("Puede elegir una alternativa de carta adaptada auna edad en especifico");
+        listDialog.show(getSupportFragmentManager(),"Message Dialog");
     }
 
     @Override
