@@ -107,9 +107,12 @@ public class HttpHandlerAppointment {
         Thread tr = new Thread(){
             @Override
             public void run() {
-                if (sendRequest(patient,option, date))
-                    //ctx.answer = true;
-                    ;
+                if (sendRequest(patient,option, date)){
+                    CrudMessageDialog.positive = true;
+                }else{
+                    CrudMessageDialog.positive = false;
+                }
+
             }
         };
         tr.start();
@@ -130,8 +133,12 @@ public class HttpHandlerAppointment {
             @Override
             public void run() {
 
-                if(sendRequest(patient,option,date))
-                    ;
+                if(sendRequest(patient,option,date)){
+                    CrudMessageDialog.positive = true;
+                }else{
+                    CrudMessageDialog.positive = false;
+                }
+
             }
         };
         tr.start();
