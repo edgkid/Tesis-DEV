@@ -104,18 +104,31 @@ public class HttpHandlerAppointment {
      */
     public void connectToResource (final CrudSaveAppointmentActivity ctx, final Patient patient, final int option, final String date){
 
-        /*Thread tr = new Thread(){
+        Thread tr = new Thread(){
             @Override
             public void run() {
-                if (sendRequest(patient,option, date)){
-                    CrudMessageDialog.positive = true;
-                }else{
-                    CrudMessageDialog.positive = false;
-                }
+
+                final boolean value = sendRequest(patient,option, date);
+                ctx.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        CrudMessageDialog messageDialog = new CrudMessageDialog(ctx);
+                        messageDialog.setTitle("Nuevo Consulta (" + patient.getLastName() + ")");
+
+                        if (value){
+                            messageDialog.setMessage("Exito al Guardar Registro");
+                        }else{
+                            messageDialog.setMessage("Imposible Guardar Registro");
+                        }
+
+                        messageDialog.alertDialog();
+                    }
+                });
 
             }
         };
-        tr.start();*/
+        tr.start();
 
     }
 
@@ -138,7 +151,7 @@ public class HttpHandlerAppointment {
                     public void run() {
 
                         CrudMessageDialog messageDialog = new CrudMessageDialog(ctx);
-                        messageDialog.setTitle("Nuevo registro: " + patient.getLastName());
+                        messageDialog.setTitle("Nueva Cita");
 
                         if (value){
                             messageDialog.setMessage("Exito al Modificar Registro");
@@ -175,7 +188,7 @@ public class HttpHandlerAppointment {
                     public void run() {
 
                         CrudMessageDialog messageDialog = new CrudMessageDialog(ctx);
-                        messageDialog.setTitle("Nuevo registro: " + patient.getLastName());
+                        messageDialog.setTitle("Eliminar Consulta (" + patient.getLastName() + ")");
 
                         if (value){
                             messageDialog.setMessage("Exito al Eliminar Registro");
