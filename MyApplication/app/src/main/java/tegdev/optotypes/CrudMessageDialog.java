@@ -13,9 +13,6 @@ import java.util.ResourceBundle;
 
 public class CrudMessageDialog {
 
-
-    public static boolean positive = false;
-
     private Context context;
     private String title;
     private String message;

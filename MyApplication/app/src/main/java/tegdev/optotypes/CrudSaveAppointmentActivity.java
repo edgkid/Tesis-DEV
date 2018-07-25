@@ -245,17 +245,6 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         RequestAppointment requestAppointment = new RequestAppointment("appointment",contextActivity);
         requestAppointment.requestActionOnActualAppointment(patient, action, date);
 
-        CrudMessageDialog message = new CrudMessageDialog(this);
-        message.setTitle(patient.getName());
-
-        if (CrudMessageDialog.positive){
-            message.setMessage("Existo guardando registro");
-        }else{
-            message.setMessage("Imposible guardar registro");
-        }
-
-        message.alertDialog();
-
     }
 
     @Override
