@@ -1,6 +1,8 @@
 package tegdev.optotypes;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -148,11 +150,18 @@ public class HttpHandlerAppointment {
             @Override
             public void run() {
 
-                if(sendRequest(patient,option, "28/05/2018"))
-                    ;
+                if(sendRequest(patient,option, "25/07/2018")){
+                    Log.d("printLog","printLog Exito al eliminar registro");
+                    CrudMessageDialog.positive = true;
+                } else{
+                    Log.d("printLog", "Imposible eliminar registros");
+                    CrudMessageDialog.positive = false;
+                }
             }
         };
+
         tr.start();
+
     }
 
 
