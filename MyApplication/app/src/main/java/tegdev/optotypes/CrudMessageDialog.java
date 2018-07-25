@@ -2,6 +2,7 @@ package tegdev.optotypes;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 
 import java.util.ResourceBundle;
@@ -61,5 +62,7 @@ public class CrudMessageDialog {
         alert.show();
 
     }
+
+
 
 }

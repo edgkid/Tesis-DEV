@@ -32,6 +32,7 @@ public class HttpHandlerPatient {
 
     private String request;
     private Context context;
+    private boolean newPatient = false;
     ServerPath serverPath = new ServerPath();
 
     public HttpHandlerPatient(String request, Context context) {
@@ -118,6 +119,7 @@ public class HttpHandlerPatient {
 
             if( responseCode == HttpURLConnection.HTTP_OK){
                 inputStreamResponse = connection.getInputStream();
+                newPatient = true;
             }
 
             if (inputStreamResponse != null){
@@ -411,10 +413,45 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudNewPatientActivity ctx, final Patient patient, final int action){
 
-        Thread tr = new Thread(){
+        /*Thread tr = new Thread(){
             @Override
             public void run() {
                 sendRequestPOST(patient, action);
+                if (newPatient){
+                    //CrudMessageDialog.positive= true;
+                    //Log.d("printLog", "Exito");
+                    Toast.makeText(ctx, "Exito al Guardar Registro", Toast.LENGTH_LONG).show();
+                }else{
+                    //CrudMessageDialog.positive= false;
+                    //Log.d("printLog", "Fracaso");
+                    Toast.makeText(ctx, "Imposible Guardar Registro", Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+        tr.start();*/
+
+        Thread tr = new Thread(){
+            @Override
+            public void run() {
+
+                sendRequestPOST(patient, action);
+                ctx.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        CrudMessageDialog messageDialog = new CrudMessageDialog(ctx);
+                        messageDialog.setTitle("Nuevo registro: " + patient.getLastName());
+
+                        if (newPatient){
+                            messageDialog.setMessage("Exito al Guardar Registro");
+                        }else{
+                            messageDialog.setMessage("Imposible Guardar Registro");
+                        }
+
+                        messageDialog.alertDialog();
+                    }
+                });
+
             }
         };
         tr.start();

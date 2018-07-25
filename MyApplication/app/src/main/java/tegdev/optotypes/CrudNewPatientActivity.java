@@ -60,7 +60,6 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
     private final int PHOTO_CODE = 200;
     private final int SELECT_PICTURE= 300;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,11 +205,10 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
         patient.setFkUser("2");
         patient.setPhoto(encode);
 
+
+
         RequestPatient requestPatient = new RequestPatient("patients", this);
         requestPatient.sendDataPatient(patient, action);
-
-        Intent intent = new Intent(this,DashBoardActivity.class);
-        startActivity(intent);
 
     }
 
