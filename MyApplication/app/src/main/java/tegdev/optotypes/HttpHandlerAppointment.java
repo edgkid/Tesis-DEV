@@ -104,7 +104,7 @@ public class HttpHandlerAppointment {
      */
     public void connectToResource (final CrudSaveAppointmentActivity ctx, final Patient patient, final int option, final String date){
 
-        Thread tr = new Thread(){
+        /*Thread tr = new Thread(){
             @Override
             public void run() {
                 if (sendRequest(patient,option, date)){
@@ -115,7 +115,7 @@ public class HttpHandlerAppointment {
 
             }
         };
-        tr.start();
+        tr.start();*/
 
     }
 
@@ -129,19 +129,31 @@ public class HttpHandlerAppointment {
     public void connectToResource (final CrudModifyAppointmentActivity ctx, final Patient patient, final int option, final String date){
 
         Thread tr = new Thread(){
-
             @Override
             public void run() {
 
-                if(sendRequest(patient,option,date)){
-                    CrudMessageDialog.positive = true;
-                }else{
-                    CrudMessageDialog.positive = false;
-                }
+                final boolean value = sendRequest(patient,option,date);
+                ctx.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        CrudMessageDialog messageDialog = new CrudMessageDialog(ctx);
+                        messageDialog.setTitle("Nuevo registro: " + patient.getLastName());
+
+                        if (value){
+                            messageDialog.setMessage("Exito al Modificar Registro");
+                        }else{
+                            messageDialog.setMessage("Imposible Modificar Registro");
+                        }
+
+                        messageDialog.alertDialog();
+                    }
+                });
 
             }
         };
         tr.start();
+
     }
 
     /**

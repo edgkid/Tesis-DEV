@@ -214,17 +214,6 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
         RequestAppointment requestAppointment = new RequestAppointment("appointment",this);
         requestAppointment.requestActionOnActualAppointment(patient, action, date);
 
-        CrudMessageDialog message = new CrudMessageDialog(this);
-        message.setTitle(patient.getName());
-
-        if (CrudMessageDialog.positive){
-            message.setMessage("Exito actualizando cita");
-        }else{
-            message.setMessage("Imposible actualizar cita");
-        }
-
-        message.alertDialog();
-
     }
 
     /**
