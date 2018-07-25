@@ -52,7 +52,9 @@ public class CrudMessageDialog {
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         dialog.dismiss();
+
                     }
                 });
         AlertDialog alert = alertDialog.create();
