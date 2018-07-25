@@ -226,7 +226,7 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
         RequestAppointment requestAppointment = new RequestAppointment("appointment",this);
         requestAppointment.requestActionOnActualAppointment(patient, action, null);
 
-        CrudMessageDialog message = new CrudMessageDialog(this);
+        /*CrudMessageDialog message = new CrudMessageDialog(this);
         message.setTitle(patient.getName());
 
         if (CrudMessageDialog.positive){
@@ -235,7 +235,7 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
             message.setMessage("Imposible eliminar registro");
         }
 
-        message.alertDialog();
+        message.alertDialog();*/
 
     }
 

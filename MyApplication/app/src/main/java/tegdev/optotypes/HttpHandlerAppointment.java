@@ -153,21 +153,32 @@ public class HttpHandlerAppointment {
     public void connectToResource (final CrudDeleteAppointmentActivity ctx, final Patient patient, final int option){
 
         Thread tr = new Thread(){
-
             @Override
             public void run() {
 
-                if(sendRequest(patient,option, "25/07/2018")){
-                    Log.d("printLog","printLog Exito al eliminar registro");
-                    CrudMessageDialog.positive = true;
-                } else{
-                    Log.d("printLog", "Imposible eliminar registros");
-                    CrudMessageDialog.positive = false;
-                }
+                //sendRequestPOST(patient, action);
+                final boolean value = sendRequest(patient,option, "25/07/2018");
+                ctx.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        CrudMessageDialog messageDialog = new CrudMessageDialog(ctx);
+                        messageDialog.setTitle("Nuevo registro: " + patient.getLastName());
+
+                        if (value){
+                            messageDialog.setMessage("Exito al Eliminar Registro");
+                        }else{
+                            messageDialog.setMessage("Imposible Eliminar Registro");
+                        }
+
+                        messageDialog.alertDialog();
+                    }
+                });
+
             }
         };
-
         tr.start();
+
 
     }
 
