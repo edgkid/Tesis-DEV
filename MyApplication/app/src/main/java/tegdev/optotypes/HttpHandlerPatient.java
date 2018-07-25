@@ -413,23 +413,6 @@ public class HttpHandlerPatient {
      */
     public void connectToResource (final CrudNewPatientActivity ctx, final Patient patient, final int action){
 
-        /*Thread tr = new Thread(){
-            @Override
-            public void run() {
-                sendRequestPOST(patient, action);
-                if (newPatient){
-                    //CrudMessageDialog.positive= true;
-                    //Log.d("printLog", "Exito");
-                    Toast.makeText(ctx, "Exito al Guardar Registro", Toast.LENGTH_LONG).show();
-                }else{
-                    //CrudMessageDialog.positive= false;
-                    //Log.d("printLog", "Fracaso");
-                    Toast.makeText(ctx, "Imposible Guardar Registro", Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-        tr.start();*/
-
         Thread tr = new Thread(){
             @Override
             public void run() {
