@@ -160,6 +160,10 @@ public class HttpHandlerAppointment {
                         messageDialog.setTitle("Nueva Cita");
 
                         if (value){
+
+                            RequestAppointment requestAppointment = new RequestAppointment();
+                            requestAppointment.deleteLocalAppointment(patient);
+
                             messageDialog.setMessage("Exito al Modificar Registro");
                         }else{
                             messageDialog.setMessage("Imposible Modificar Registro");
