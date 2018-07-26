@@ -117,6 +117,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         actionDropDownColaboration();
         actionDropDownAntecendentMon();
         actionDropDownAntecedentDad();
+        actionDropDownTonometricOd();
+        actionDropDownTonometricOi();
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -453,7 +455,20 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
      */
     public void actionDropDownTonometricOd(){
 
+        dropDownTonometricOd.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                diagnosticNotes.setTonometriaOd(dropDownTonometricOd.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                diagnosticNotes.setTonometriaOd(dropDownTonometricOd.getSelectedItem().toString());
+
+            }
+        });
 
     }
 
@@ -461,6 +476,21 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
      * This method initialize Tonometric Oi List
      */
     public void actionDropDownTonometricOi(){
+
+        dropDownTonometricOi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                diagnosticNotes.setTonometriaOi(dropDownTonometricOi.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                diagnosticNotes.setTonometriaOi(dropDownTonometricOi.getSelectedItem().toString());
+
+            }
+        });
 
     }
 
