@@ -278,7 +278,7 @@ public class HttpHandlerMedicalTest {
             test.setImageBitmap(image);
             test.setTag("test");
         } else{
-            test.setImageResource(R.drawable.imagenotfoud);
+            test.setImageResource(R.drawable.nocarta);
             test.setTag("NotFoud");
         }
     }
