@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -205,11 +206,56 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
         patient.setFkUser("2");
         patient.setPhoto(encode);
 
+        if (verifyForm(edad)){
+            RequestPatient requestPatient = new RequestPatient("patients", this);
+            requestPatient.sendDataPatient(patient, action);
+        }
 
+    }
 
-        RequestPatient requestPatient = new RequestPatient("patients", this);
-        requestPatient.sendDataPatient(patient, action);
+    /**
+     * This method validate if item name, lastname and calendar are correct
+     * @param edad
+     * @return
+     */
+    private boolean verifyForm(String edad) {
 
+        boolean valuePatient = true;
+        boolean valueDate = true;
+        boolean value = false;
+
+        String title = "Guardando Nuevo Registro";
+        String message = "";
+
+        if (TextUtils.isEmpty(firstName.getText()) || TextUtils.isEmpty(lastName.getText()) ){
+            valuePatient = false;
+        }
+
+        if (Integer.parseInt(edad) <= 0){
+            valueDate = false;
+        }
+
+        if (!valuePatient && !valueDate){
+            message = "Verifique los Campos de; Primer Nombre, Primer Apellido y Fecha de Nacimiento";
+        }
+
+        if (valuePatient && !valueDate){
+            message = "Verifique Fecha de nacimiento";
+        }
+
+        if (!valuePatient && valueDate){
+            message = "Verifique; Primer Nombre y Primer Apellido son Obligatorios";
+        }
+
+        if (!message.equals("")){
+            alertDialog(title,message);
+        }
+
+        if (valuePatient && valueDate){
+            value = true;
+        }
+
+        return value;
     }
 
     @Override
@@ -244,6 +290,29 @@ public class CrudNewPatientActivity extends AppCompatActivity implements ImageVi
                 break;
 
         }
+    }
+
+
+    /**
+     * This method display a Dialog before dlete an  appointment
+     */
+    public void alertDialog(String title, String message){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title);
+        alertDialog.setIcon(R.mipmap.ic_launcher);
+        alertDialog.setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                    }
+                });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
+
     }
 
     @Override
