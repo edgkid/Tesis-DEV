@@ -1,6 +1,8 @@
 package tegdev.optotypes;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -42,5 +44,21 @@ public class RequestAppointment {
         }
 
     }
+
+    /**This method delete Local Data for patient list
+     * @param patient
+     */
+    public void deleteLocalAppointment (Patient patient){
+
+        Log.d("printLog", "elimino paciente " + patient.getIdPatient());
+
+        PatientDbHelper patientDbHelper = new PatientDbHelper( ControlForService.context);
+        SQLiteDatabase db = patientDbHelper.getWritableDatabase();
+
+        db.delete(PatientDbContract.PatientEntry.TABLE_NAME, " idPatient = " + patient.getIdPatient(), null);
+        db.close();
+
+    }
+
 
 }

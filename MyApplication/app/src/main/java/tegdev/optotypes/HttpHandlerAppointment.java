@@ -188,7 +188,7 @@ public class HttpHandlerAppointment {
             public void run() {
 
                 //sendRequestPOST(patient, action);
-                final boolean value = sendRequest(patient,option, "25/07/2018");
+                final boolean value = sendRequest(patient,option, "26/07/2018");
                 ctx.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -197,6 +197,8 @@ public class HttpHandlerAppointment {
                         messageDialog.setTitle("Eliminar Consulta (" + patient.getLastName() + ")");
 
                         if (value){
+                            RequestAppointment requestAppointment = new RequestAppointment();
+                            requestAppointment.deleteLocalAppointment(patient);
                             messageDialog.setMessage("Exito al Eliminar Registro");
                         }else{
                             messageDialog.setMessage("Imposible Eliminar Registro");
