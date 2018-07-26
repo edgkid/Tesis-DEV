@@ -52,10 +52,13 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     Spinner dropDownSustain; //DropDowSustain
     Spinner dropDownMaintain; //DropDowMaintain
 
+    Spinner dropDownTonometricOd;
+    Spinner dropDownTonometricOi;
+
     TextView textChromaticOd;//idTextChromaticOd
     TextView textChromaticOi;//idTextChromaticOi
-    TextView textTonometriaOd; //idTextChromaticOd
-    TextView textTonometriaOi; // idTextChromaticOi
+    //TextView textTonometriaOd; //idTextChromaticOd
+    //TextView textTonometriaOi; // idTextChromaticOi
 
     CheckBox ortoforia; //idOrtoforia
     CheckBox ortotropia; //idOrtotropia
@@ -207,11 +210,13 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         dropDownColaboration = (Spinner) findViewById(R.id.DropDownCoperation);
         dropDownPreviusDad = (Spinner) findViewById(R.id.dropDownPreviusDad);
         dropDownPreviusMom = (Spinner) findViewById(R.id.dropDownPreviusMon);
+        dropDownTonometricOd = (Spinner) findViewById(R.id.DropDownTonometricOd);
+        dropDownTonometricOi = (Spinner) findViewById(R.id.DropDownTonometricOi);
 
         textChromaticOd = (TextView) findViewById(R.id.idTextChromaticOd);
         textChromaticOi = (TextView) findViewById(R.id.idTextChromaticOi);
-        textTonometriaOd = (TextView) findViewById(R.id.textTometriaOd);
-        textTonometriaOi = (TextView) findViewById(R.id.textTometriaOi);
+        //textTonometriaOd = (TextView) findViewById(R.id.textTometriaOd);
+        //textTonometriaOi = (TextView) findViewById(R.id.textTometriaOi);
 
         ortoforia = (CheckBox) findViewById(R.id.idOrtoforia);
         ortotropia = (CheckBox) findViewById(R.id.idOrtotropia);
@@ -240,6 +245,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         ArrayAdapter<CharSequence>  adapterSubjective = ArrayAdapter.createFromResource(this, R.array.subjective, R.layout.text_spiner_resource);
         ArrayAdapter<CharSequence>  adapterTest = ArrayAdapter.createFromResource(this, R.array.test, R.layout.text_spiner_resource);
         ArrayAdapter<CharSequence>  adapterColaboration = ArrayAdapter.createFromResource(this, R.array.efectividad, R.layout.text_spiner_resource);
+        ArrayAdapter<CharSequence> adapterTonometricOd = ArrayAdapter.createFromResource(this, R.array.tonometric, R.layout.text_spiner_resource);
+        ArrayAdapter<CharSequence> adapterTonometricOi = ArrayAdapter.createFromResource(this, R.array.tonometric, R.layout.text_spiner_resource);
 
         dropDownAvRight.setAdapter(adapterAv);
         dropDownLeft.setAdapter(adapterAv);
@@ -248,6 +255,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         dropDownMaintain.setAdapter(adapterSubjective);
         dropDownTypeTest.setAdapter(adapterTest);
         dropDownColaboration.setAdapter(adapterColaboration);
+        dropDownTonometricOd.setAdapter(adapterTonometricOd);
+        dropDownTonometricOi.setAdapter(adapterTonometricOi);
 
         this.initializeAntecedentAdapter();
     }
@@ -439,6 +448,22 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    /**
+     * This method initialize Tonometric Od list
+     */
+    public void actionDropDownTonometricOd(){
+
+
+
+    }
+
+    /**
+     * This method initialize Tonometric Oi List
+     */
+    public void actionDropDownTonometricOi(){
+
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -479,16 +504,18 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         diagnosticNotes.setIdPatient(patient.getIdPatient());
         diagnosticNotes.setYears(patient.getYearsOld().split(" ")[1]);
 
-        if (textTonometriaOi.getText().toString() != null && textTonometriaOi.getText().toString() != ""){
+        /*if (textTonometriaOi.getText().toString() != null && textTonometriaOi.getText().toString() != ""){
             diagnosticNotes.setTonometriaOi(textTonometriaOi.getText().toString());
         }else {
             diagnosticNotes.setTonometriaOi("");
-        }
-        if (textTonometriaOd.getText().toString() != null && textTonometriaOd.getText().toString() != ""){
+        }*/
+
+        /*if (textTonometriaOd.getText().toString() != null && textTonometriaOd.getText().toString() != ""){
             diagnosticNotes.setTonometriaOd(textTonometriaOd.getText().toString());
         }else {
             diagnosticNotes.setTonometriaOd("");
-        }
+        }*/
+
         if (textChromaticOd.getText().toString() != null && textChromaticOd.getText().toString() != ""){
             diagnosticNotes.setCrhomaticOd(textChromaticOd.getText().toString());
         }else {

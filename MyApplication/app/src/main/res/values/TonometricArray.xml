@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="tonometric">
+
+        <item>N/A</item>
+        <item>Normotono</item>
+        <item>Hipotono</item>
+        <item>Hipertono</item>
+
+    </string-array>
+
+</resources>
