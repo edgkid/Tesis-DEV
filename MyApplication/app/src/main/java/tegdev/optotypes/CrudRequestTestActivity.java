@@ -231,7 +231,8 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         final ProgressDialog progressDialog = new ProgressDialog(contextActivity);
         progressDialog.setTitle("Generando Carta Optometrica");
         progressDialog.setIcon(R.mipmap.ic_launcher);
-        progressDialog.setMessage("Se estan procesando los optotypos que seran utilizado en el Examen. Por favor espere");
+        //progressDialog.setMessage("Se estan procesando los optotypos que seran utilizado en el Examen. Por favor espere");
+        progressDialog.setMessage("Generando carta del paciente: "+ patient.getName());
         progressDialog.setMax(100);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCancelable(false);
