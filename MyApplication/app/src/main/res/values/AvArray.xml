@@ -3,17 +3,17 @@
 
     <string-array name="av">
 
-        <item>0.1</item>
-        <item>0.13</item>
-        <item>0.17</item>
-        <item>0.2</item>
-        <item>0.25</item>
-        <item>0.33</item>
-        <item>0.4</item>
-        <item>0.5</item>
-        <item>0.63</item>
-        <item>0.8</item>
-        <item>1</item>
+        <item>20/200</item>
+        <item>20/160</item>
+        <item>20/120</item>
+        <item>20/100</item>
+        <item>20/80</item>
+        <item>20/60</item>
+        <item>20/50</item>
+        <item>20/40</item>
+        <item>20/32</item>
+        <item>20/25</item>
+        <item>20/20</item>
 
     </string-array>
 
