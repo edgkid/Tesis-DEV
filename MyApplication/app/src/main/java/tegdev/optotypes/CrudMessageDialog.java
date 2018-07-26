@@ -53,6 +53,9 @@ public class CrudMessageDialog {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        Intent activity = new Intent(context, DashBoardActivity.class);
+                        activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        context.startActivity(activity);
                         dialog.dismiss();
 
                     }

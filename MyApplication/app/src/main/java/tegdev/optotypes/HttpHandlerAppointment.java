@@ -197,8 +197,10 @@ public class HttpHandlerAppointment {
                         messageDialog.setTitle("Eliminar Consulta (" + patient.getLastName() + ")");
 
                         if (value){
+
                             RequestAppointment requestAppointment = new RequestAppointment();
                             requestAppointment.deleteLocalAppointment(patient);
+
                             messageDialog.setMessage("Exito al Eliminar Registro");
                         }else{
                             messageDialog.setMessage("Imposible Eliminar Registro");
@@ -239,5 +241,6 @@ public class HttpHandlerAppointment {
         }
 
     }
+
 
 }
