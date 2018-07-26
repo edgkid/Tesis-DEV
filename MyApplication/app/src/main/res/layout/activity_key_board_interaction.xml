@@ -28,11 +28,11 @@
 
             <ImageView
                 android:id="@+id/idbuttonReturnListPatient"
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/list_icon"/>
+                android:src="@drawable/comeback"/>
 
         </LinearLayout>
 
