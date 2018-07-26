@@ -2,6 +2,7 @@ package tegdev.optotypes;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
 /**
@@ -41,4 +42,5 @@ public class RequestAppointment {
         }
 
     }
+
 }
