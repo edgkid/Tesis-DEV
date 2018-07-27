@@ -557,16 +557,71 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             diagnosticNotes.setCrhomaticOi("");
         }
 
-        //// antes de enviar guardo en Local
-        //// codigo para guardar en el local
+        if (validateForm()){
 
-        RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
+            RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
+            requestDiagnostic.saveDataDiagnostic(diagnosticNotes);
+            requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
+            alertDialog();
 
-        requestDiagnostic.saveDataDiagnostic(diagnosticNotes);
-        requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
+        }
 
-        alertDialog();
+    }
 
+    /**
+     * This method validate if form are complete
+     * @return
+     */
+    private boolean validateForm() {
+
+        boolean value = true;
+        boolean chromatic = true;
+        boolean colaborate = true;
+        String message = "";
+        String title = "Verifique los Datos";
+
+        try{
+            int chromaticOd = Integer.parseInt(diagnosticNotes.getCrhomaticOd());
+            int chromaticOi = Integer.parseInt(diagnosticNotes.getCrhomaticOi());
+
+            if (chromaticOd < 1 || chromaticOd > 14){
+                chromatic = false;
+            }
+
+            if (chromaticOi < 1 || chromaticOi > 14){
+                chromatic = false;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            chromatic = false;
+        }finally{
+
+            if (diagnosticNotes.getColaborate().equals("0")){
+                colaborate = false;
+            }
+
+
+        }
+
+        if (!chromatic){
+            message = "Verifique el valor de percepción cromatica, este debe ser entero 1 - 14";
+        }
+
+        if (!colaborate){
+            message = "Indique valor de estimación de colaboración del niño";
+        }
+
+        if (!colaborate && !chromatic){
+            message = "Verifique valor de percepción cromatica e indique una vlor de estimación de colaboración";
+        }
+
+        if (!colaborate || !chromatic){
+            value = false;
+            alertDialog(title,message);
+        }
+
+        return value;
     }
 
     /**
@@ -592,6 +647,26 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
                         Intent newActivity = new Intent (contextActivity, DashBoardActivity.class);
                         startActivity(newActivity);
 
+                    }
+                });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
+
+    }
+
+    /**
+     * This method display a dialog to say if data saved
+     */
+    public void alertDialog(String title, String message){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title);
+        alertDialog.setIcon(R.mipmap.ic_launcher);
+        alertDialog.setMessage(message)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       dialog.dismiss();
                     }
                 });
         AlertDialog alert = alertDialog.create();

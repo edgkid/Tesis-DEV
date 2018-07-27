@@ -284,9 +284,9 @@ public class HttpHandlerDiagnostic {
             else
                 jsonParam.put("antecedentMon", "");
             if (diagnostic.getExtendDad().length() > 14)
-                jsonParam.put("antacedentDad", diagnostic.getExtendDad().substring(14));
+                jsonParam.put("antecedentDad", diagnostic.getExtendDad().substring(14));
             else
-                jsonParam.put("antacedentDad", "");
+                jsonParam.put("antecedentDad", "");
             if(diagnostic.getSignalDefect().length() > 14)
                 jsonParam.put("signalDefect", diagnostic.getSignalDefect().substring(14));
             else
@@ -304,8 +304,9 @@ public class HttpHandlerDiagnostic {
             jsonParam.put("caElevada", diagnostic.getCaElevada());
             jsonParam.put("tonometriaOd", diagnostic.getTonometriaOd());
             jsonParam.put("tonometriaOi", diagnostic.getTonometriaOi());
-            jsonParam.put("crhomaticOd", diagnostic.getCrhomaticOd());
-            jsonParam.put("crhomaticOi", diagnostic.getCrhomaticOi());
+
+            jsonParam.put("crhomaticOd", diagnostic.getCrhomaticOd() + "/14");
+            jsonParam.put("crhomaticOi", diagnostic.getCrhomaticOi() + "/14");
 
             jsonParam.put("action", action);
 
