@@ -81,4 +81,47 @@ public class RequestPatient {
 
     }
 
+    /**
+     * This method find a patient by id
+     */
+    public Patient getDataPatientById (Patient patient){
+
+        Cursor cursor = null;
+        Patient newPatient = new Patient();
+        PatientDbHelper patientDbHelper = new PatientDbHelper(ControlForService.context);
+        SQLiteDatabase db = patientDbHelper.getWritableDatabase();
+        String query = " SELECT idPatient, firstName, middleName, lastName, maidenName, yearsOld, nextAppointment FROM ";
+        query = query + PatientDbContract.PatientEntry.TABLE_NAME + " WHERE idPatient = " + patient.getIdPatient();
+
+        Log.d("printLog", query);
+
+        try{
+            cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()){
+                do{
+                    newPatient.setIdPatient(cursor.getString(0));
+                    newPatient.setName(cursor.getString(1));
+                    newPatient.setMiddleName(cursor.getString(2));
+                    newPatient.setLastName(cursor.getString(3));
+                    newPatient.setMaidenName(cursor.getString(4));
+                    newPatient.setYearsOld(cursor.getString(5));
+                    newPatient.setNextAppointment(cursor.getString(6));
+
+                }while(cursor.moveToNext());
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+
+            if (cursor != null){
+                cursor.close();
+            }
+            db.close();
+        }
+
+        return newPatient;
+    }
+
 }

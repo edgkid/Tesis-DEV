@@ -413,7 +413,7 @@ public class HttpHandlerDiagnostic {
                     getDataCrudReadActivity();
                     break;
                 case 2:
-                    getDataDiagnosticActivity();
+                    //getDataDiagnosticActivity();
                     break;
             }
 
@@ -429,46 +429,6 @@ public class HttpHandlerDiagnostic {
         CrudReadAppointmentActivity.listData.removeAll(CrudReadAppointmentActivity.listData);
     }
 
-    /**
-     * This method get data on JSON
-     */
-    private void getDataDiagnosticActivity(){
-
-        if (CrudReadAppointmentActivity.listData.size() == 1){
-
-            if (CrudReadAppointmentActivity.listData.get(0).getTypeTest().equals("Test Personalizado")){
-                DiagnosticActivity.textAVLP.setText("Av Izquierdo: " + CrudReadAppointmentActivity.listData.get(0).getAvLeft());
-                DiagnosticActivity.textAVRP.setText("Av Derecho: " + CrudReadAppointmentActivity.listData.get(0).getAvRigth());
-                DiagnosticActivity.textAVLE.setText("Av Izquierdo: " + "N/A");
-                DiagnosticActivity.textAVRE.setText("Av Derecho: " + "N/A");
-            }
-
-            if (CrudReadAppointmentActivity.listData.get(0).getTypeTest().equals("Test Personalizado")){
-
-                DiagnosticActivity.textAVLE.setText("Av Izquierdo:" + "N/A");
-                DiagnosticActivity.textAVRE.setText("Av Derecho: " + "N/A");
-                DiagnosticActivity.textAVLP.setText("Av Izquierdo:" + CrudReadAppointmentActivity.listData.get(0).getAvLeft());
-                DiagnosticActivity.textAVRP.setText("Av Derecho: " + CrudReadAppointmentActivity.listData.get(0).getAvRigth());
-            }
-        }
-
-        if (CrudReadAppointmentActivity.listData.size() == 2){
-
-            DiagnosticActivity.textAVLE.setText("Av Izquierdo: " + CrudReadAppointmentActivity.listData.get(0).getAvLeft());
-            DiagnosticActivity.textAVRE.setText("Av Derecho: " + CrudReadAppointmentActivity.listData.get(0).getAvLeft());
-
-            DiagnosticActivity.textAVLP.setText("Av Izquierdo: " + CrudReadAppointmentActivity.listData.get(1).getAvLeft());
-            DiagnosticActivity.textAVRP.setText("Av Derecho: " + CrudReadAppointmentActivity.listData.get(1).getAvLeft());
-
-        }
-
-        DiagnosticActivity.textCenter.setText("Centra: " + CrudReadAppointmentActivity.listData.get(0).getCenter());
-        DiagnosticActivity.textSustain.setText("Sostiene: " + CrudReadAppointmentActivity.listData.get(0).getSustain());
-        DiagnosticActivity.textMaintain.setText("Mantiene: " + CrudReadAppointmentActivity.listData.get(0).getMaintain());
-
-        CrudReadAppointmentActivity.listData.removeAll(CrudReadAppointmentActivity.listData);
-
-    }
 
     /**
      * This method get data on JSON

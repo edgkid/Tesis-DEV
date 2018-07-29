@@ -42,6 +42,9 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
     Button menuList;
     Button logOut;
 
+    Bitmap photo = null;
+    Patient patient = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,30 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
 
         logOut.setOnClickListener(this);
         menuList.setOnClickListener(this);
+
+        try{
+            ipWbeService.setText(ipWbeService.getText().toString() + ConfgConnect.getIpWebService());
+            ipClient.setText(ipClient.getText().toString() + ConfgConnect.getIpShowTest());
+            port.setText(port.getText().toString() + ConfgConnect.getPortConecction());
+        }catch(Exception e){
+            ipWbeService.setText(ipWbeService.getText().toString() + "no hay conección");
+            ipClient.setText(ipClient.getText().toString() + "no hay conexxión");
+            port.setText(port.getText().toString() + "no hay conexión");
+        }
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras != null){
+            patient = new Patient();
+            photo = (Bitmap) extras.get("photo");
+            patient.setIdPatient(extras.getString("idPatient"));
+            patient.setYearsOld(extras.getString("yearsOld"));
+            patient.setName(extras.getString("patient"));
+
+            showData();
+        }
+
     }
 
     @Override
@@ -101,5 +128,31 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
     public void onBackPressed() {
         //super.onBackPressed();
     }
+
+    /**
+     * This method display data befor fill the form
+     */
+    private  void showData (){
+
+        String name = "";
+        Patient dataPatient = null;
+        if (photo != null)
+            photoPatient.setImageBitmap(photo);
+        else
+            photoPatient.setImageResource(R.drawable.usuario_icon);
+
+        RequestPatient requestPatient = new RequestPatient(this);
+        dataPatient = requestPatient.getDataPatientById(patient);
+
+        name = dataPatient.getName() + " " + dataPatient.getLastName();
+        Log.d("printLog", name);
+        Log.d("printLog", name);
+
+        patientName.setText(patientName.getText().toString() + " " + name);
+        appointmentDate.setText(appointmentDate.getText().toString() + dataPatient.getNextAppointment());
+        yearsOldPatient.setText(yearsOldPatient.getText().toString() + dataPatient.getYearsOld());
+
+    }
+
 
 }
