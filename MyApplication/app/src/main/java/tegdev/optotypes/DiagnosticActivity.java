@@ -1,6 +1,8 @@
 package tegdev.optotypes;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -71,7 +73,33 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()) {
 
+            case R.id.buttonLogout:
+                logOutApp();
+                break;
+            case R.id.idbuttonReturnListMenu:
+                Intent dashBoard = new Intent(this, DashBoardActivity.class);
+                dashBoard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(dashBoard);
+                finish();
+                break;
+        }
+    }
+
+    /**
+     * This metohd send request for close a sesion
+     */
+    public void logOutApp (){
+
+        SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
+        CloseAndRefresh closeApp = new CloseAndRefresh(this);
+        closeApp.logOutApp(loginPreferences);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
     }
 
 }
