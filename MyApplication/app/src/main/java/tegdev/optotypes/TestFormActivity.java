@@ -637,15 +637,15 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        /*Intent newActivity = new Intent(contextActivity, DiagnosticActivity.class);
+                        Intent newActivity = new Intent(contextActivity, DiagnosticActivity.class);
                         newActivity.putExtra("idPatient",diagnosticNotes.getIdPatient());
                         newActivity.putExtra("photo", photo);
                         newActivity.putExtra("patient", patient.getName());
                         newActivity.putExtra("yearsOld", patient.getYearsOld());
                         newActivity.putExtra("date", appointment);
-                        startActivity(newActivity);*/
-                        Intent newActivity = new Intent (contextActivity, DashBoardActivity.class);
                         startActivity(newActivity);
+                        /*Intent newActivity = new Intent (contextActivity, DashBoardActivity.class);
+                        startActivity(newActivity);*/
 
                     }
                 });
