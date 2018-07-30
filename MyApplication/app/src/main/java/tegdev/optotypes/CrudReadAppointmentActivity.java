@@ -204,8 +204,6 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         perfil.setVisibility(View.VISIBLE);
         separator.setVisibility(View.VISIBLE);
 
-        //fillData();
-
     }
 
     /**
@@ -213,7 +211,17 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
      */
     public void displayDiagnosticActivity(){
 
-        if (avRight.getText().toString().equals("Av Derecho: N/A")){
+        String value = "";
+        try{
+
+            value = avRight.getText().toString().split(" ")[2];
+
+        }catch (Exception e){
+            value = "";
+            e.printStackTrace();
+        }
+
+        if (value.equals("N/A") || value.equals("")){
             alertDialog();
         }else{
             Intent newActivity = new Intent(this, DiagnosticActivity.class);
