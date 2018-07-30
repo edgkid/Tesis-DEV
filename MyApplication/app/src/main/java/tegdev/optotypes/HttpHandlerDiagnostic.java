@@ -116,6 +116,7 @@ public class HttpHandlerDiagnostic {
     public String sendRequestPost (String idPatient, int action){
 
         String line = "";
+        String retunrValue = "";
         URL url = null;
         int responseCode;
         StringBuilder result = null;
@@ -169,7 +170,12 @@ public class HttpHandlerDiagnostic {
             e.printStackTrace();
         }
 
-        return result.toString();
+        if (result != null)
+            retunrValue = result.toString();
+        else
+            retunrValue = "[{}]";
+
+        return retunrValue;
     }
 
     /**
@@ -207,19 +213,15 @@ public class HttpHandlerDiagnostic {
                     @Override
                     public void run() {
 
-                        /*if (verifyRespondeServer(result)){
-                            //proccessingJson(result, "ReadAppointment");
-                            //fillData(true, 1);
-                        } else{
-                            //fillData(false, 1);
-                        }*/
-
-                        if (!verifyRespondeServer(result)){
+                        if (result.equals("[{}]")){
+                            Log.d("printLog", "No hay datos");
                             Toast.makeText(ctx, "No hay conexion para mostrar datos", Toast.LENGTH_LONG).show();
+                        }else{
+                            proccessingJson(result, "ReadAppointment");
+                            Log.d("printLog", "Hay datos");
                         }
-
-                        proccessingJson(result, "ReadAppointment");
                         interrupt();
+
                     }
                 });
 
