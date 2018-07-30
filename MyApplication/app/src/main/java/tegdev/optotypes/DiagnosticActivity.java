@@ -134,6 +134,7 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
      */
     private  void showData (){
 
+        int action = 1;
         String name = "";
         Patient dataPatient = null;
         if (photo != null)
@@ -151,6 +152,9 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
         patientName.setText(patientName.getText().toString() + " " + name);
         appointmentDate.setText(appointmentDate.getText().toString() + dataPatient.getNextAppointment());
         yearsOldPatient.setText(yearsOldPatient.getText().toString() + dataPatient.getYearsOld());
+
+        RequestDiagnostic requestDiagnostic = new RequestDiagnostic(this);
+        requestDiagnostic.requestAllDataDiagnostic(dataPatient.getIdPatient(), action);
 
     }
 

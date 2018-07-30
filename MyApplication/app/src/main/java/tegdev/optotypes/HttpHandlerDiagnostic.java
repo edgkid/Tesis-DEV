@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -207,10 +208,10 @@ public class HttpHandlerDiagnostic {
                     public void run() {
 
                         if (verifyRespondeServer(result)){
-                            proccessingJson(diagnostics, result);
-                            fillData(true, 1);
+                            //proccessingJson(diagnostics, result);
+                            //fillData(true, 1);
                         } else{
-                            fillData(false, 1);
+                            //fillData(false, 1);
                         }
 
                         interrupt();
@@ -226,10 +227,9 @@ public class HttpHandlerDiagnostic {
     /**
      * This method initialize conect with server
      * @param ctx
-     * @param diagnostics
      * @param action
      */
-    public void connectToResource (final DiagnosticActivity ctx, final ArrayList diagnostics, final String idPatient, final int action){
+    public void connectToResource (final DiagnosticActivity ctx, final String idPatient, final int action){
 
         Thread tr = new Thread(){
             @Override
@@ -241,10 +241,12 @@ public class HttpHandlerDiagnostic {
                     public void run() {
 
                         if (verifyRespondeServer(result)){
-                            proccessingJson(diagnostics, result);
-                            fillData(true, 2);
+                            //proccessingJson(diagnostics, result);
+                            //fillData(true, 2);
+                            Log.d("PrintLogJSON", result.toString());
                         } else{
-                            fillData(false, 2);
+                           // fillData(false, 2);
+                            Toast.makeText(ctx, "No hay conexion- No se pueden mostrar datos", Toast.LENGTH_LONG).show();
                         }
 
                         interrupt();
@@ -370,7 +372,7 @@ public class HttpHandlerDiagnostic {
      * @param list
      * @param result
      */
-    public void proccessingJson (ArrayList list, String result){
+    /*public void proccessingJson (ArrayList list, String result){
 
         JSONArray array = null;
 
@@ -399,7 +401,7 @@ public class HttpHandlerDiagnostic {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     /**
      *

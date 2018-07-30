@@ -50,14 +50,15 @@ public class RequestDiagnostic {
 
     /**
      * This method sen reques to find data diagnostic by patient
-     * @param objects
      * @param idPatient
      * @param action
      */
-    public void requestAllDataDiagnostic (ArrayList objects, String idPatient, int action){
+    public void requestAllDataDiagnostic (String idPatient, int action){
 
+
+        //// aqui comienzo la modificación
         HttpHandlerDiagnostic httpHandlerDiagnostic =  new HttpHandlerDiagnostic("diagnostic", this.context);
-        httpHandlerDiagnostic.connectToResource((DiagnosticActivity) this.context, objects, idPatient, action);
+        httpHandlerDiagnostic.connectToResource((DiagnosticActivity) this.context, idPatient, action);
 
     }
 
