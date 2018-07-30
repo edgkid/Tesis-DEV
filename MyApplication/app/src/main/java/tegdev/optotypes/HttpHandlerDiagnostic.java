@@ -207,13 +207,18 @@ public class HttpHandlerDiagnostic {
                     @Override
                     public void run() {
 
-                        if (verifyRespondeServer(result)){
-                            //proccessingJson(diagnostics, result);
+                        /*if (verifyRespondeServer(result)){
+                            //proccessingJson(result, "ReadAppointment");
                             //fillData(true, 1);
                         } else{
                             //fillData(false, 1);
+                        }*/
+
+                        if (!verifyRespondeServer(result)){
+                            Toast.makeText(ctx, "No hay conexion para mostrar datos", Toast.LENGTH_LONG).show();
                         }
 
+                        proccessingJson(result, "ReadAppointment");
                         interrupt();
                     }
                 });
@@ -369,13 +374,17 @@ public class HttpHandlerDiagnostic {
 
     /**
      * This method processing data on JSon
-     * @param list
      * @param result
      */
-    /*public void proccessingJson (ArrayList list, String result){
+    public void proccessingJson (String result, String activity){
 
         JSONArray array = null;
+        int sizeList = 0;
 
+        Log.d("printLog", "JSON");
+        Log.d("printLog", result);
+
+        Diagnostic diagnostic = new Diagnostic();
         try{
 
             array = new JSONArray(result);
@@ -384,7 +393,6 @@ public class HttpHandlerDiagnostic {
 
                 JSONObject jsonObj  = array.getJSONObject(i);
 
-                Diagnostic diagnostic = new Diagnostic();
                 diagnostic.setAvRigth(jsonObj.getString("eyeRight"));
                 diagnostic.setAvLeft(jsonObj.getString("eyeleft"));
                 diagnostic.setCenter(jsonObj.getString("center"));
@@ -392,16 +400,56 @@ public class HttpHandlerDiagnostic {
                 diagnostic.setMaintain(jsonObj.getString("maintain"));
                 diagnostic.setDate(jsonObj.getString("appointmentdate"));
                 diagnostic.setTypeTest(jsonObj.getString("typeTest"));
-                diagnostic.setSex(jsonObj.getString("gender"));
+                diagnostic.setDate(jsonObj.getString("appointmentdate"));
 
-                //list.add(diagnostic);
                 CrudReadAppointmentActivity.listData.add(diagnostic);
+                sizeList =  CrudReadAppointmentActivity.listData.size();
             }
         }catch(JSONException e){
             e.printStackTrace();
         }
+        CrudReadAppointmentActivity.listData.removeAll( CrudReadAppointmentActivity.listData);
 
-    }*/
+        if (sizeList != 0){
+            fillActivity(activity, diagnostic);
+        }else{
+            fillActivity("Empty", diagnostic);
+        }
+
+
+    }
+
+    /**
+     * This method fill data on activity
+     * @param activity
+     */
+    private void fillActivity(String activity, Diagnostic diagnostic) {
+
+        if (activity.equals("Empty")){
+            CrudReadAppointmentActivity.lastAppointment.setText("Ultima Consulta: N/A");
+            CrudReadAppointmentActivity.avLeft.setText("Av Derecho: N/A");
+            CrudReadAppointmentActivity.avRight.setText("AV Izquierdo: N/A");
+            CrudReadAppointmentActivity.center.setText("Centra: N/A");
+            CrudReadAppointmentActivity.sustain.setText("Sostiene: N/A");
+            CrudReadAppointmentActivity.maintain.setText("Mantiene: N/A");
+        }
+
+        if (activity.equals("ReadAppointment")){
+
+            CrudReadAppointmentActivity.lastAppointment.setText("Ultima Consulta: " + diagnostic.getDate());
+            CrudReadAppointmentActivity.avLeft.setText("Av Derecho: " + diagnostic.getAvLeft());
+            CrudReadAppointmentActivity.avRight.setText("AV Izquierdo: " + diagnostic.getAvRigth());
+            CrudReadAppointmentActivity.center.setText("Centra: " + diagnostic.getCenter());
+            CrudReadAppointmentActivity.sustain.setText("Sostiene: " + diagnostic.getSustain());
+            CrudReadAppointmentActivity.maintain.setText("Mantiene: " + diagnostic.getMaintain());
+
+        }
+
+        if (activity.equals("Diagnostic")){
+
+        }
+
+    }
 
     /**
      *

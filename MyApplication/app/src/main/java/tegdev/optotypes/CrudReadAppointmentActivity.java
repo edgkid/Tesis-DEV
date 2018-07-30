@@ -24,14 +24,12 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
     TextView lastNames;
     TextView yearsOld;
     static TextView lastAppointment;
-    //TextView nextAppointment;
+
     static TextView avRight;
     static TextView avLeft;
     static TextView center;
     static TextView sustain;
     static TextView maintain;
-    //TextView descriptionTitle;
-    //TextView description;
 
     ImageView perfil;
 
@@ -167,6 +165,7 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
                 patientToday = (PatientsToday)parent.getAdapter().getItem(position);
                 idPatient = String.valueOf(patientToday.getIdPatient());
                 action = 1;
+
                 RequestDiagnostic requestDiagnostic = new RequestDiagnostic( contextActivity);
                 requestDiagnostic.requestDataDiagnostic(listData, idPatient , action);
                 showData(patientToday);
@@ -188,8 +187,8 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         else
             perfil.setImageResource(R.drawable.usuario_icon);
 
-        names.setText(patient[0] + " " + patient[1]);
-        lastNames.setText(patient[2] + " " + patient[3]);
+        names.setText(patient[0] + " " + patient[1] );
+        lastNames.setText(patient[2]+ " " + patient[3]);
         yearsOld.setText(patientsToday.getYearsOld() + " años");
 
         names.setVisibility(View.VISIBLE);
@@ -205,49 +204,8 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         perfil.setVisibility(View.VISIBLE);
         separator.setVisibility(View.VISIBLE);
 
-        fillData();
+        //fillData();
 
-        //listData.removeAll(listData);
-
-    }
-
-    /**
-     * This method fill data in activity
-     */
-    public void fillData(){
-
-        Diagnostic diagnostic = null;
-
-        if(listData.size() > 0){
-            for(int x=0;x<listData.size();x++) {
-                if(listData.get(x).getTypeTest().equals("Test Personalizado")){
-                    diagnostic = new Diagnostic();
-                    diagnostic = listData.get(x);
-                    break;
-                }
-            }
-
-            if (diagnostic == null && listData.get(0) != null){
-                diagnostic = new Diagnostic();
-                diagnostic = listData.get(0);
-            }
-
-            avRight.setText("Av Derecho: " + diagnostic.getAvRigth());
-            avLeft.setText("Av Izquierdo: " + diagnostic.getAvLeft());
-            center.setText("Centra: " + diagnostic.getCenter());
-            sustain.setText("Sostiene: " + diagnostic.getSustain());
-            maintain.setText("Mantiene: " + diagnostic.getMaintain());
-            lastAppointment.setText("Ultima Consulta: " + diagnostic.getDate());
-        }else{
-
-            avRight.setText("Av Derecho: " + "N/A");
-            avLeft.setText("Av Izquierdo: " +"N/A");
-            center.setText("Centra: " + "N/A");
-            sustain.setText("Sostiene: " + "N/A");
-            maintain.setText("Mantiene: " + "N/A");
-            lastAppointment.setText("Ultima Consulta: " + "                 dd/mm/yyyy");
-
-        }
     }
 
     /**
