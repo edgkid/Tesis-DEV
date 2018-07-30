@@ -27,23 +27,40 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
     TextView yearsOldPatient;
 
     TextView typeTest;
+    TextView AvResultOd;
+    TextView AvResultOi;
+    TextView subjectiveCenter;
+    TextView subjectiveSustain;
+    TextView subjectiveMaintain;
+    TextView testColorOd;
+    TextView testColorOi;
+    TextView tonometricOd;
+    TextView tonometricOi;
+    TextView foria;
+    TextView ortotropia;
+    TextView ortoforia;
+    TextView endoforia;
+    TextView exotropia;
+    TextView hipertropia;
+    TextView dvd;
+    TextView caElevada;
+    TextView descriptionAv;
+    TextView descriptionTestA;
+    TextView descriptionTestB;
+    TextView descriptionTestC;
+    TextView descriptionTestD;
 
     TextView ipWbeService;
     TextView ipClient;
     TextView port;
-
-    TextView avResult;
-    TextView otherTestA;
-    TextView otherTestB;
-    TextView otherTestC;
-    TextView otherTestD;
-    TextView description;
 
     Button menuList;
     Button logOut;
 
     Bitmap photo = null;
     Patient patient = null;
+
+    public static ArrayList<TextView> arryValuesView = new ArrayList<TextView>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +76,29 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
         ipWbeService = (TextView) findViewById(R.id.ipWebService);
         ipClient = (TextView) findViewById(R.id.ipProjector);
         port = (TextView) findViewById(R.id.portProjector);
-        avResult = (TextView) findViewById(R.id.idTextAvResult);
-        otherTestA = (TextView) findViewById(R.id.idOtherTestA);
-        otherTestB = (TextView) findViewById(R.id.idOtherTestB);
-        otherTestC = (TextView) findViewById(R.id.idOtherTestC);
-        otherTestD = (TextView) findViewById(R.id.idOtherTestD);
-        description = (TextView) findViewById(R.id.idDescription);
+
+        AvResultOd = (TextView) findViewById(R.id.idAvRsultOd);
+        AvResultOi = (TextView) findViewById(R.id.idAvRsultOi);
+        subjectiveCenter = (TextView) findViewById(R.id.idSubjectiveCenter);
+        subjectiveSustain = (TextView) findViewById(R.id.idSubjectiveSustain);
+        subjectiveMaintain = (TextView) findViewById(R.id.idSubjectiveSustain);
+        testColorOd = (TextView) findViewById(R.id.idTestColorOd);
+        testColorOi = (TextView) findViewById(R.id.idTestColorOi);
+        tonometricOd = (TextView) findViewById(R.id.idTonometricOd);
+        tonometricOi = (TextView) findViewById(R.id.idTonometricOi);
+        foria = (TextView) findViewById(R.id.idForia);
+        ortotropia = (TextView) findViewById(R.id.idOrtotropia);
+        ortoforia = (TextView) findViewById(R.id.idOrtoforia);
+        endoforia = (TextView) findViewById(R.id.idEndoforia);
+        exotropia = (TextView) findViewById(R.id.idExotropia);
+        hipertropia = (TextView) findViewById(R.id.idHipertropia);
+        dvd = (TextView) findViewById(R.id.idDvD);
+        caElevada = (TextView) findViewById(R.id.idCaElevada);
+        descriptionAv = (TextView) findViewById(R.id.idObjectiveTest);
+        descriptionTestA = (TextView) findViewById(R.id.idDescripctionTestA);
+        descriptionTestB = (TextView) findViewById(R.id.idDescripctionTestB);
+        descriptionTestC = (TextView) findViewById(R.id.idDescripctionTestC);
+        descriptionTestD = (TextView) findViewById(R.id.idDescripctionTestD);
 
         logOut = (Button) findViewById(R.id.buttonLogout);
         menuList = (Button) findViewById(R.id.idbuttonReturnListMenu);
@@ -92,9 +126,52 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
             patient.setYearsOld(extras.getString("yearsOld"));
             patient.setName(extras.getString("patient"));
 
+            fillListViewElements();
+            getViewData();
             showData();
         }
 
+
+
+    }
+
+    /**
+     * This method get data for views in activity
+     */
+    private void getViewData() {
+
+        RequestDiagnostic requestDiagnostic = new RequestDiagnostic(this);
+        requestDiagnostic.getDataViews(patient.getIdPatient());
+    }
+
+    /**
+     * This method fill elements on view
+     */
+    private void fillListViewElements() {
+
+        arryValuesView.add(typeTest);
+        arryValuesView.add(AvResultOd);
+        arryValuesView.add(AvResultOi);
+        arryValuesView.add(subjectiveCenter);
+        arryValuesView.add(subjectiveSustain);
+        arryValuesView.add(subjectiveMaintain);
+        arryValuesView.add(testColorOd);
+        arryValuesView.add(testColorOi);
+        arryValuesView.add(tonometricOd);
+        arryValuesView.add(tonometricOi);
+        arryValuesView.add(foria);
+        arryValuesView.add(ortotropia);
+        arryValuesView.add(ortoforia);
+        arryValuesView.add(endoforia);
+        arryValuesView.add(exotropia);
+        arryValuesView.add(hipertropia);
+        arryValuesView.add(dvd);
+        arryValuesView.add(caElevada);
+        arryValuesView.add(descriptionAv);
+        arryValuesView.add(descriptionTestA);
+        arryValuesView.add(descriptionTestB);
+        arryValuesView.add(descriptionTestC);
+        arryValuesView.add(descriptionTestD);
     }
 
     @Override

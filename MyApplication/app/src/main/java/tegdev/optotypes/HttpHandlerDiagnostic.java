@@ -248,7 +248,7 @@ public class HttpHandlerDiagnostic {
                     public void run() {
 
                         if (verifyRespondeServer(result)){
-                            //proccessingJson(diagnostics, result);
+                            proccessingJson(result,"Diagnostic");
                             //fillData(true, 2);
                             Log.d("PrintLogJSON", result.toString());
                         } else{
@@ -382,6 +382,7 @@ public class HttpHandlerDiagnostic {
 
         JSONArray array = null;
         int sizeList = 0;
+        ArrayList<Diagnostic> list = new ArrayList<Diagnostic>();
 
         Log.d("printLog", "JSON");
         Log.d("printLog", result);
@@ -395,6 +396,7 @@ public class HttpHandlerDiagnostic {
 
                 JSONObject jsonObj  = array.getJSONObject(i);
 
+                diagnostic.setTypeTest(jsonObj.getString("typeTest"));
                 diagnostic.setAvRigth(jsonObj.getString("eyeRight"));
                 diagnostic.setAvLeft(jsonObj.getString("eyeleft"));
                 diagnostic.setCenter(jsonObj.getString("center"));
@@ -404,15 +406,16 @@ public class HttpHandlerDiagnostic {
                 diagnostic.setTypeTest(jsonObj.getString("typeTest"));
                 diagnostic.setDate(jsonObj.getString("appointmentdate"));
 
-                CrudReadAppointmentActivity.listData.add(diagnostic);
-                sizeList =  CrudReadAppointmentActivity.listData.size();
+                /*CrudReadAppointmentActivity.listData.add(diagnostic);
+                sizeList =  CrudReadAppointmentActivity.listData.size();*/
+                list.add(diagnostic);
             }
         }catch(JSONException e){
             e.printStackTrace();
         }
         CrudReadAppointmentActivity.listData.removeAll( CrudReadAppointmentActivity.listData);
 
-        if (sizeList != 0){
+        if (list.size() > 0){
             fillActivity(activity, diagnostic);
         }else{
             fillActivity("Empty", diagnostic);
@@ -420,6 +423,8 @@ public class HttpHandlerDiagnostic {
 
 
     }
+
+
 
     /**
      * This method fill data on activity
@@ -448,7 +453,12 @@ public class HttpHandlerDiagnostic {
         }
 
         if (activity.equals("Diagnostic")){
-
+            DiagnosticActivity.arryValuesView.get(0).setText(diagnostic.getTypeTest());
+            DiagnosticActivity.arryValuesView.get(1).setText("OD: " + diagnostic.getAvRigth());
+            DiagnosticActivity.arryValuesView.get(2).setText("OI: " + diagnostic.getAvLeft());
+            DiagnosticActivity.arryValuesView.get(3).setText("Center: " + diagnostic.getCenter());
+            DiagnosticActivity.arryValuesView.get(4).setText("Sustain: " + diagnostic.getSustain());
+            DiagnosticActivity.arryValuesView.get(5).setText("Maintain: " + diagnostic.getMaintain());
         }
 
     }

@@ -88,4 +88,16 @@ public class RequestDiagnostic {
         db.close();
     }
 
+    /**
+     * This method get data for views
+     * @param idPatient
+     */
+    public void getDataViews(String idPatient){
+
+        int action = 1;
+        HttpHandlerDiagnostic httpHandlerDiagnostic = new HttpHandlerDiagnostic("diagnostic", context);
+        httpHandlerDiagnostic.connectToResource((DiagnosticActivity) context, idPatient, action);
+
+    }
+
 }
