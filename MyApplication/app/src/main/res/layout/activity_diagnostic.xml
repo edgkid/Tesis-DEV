@@ -162,26 +162,96 @@
                 android:orientation="vertical"
                 android:layout_marginTop="10dp">
 
-                <TextView
-                    android:id="@+id/idTextAvResult"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:text="Agudeza Visual OD: OI:"
-                    android:textSize="20dp"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/idOtherTestA"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:text="Prueba Subjectiva: Centra, Sostiene, Mantiene"
-                    android:textSize="20dp"/>
+                    <TextView
+                        android:id="@+id/idTextAvResult"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Agudeza Visual"
+                        android:textSize="20dp"/>
 
-                <TextView
-                    android:id="@+id/idOtherTestB"
+                    <TextView
+                        android:id="@+id/idAvRsultOd"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="OD:"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:id="@+id/idAvRsultOi"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="OI:"
+                        android:textSize="20dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:text="Precepcion cromatica OD: OI:"
-                    android:textSize="20dp"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/idOtherTestA"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Prueba Subjectiva"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:id="@+id/idSubjectiveCenter"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="Centra:"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:id="@+id/idSubjectiveSustain"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="Sostiene:"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:id="@+id/idSubjectiveMaintain"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="Mantiene:"
+                        android:textSize="20dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/idOtherTestB"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Precepcion cromatica"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:id="@+id/idTestColorOd"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="OD:"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:id="@+id/idTestColorOi"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="OI:"
+                        android:textSize="20dp"/>
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/idOtherTestC"
