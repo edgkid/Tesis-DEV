@@ -35,6 +35,13 @@ public class Diagnostic {
     private String crhomaticOd;
     private String crhomaticOi;
 
+    private String objectiveTest;
+    private String testA;
+    private String testB;
+    private String testC;
+    private String testD;
+
+
     public String getIdPatient() {
         return idPatient;
     }
@@ -249,5 +256,45 @@ public class Diagnostic {
 
     public void setHipertropia(String hipertropia) {
         this.hipertropia = hipertropia;
+    }
+
+    public String getObjectiveTest() {
+        return objectiveTest;
+    }
+
+    public void setObjectiveTest(String objectiveTest) {
+        this.objectiveTest = objectiveTest;
+    }
+
+    public String getTestA() {
+        return testA;
+    }
+
+    public void setTestA(String testA) {
+        this.testA = testA;
+    }
+
+    public String getTestB() {
+        return testB;
+    }
+
+    public void setTestB(String testB) {
+        this.testB = testB;
+    }
+
+    public String getTestC() {
+        return testC;
+    }
+
+    public void setTestC(String testC) {
+        this.testC = testC;
+    }
+
+    public String getTestD() {
+        return testD;
+    }
+
+    public void setTestD(String testD) {
+        this.testD = testD;
     }
 }

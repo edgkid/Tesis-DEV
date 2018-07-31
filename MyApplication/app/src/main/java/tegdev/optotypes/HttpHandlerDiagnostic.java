@@ -396,15 +396,29 @@ public class HttpHandlerDiagnostic {
 
                 JSONObject jsonObj  = array.getJSONObject(i);
 
+                diagnostic.setDate(jsonObj.getString("appointmentdate"));
                 diagnostic.setTypeTest(jsonObj.getString("typeTest"));
                 diagnostic.setAvRigth(jsonObj.getString("eyeRight"));
                 diagnostic.setAvLeft(jsonObj.getString("eyeleft"));
                 diagnostic.setCenter(jsonObj.getString("center"));
                 diagnostic.setSustain(jsonObj.getString("sustain"));
                 diagnostic.setMaintain(jsonObj.getString("maintain"));
-                diagnostic.setDate(jsonObj.getString("appointmentdate"));
-                diagnostic.setTypeTest(jsonObj.getString("typeTest"));
-                diagnostic.setDate(jsonObj.getString("appointmentdate"));
+                diagnostic.setCrhomaticOd(jsonObj.getString("crhomaticOd"));
+                diagnostic.setCrhomaticOi(jsonObj.getString("crhomaticOi"));
+                diagnostic.setTonometriaOd(jsonObj.getString("tonometriaOd"));
+                diagnostic.setTonometriaOi(jsonObj.getString("tonometriaOi"));
+                diagnostic.setForia(jsonObj.getString("foria"));
+                diagnostic.setOrtoforia(jsonObj.getString("ortoforia"));
+                diagnostic.setOrtotropia(jsonObj.getString("ortotropia"));
+                diagnostic.setEndoforia(jsonObj.getString("endoforia"));
+                diagnostic.setExoforia(jsonObj.getString("exoforia"));
+                diagnostic.setDvd(jsonObj.getString("dvd"));
+                diagnostic.setCaElevada(jsonObj.getString("caElevada"));
+                diagnostic.setObjectiveTest(jsonObj.getString("objectiveTest"));
+                diagnostic.setTestA(jsonObj.getString("subjectiveTest"));
+                diagnostic.setTestB(jsonObj.getString("tonometricTest"));
+                diagnostic.setTestC(jsonObj.getString("testMacular"));
+                diagnostic.setTestD(jsonObj.getString("chronomaticTest"));
 
                 /*CrudReadAppointmentActivity.listData.add(diagnostic);
                 sizeList =  CrudReadAppointmentActivity.listData.size();*/
@@ -459,6 +473,23 @@ public class HttpHandlerDiagnostic {
             DiagnosticActivity.arryValuesView.get(3).setText("Center: " + diagnostic.getCenter());
             DiagnosticActivity.arryValuesView.get(4).setText("Sustain: " + diagnostic.getSustain());
             DiagnosticActivity.arryValuesView.get(5).setText("Maintain: " + diagnostic.getMaintain());
+            DiagnosticActivity.arryValuesView.get(6).setText("OD: " + diagnostic.getCrhomaticOd());
+            DiagnosticActivity.arryValuesView.get(7).setText("OI: " + diagnostic.getCrhomaticOi());
+            DiagnosticActivity.arryValuesView.get(8).setText("OD: " + diagnostic.getTonometriaOd());
+            DiagnosticActivity.arryValuesView.get(9).setText("OI: " + diagnostic.getTonometriaOd());
+            DiagnosticActivity.arryValuesView.get(10).setText("foria: " + diagnostic.getForia());
+            DiagnosticActivity.arryValuesView.get(11).setText("ortotropia: " + diagnostic.getOrtotropia());
+            DiagnosticActivity.arryValuesView.get(12).setText("ortoforia: " + diagnostic.getOrtoforia());
+            DiagnosticActivity.arryValuesView.get(13).setText("endoforia: " + diagnostic.getEndoforia());
+            DiagnosticActivity.arryValuesView.get(14).setText("exotropia: " + diagnostic.getExoforia());
+            DiagnosticActivity.arryValuesView.get(15).setText("N/A");
+            DiagnosticActivity.arryValuesView.get(16).setText("dvd: " + diagnostic.getDvd());
+            DiagnosticActivity.arryValuesView.get(17).setText("CA/A Elevada: " + diagnostic.getCaElevada());
+            DiagnosticActivity.arryValuesView.get(18).setText(diagnostic.getObjectiveTest());
+            DiagnosticActivity.arryValuesView.get(19).setText(diagnostic.getTestA());
+            DiagnosticActivity.arryValuesView.get(20).setText(diagnostic.getTestB());
+            DiagnosticActivity.arryValuesView.get(21).setText(diagnostic.getTestC());
+            DiagnosticActivity.arryValuesView.get(21).setText(diagnostic.getTestD());
         }
 
     }
