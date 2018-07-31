@@ -81,7 +81,7 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
         AvResultOi = (TextView) findViewById(R.id.idAvRsultOi);
         subjectiveCenter = (TextView) findViewById(R.id.idSubjectiveCenter);
         subjectiveSustain = (TextView) findViewById(R.id.idSubjectiveSustain);
-        subjectiveMaintain = (TextView) findViewById(R.id.idSubjectiveSustain);
+        subjectiveMaintain = (TextView) findViewById(R.id.idSubjectiveMaintain);
         testColorOd = (TextView) findViewById(R.id.idTestColorOd);
         testColorOi = (TextView) findViewById(R.id.idTestColorOi);
         tonometricOd = (TextView) findViewById(R.id.idTonometricOd);

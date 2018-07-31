@@ -345,9 +345,7 @@ public class HttpHandlerDiagnostic {
             jsonParam.put("idPatient", idPatient);
             jsonParam.put("action", action);
 
-
             listParam.put(jsonParam);
-
 
         }catch (Exception e){
             e.printStackTrace();
@@ -415,6 +413,7 @@ public class HttpHandlerDiagnostic {
                 diagnostic.setExoforia(jsonObj.getString("exoforia"));
                 diagnostic.setDvd(jsonObj.getString("dvd"));
                 diagnostic.setCaElevada(jsonObj.getString("caElevada"));
+                diagnostic.setHipertropia(jsonObj.getString("hipertropia"));
                 diagnostic.setObjectiveTest(jsonObj.getString("objectiveTest"));
                 diagnostic.setTestA(jsonObj.getString("subjectiveTest"));
                 diagnostic.setTestB(jsonObj.getString("tonometricTest"));
@@ -471,9 +470,9 @@ public class HttpHandlerDiagnostic {
             DiagnosticActivity.arryValuesView.get(0).setText(diagnostic.getTypeTest());
             DiagnosticActivity.arryValuesView.get(1).setText("OD: " + diagnostic.getAvRigth());
             DiagnosticActivity.arryValuesView.get(2).setText("OI: " + diagnostic.getAvLeft());
-            DiagnosticActivity.arryValuesView.get(3).setText("Center: " + diagnostic.getCenter());
-            DiagnosticActivity.arryValuesView.get(4).setText("Sustain: " + diagnostic.getSustain());
-            DiagnosticActivity.arryValuesView.get(5).setText("Maintain: " + diagnostic.getMaintain());
+            DiagnosticActivity.arryValuesView.get(3).setText("Centra: " + diagnostic.getCenter());
+            DiagnosticActivity.arryValuesView.get(4).setText("Sostiene: " + diagnostic.getSustain());
+            DiagnosticActivity.arryValuesView.get(5).setText("Mantiene: " + diagnostic.getMaintain());
             DiagnosticActivity.arryValuesView.get(6).setText("OD: " + diagnostic.getCrhomaticOd());
             DiagnosticActivity.arryValuesView.get(7).setText("OI: " + diagnostic.getCrhomaticOi());
             DiagnosticActivity.arryValuesView.get(8).setText("OD: " + diagnostic.getTonometriaOd());
@@ -483,7 +482,7 @@ public class HttpHandlerDiagnostic {
             DiagnosticActivity.arryValuesView.get(12).setText("ortoforia: " + diagnostic.getOrtoforia());
             DiagnosticActivity.arryValuesView.get(13).setText("endoforia: " + diagnostic.getEndoforia());
             DiagnosticActivity.arryValuesView.get(14).setText("exotropia: " + diagnostic.getExoforia());
-            DiagnosticActivity.arryValuesView.get(15).setText("N/A");
+            DiagnosticActivity.arryValuesView.get(15).setText("Hipertropia: " + diagnostic.getHipertropia());
             DiagnosticActivity.arryValuesView.get(16).setText("dvd: " + diagnostic.getDvd());
             DiagnosticActivity.arryValuesView.get(17).setText("CA/A Elevada: " + diagnostic.getCaElevada());
             DiagnosticActivity.arryValuesView.get(18).setText(diagnostic.getObjectiveTest());
