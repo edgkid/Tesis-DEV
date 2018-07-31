@@ -311,6 +311,7 @@ public class HttpHandlerDiagnostic {
             jsonParam.put("exoforia", diagnostic.getExoforia());
             jsonParam.put("dvd", diagnostic.getDvd());
             jsonParam.put("caElevada", diagnostic.getCaElevada());
+            jsonParam.put("hipertropia", diagnostic.getHipertropia());
             jsonParam.put("tonometriaOd", diagnostic.getTonometriaOd());
             jsonParam.put("tonometriaOi", diagnostic.getTonometriaOi());
 
